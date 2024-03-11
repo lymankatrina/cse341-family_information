@@ -1,11 +1,6 @@
-const express = require('express');
-const router = express.Router();
+const routes = require('express').Router();
 
-router.use('/', require('./swagger'));
+routes.use('/', require('./swaggerRoutes'));
+routes.use('/individuals', require('./individualRoutes'));
 
-router.use('/addresses', require('./individuals'));
-router.use('/relationships', require('./households'));
-router.use('/relationships', require('./anniversaries'));
-router.use('/users', require('./news'));
-
-module.exports = router;
+module.exports = routes;

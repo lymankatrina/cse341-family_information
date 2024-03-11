@@ -1,13 +1,11 @@
 {
-    "news": {
+  "news": {
     "date": "1999-01-13",
     "postedBy": {
-
-    "individual_Id": " "
+      "individual_Id": " "
     },
     "title": "string",
     "image": "image URL",
     "content": "text object"
   }
 }
-  
