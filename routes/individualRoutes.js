@@ -15,7 +15,10 @@ router.get('/getindividual/:id', individualController.getSingleIndividual);
 router.get('/getindividualsbyparent/:parentId', individualController.getIndividualsByParent);
 
 // Get individuals by household id
-router.get('/getindividualsbyhousehold/:householdId', individualController.getIndividualsByHousehold);
+router.get(
+  '/getindividualsbyhousehold/:householdId',
+  individualController.getIndividualsByHousehold
+);
 
 // Get birthday list
 router.get('/getbirthdays', individualController.getBirthdays);

@@ -83,24 +83,19 @@ exports.getIndividualsByHousehold = async (req, res) => {
 };
 
 // Get birthday list
-exports.getBirthdays = async (req, res) => {
-};
+exports.getBirthdays = async (req, res) => {};
 
 // Get birthdays by month
-exports.getBirthdaysByMonth = async (req, res) => {
-};
+exports.getBirthdaysByMonth = async (req, res) => {};
 
 // Get birthdays by parent id
-exports.getBirthdaysByParents = async (req, res) => {
-};
+exports.getBirthdaysByParents = async (req, res) => {};
 
 // Get anniversaries
-exports.getAnniversaries = async (req, res) => {
-};
+exports.getAnniversaries = async (req, res) => {};
 
 // Get anniversaries by month
-exports.getAnniversariesByMonth = async (req, res) => {
-};
+exports.getAnniversariesByMonth = async (req, res) => {};
 
 /* POST REQUESTS */
 // Create an Individual
@@ -143,7 +138,7 @@ exports.createIndividual = async (req, res) => {
     email: req.body.email,
     household: req.body.household,
     headOfHousehold: req.body.headOfHousehold,
-    picture: req.body.picture,
+    picture: req.body.picture
   };
   const response = await mongodb.getDb().db().collection('individuals').insertOne(individual);
   if (response.acknowledged) {
@@ -199,7 +194,8 @@ exports.updateIndividual = async (req, res) => {
     email: req.body.email,
     household: req.body.household,
     headOfHousehold: req.body.headOfHousehold,
-    picture: req.body.picture,  };
+    picture: req.body.picture
+  };
   const response = await mongodb
     .getDb()
     .db()
@@ -222,7 +218,11 @@ exports.deleteIndividual = async (req, res) => {
   // #swagger.summary = 'Delete an Individual by Id'
   // #swagger.description = 'This will delete a single individual from the database by Id. This action is permanent.'
   const individualId = new ObjectId(req.params.id);
-  const response = await mongodb.getDb().db().collection('individuals').deleteOne({ _id: individualId });
+  const response = await mongodb
+    .getDb()
+    .db()
+    .collection('individuals')
+    .deleteOne({ _id: individualId });
   console.log(response);
   if (response.deletedCount > 0) {
     res.status(200).send();
