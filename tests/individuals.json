@@ -1,19 +1,26 @@
 {
-  "individual": {
-    "firstName": "Johnny",
-    "middleName": "Bartholomew",
-    "lastName": "Goode",
-    "birthdate": "1999-01-13",
-    "parents": {
-      "individualId1": " ",
-      "individualId2": " "
+  "individual": [
+    { "firstName": "John",
+      "middleName": "Bart",
+      "lastName": "Doe",
+      "birthdate": "1947-01-13",
+      "parents": [],
+      "phone": "123-456-7890",
+      "email": "jbdoe@gmail.com",
+      "household": "",
+      "headOfHousehold": true,
+      "picture": "https://randomuser.me/api/portraits/men/1.jpg"
     },
-    "parentInLaws": {
-      "individual1Id": " ",
-      "individual2Id": " "
-    },
-    "phone": "123-456-7890",
-    "householdId": "householdId",
-    "headOfHousehold": true
-  }
+    { "firstName": "Jane",
+      "middleName": "Mary",
+      "lastName": "Doe",
+      "birthdate": "1950-01-13",
+      "parents": [],
+      "phone": "123-456-7890",
+      "email": "jmdoe@gmail.com",
+      "household": "",
+      "headOfHousehold": true,
+      "picture": "https://randomuser.me/api/portraits/women/23.jpg"
+    }
+  ]
 }

@@ -10,7 +10,7 @@ routes
   )
   .get(
     '/api-docs',
-//    requiresAuth(),
+    //    requiresAuth(),
     swaggerUi.setup(swaggerDocument) // '#swagger.ignore = true'
   );
 

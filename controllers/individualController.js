@@ -91,12 +91,6 @@ exports.getBirthdaysByMonth = async () => {};
 // Get birthdays by parent id
 exports.getBirthdaysByParents = async () => {};
 
-// Get anniversaries
-exports.getAnniversaries = async () => {};
-
-// Get anniversaries by month
-exports.getAnniversariesByMonth = async () => {};
-
 /* POST REQUESTS */
 // Create an Individual
 exports.createIndividual = async (req, res) => {
@@ -114,8 +108,6 @@ exports.createIndividual = async (req, res) => {
           lastName: "Jingleheimer",
           birthdate: "YYYY-MM-DD",
           parents: [ "65c6f726d51fdd04775b0a54", "65c6f726d51fdd04775b0a55" ],
-          spouse: "65c6f726d51fdd04775b0a56",
-          anniversary: "YYYY-MM-DD",
           phone: "123-456-7890",
           email: "jjjingle@gmail.com",
           household: "65c6f726d51fdd04775b0a57",
@@ -132,8 +124,6 @@ exports.createIndividual = async (req, res) => {
     lastName: req.body.lastName,
     birthdate: req.body.birthdate,
     parents: [req.body.parents],
-    spouse: req.body.spouse,
-    anniversary: req.body.anniversary,
     phone: req.body.phone,
     email: req.body.email,
     household: req.body.household,
@@ -165,8 +155,6 @@ exports.updateIndividual = async (req, res) => {
           lastName: "Jingleheimer",
           birthdate: "YYYY-MM-DD",
           parents: [ "65c6f726d51fdd04775b0a54", "65c6f726d51fdd04775b0a55" ],
-          spouse: "65c6f726d51fdd04775b0a56",
-          anniversary: "YYYY-MM-DD",
           phone: "123-456-7890",
           email: "jjjingle@gmail.com",
           household: "65c6f726d51fdd04775b0a57",
@@ -188,8 +176,6 @@ exports.updateIndividual = async (req, res) => {
     lastName: req.body.lastName,
     birthdate: req.body.birthdate,
     parents: [req.body.parents],
-    spouse: req.body.spouse,
-    anniversary: req.body.anniversary,
     phone: req.body.phone,
     email: req.body.email,
     household: req.body.household,

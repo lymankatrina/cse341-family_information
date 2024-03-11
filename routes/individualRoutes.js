@@ -29,12 +29,6 @@ router.get('/getbirthdays/:month', individualController.getBirthdaysByMonth);
 // Get birthdays by parent id
 router.get('/getbirthdays/:parentId', individualController.getBirthdaysByParents);
 
-// Get anniversaries
-router.get('/getanniversaries', individualController.getAnniversaries);
-
-// Get anniversaries by month
-router.get('getanniversaries/:month', individualController.getAnniversariesByMonth);
-
 // Update a single individual by id
 router.put('/updateindividual/:id', individualController.updateIndividual);
 
