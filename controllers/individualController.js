@@ -17,10 +17,10 @@ exports.getAllIndividuls = async (req, res) => {
 
 // Get a single individual by id
 exports.getSingleIndividual = async (req, res) => {
-  // #swagger.tags = ['Owners']
-  // #swagger.summary = 'Get a single owner by ID'
-  // #swagger.description = 'This will return a single owner in the database by owner Id'
-  const ownerId = new ObjectId(req.params.id);
+  // #swagger.tags = ['Individuals']
+  // #swagger.summary = 'Get a single individual by ID'
+  // #swagger.description = 'This will return a single individual in the database by individual Id'
+  const individualId = new ObjectId(req.params.id);
   const result = await mongodb.getDb().db().collection('individuals').find({ _id: individualId });
   result.toArray().then((lists) => {
     if (lists.length > 0) {
@@ -83,19 +83,19 @@ exports.getIndividualsByHousehold = async (req, res) => {
 };
 
 // Get birthday list
-exports.getBirthdays = async (req, res) => {};
+exports.getBirthdays = async () => {};
 
 // Get birthdays by month
-exports.getBirthdaysByMonth = async (req, res) => {};
+exports.getBirthdaysByMonth = async () => {};
 
 // Get birthdays by parent id
-exports.getBirthdaysByParents = async (req, res) => {};
+exports.getBirthdaysByParents = async () => {};
 
 // Get anniversaries
-exports.getAnniversaries = async (req, res) => {};
+exports.getAnniversaries = async () => {};
 
 // Get anniversaries by month
-exports.getAnniversariesByMonth = async (req, res) => {};
+exports.getAnniversariesByMonth = async () => {};
 
 /* POST REQUESTS */
 // Create an Individual
@@ -234,5 +234,3 @@ exports.deleteIndividual = async (req, res) => {
       .json(response.error || 'An error occured while attempting to delete the individual.');
   }
 };
-
-module.exports = router;

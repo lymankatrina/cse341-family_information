@@ -9,9 +9,9 @@ const swaggerAutogen = require('swagger-autogen')(options);
 const doc = {
   info: {
     version: '1.0.0',
-    title: 'Pets and Owners API',
+    title: 'Family Information API',
     description:
-      'This is a simple REST API developed by Katrina Lyman for a school project assignment',
+      'This is a family information app created by team d for the CSE341 team project assignment',
     contact: {
       name: 'CSE 341 Team D',
       url: 'https://github.com/ajrobbins04/cse341-family_information'

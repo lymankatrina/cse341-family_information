@@ -1,5 +1,5 @@
 {
-    "individual": {
+  "individual": {
     "firstName": "Johnny",
     "middleName": "Bartholomew",
     "lastName": "Goode",
@@ -9,12 +9,11 @@
       "individualId2": " "
     },
     "parentInLaws": {
-     "individual1Id": " ",
-     "individual2Id": " "
+      "individual1Id": " ",
+      "individual2Id": " "
     },
     "phone": "123-456-7890",
     "householdId": "householdId",
     "headOfHousehold": true
   }
 }
-  
