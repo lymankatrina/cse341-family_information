@@ -2,6 +2,7 @@
   "name": "cse341-family_information",
   "version": "1.0.0",
   "description": "",
+
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,10 +12,12 @@
     "lint:fix": "eslint --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "swagger": "node ./swagger.js"
+
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+
   "devDependencies": {
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
