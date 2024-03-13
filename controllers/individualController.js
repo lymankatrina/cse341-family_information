@@ -4,7 +4,7 @@ const { validationResult } = require('express-validator');
 
 /* GET REQUESTS */
 // Get a list of all Individuals
-exports.getAllIndividuls = async (req, res) => {
+exports.getAllIndividuals = async (req, res) => {
   // #swagger.tags = ['Individuals']
   // #swagger.summary = 'Get all Individuals'
   // #swagger.description = 'This will list all individuals in the database'

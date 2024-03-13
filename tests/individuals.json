@@ -1,21 +1,23 @@
 {
   "individual": [
-    { "firstName": "John",
+    {
+      "firstName": "John",
       "middleName": "Bart",
       "lastName": "Doe",
       "birthdate": "1947-01-13",
-      "parents": [],
+      "parents": "",
       "phone": "123-456-7890",
       "email": "jbdoe@gmail.com",
       "household": "",
       "headOfHousehold": true,
       "picture": "https://randomuser.me/api/portraits/men/1.jpg"
     },
-    { "firstName": "Jane",
+    {
+      "firstName": "Jane",
       "middleName": "Mary",
       "lastName": "Doe",
       "birthdate": "1950-01-13",
-      "parents": [],
+      "parents": "",
       "phone": "123-456-7890",
       "email": "jmdoe@gmail.com",
       "household": "",

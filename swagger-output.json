@@ -274,6 +274,173 @@
           }
         }
       }
+    },
+    "/anniversaries/getanniversaries": {
+      "get": {
+        "tags": ["Anniversaries"],
+        "summary": "Get all Anniversaries",
+        "description": "This will list all anniversaries in the database",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/anniversaries/getanniversary/{individualId}": {
+      "get": {
+        "tags": ["Anniversaries"],
+        "summary": "Get a single anniversary by an Individual ID",
+        "description": "This will return a single anniversary in the database by an individual",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "individualId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {}
+      }
+    },
+    "/anniversaries/getanniversaries/{month}": {
+      "get": {
+        "tags": ["Anniversaries"],
+        "summary": "Get anniversaries by month",
+        "description": "This will return a list of anniversaries that occur in the specified month",
+        "parameters": [
+          {
+            "name": "month",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {}
+      }
+    },
+    "/anniversaries/createanniversary": {
+      "post": {
+        "tags": ["Anniversaries"],
+        "summary": "Create an Anniversary",
+        "description": "Create an Anniversary by providing all required information.",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "couple": ["individualId1", "individualId2"],
+                "anniversaryDate": "2020-06-30"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/anniversaries/updateanniversary/{id}": {
+      "put": {
+        "tags": ["Anniversaries"],
+        "summary": "Update an Anniversary by Id",
+        "description": "Update an existing anniversary by providing the anniversaryId and the updated information.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "couple": ["individualId1", "individualId2"],
+                "anniversaryDate": "2020-06-30"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/anniversaries/deleteanniversary/{id}": {
+      "delete": {
+        "tags": ["Anniversaries"],
+        "summary": "Delete an Anniversary by Id",
+        "description": "This will delete a single anniversary from the database by Id. This action is permanent.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   }
 }

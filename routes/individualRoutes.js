@@ -6,7 +6,7 @@ const individualController = require('../controllers/individualController');
 router.post('/createindividual', individualController.createIndividual);
 
 // Get a list of all Individuals
-router.get('/getindividuals', individualController.getAllIndividuls);
+router.get('/getindividuals', individualController.getAllIndividuals);
 
 // Get a single individual by id
 router.get('/getindividual/:id', individualController.getSingleIndividual);
