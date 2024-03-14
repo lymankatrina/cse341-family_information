@@ -1,5 +1,6 @@
 const mongodb = require('../db/connect');
 const { ObjectId } = require('mongodb');
+const { validationResult } = require('express-validator');
 
 /* GET REQUESTS */
 // Get a list of all Anniversaries
@@ -143,6 +144,10 @@ exports.createAnniversary = async (req, res) => {
     }
   }
   */
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
   try {
     const anniversaryDate = new Date(req.body.anniversaryDate);
     const couple = req.body.couple;
@@ -157,7 +162,8 @@ exports.createAnniversary = async (req, res) => {
       res.status(400).json({ error: 'Failed to create anniversary' });
     }
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Error creating anniversary:', err);
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -183,6 +189,10 @@ exports.updateAnniversary = async (req, res) => {
     }
   }
   */
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
   try {
     const anniversaryId = new ObjectId(req.params.id);
     const couple = req.body.couple;
@@ -202,7 +212,8 @@ exports.updateAnniversary = async (req, res) => {
       res.status(404).json({ error: 'Anniversary not found' });
     }
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Error updating anniversary:', err);
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };
 

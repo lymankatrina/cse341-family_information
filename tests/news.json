@@ -1,11 +1,12 @@
 {
   "news": [
     {
-      "date": "1999-01-13",
-      "postedBy": "",
-      "title": "string",
-      "image": "image URL",
-      "content": "text object"
+      "newsTitle": "My First News Update",
+      "newsBody": "This is a practice news post for testing the collection endpoint settings and routes. I am trying to make it long so that I can see if the validation rules work, and so that I can see if the response shortens the news body the way I hope it will. This is just for practice and it should work. This is a practice news post for testing the collection endpoint settings and routes. I am trying to make it long so that I can see if the validation rules work, and so that I can see if the response shortens the news body the way I hope it will. This is just for practice and it should work.",
+      "status": "public",
+      "postedBy": "65f34f8191f613164d933bb1",
+      "dateCreated": "2024-03-14",
+      "picture": "https://fakeimg.pl/600x400?text=test+image"
     }
   ]
 }

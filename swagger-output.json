@@ -275,71 +275,6 @@
         }
       }
     },
-    "/anniversaries/getanniversaries": {
-      "get": {
-        "tags": ["Anniversaries"],
-        "summary": "Get all Anniversaries",
-        "description": "This will list all anniversaries in the database",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/anniversaries/getanniversary/{individualId}": {
-      "get": {
-        "tags": ["Anniversaries"],
-        "summary": "Get a single anniversary by an Individual ID",
-        "description": "This will return a single anniversary in the database by an individual",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "individualId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        },
-        "requestBody": {}
-      }
-    },
-    "/anniversaries/getanniversaries/{month}": {
-      "get": {
-        "tags": ["Anniversaries"],
-        "summary": "Get anniversaries by month",
-        "description": "This will return a list of anniversaries that occur in the specified month",
-        "parameters": [
-          {
-            "name": "month",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "requestBody": {}
-      }
-    },
     "/anniversaries/createanniversary": {
       "post": {
         "tags": ["Anniversaries"],
@@ -372,6 +307,71 @@
         }
       }
     },
+    "/anniversaries/getall": {
+      "get": {
+        "tags": ["Anniversaries"],
+        "summary": "Get all Anniversaries",
+        "description": "This will list all anniversaries in the database",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/anniversaries/{individualId}": {
+      "get": {
+        "tags": ["Anniversaries"],
+        "summary": "Get a single anniversary by an Individual ID",
+        "description": "This will return a single anniversary in the database by an individual",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "individualId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {}
+      }
+    },
+    "/anniversaries/{month}": {
+      "get": {
+        "tags": ["Anniversaries"],
+        "summary": "Get anniversaries by month",
+        "description": "This will return a list of anniversaries that occur in the specified month",
+        "parameters": [
+          {
+            "name": "month",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {}
+      }
+    },
     "/anniversaries/updateanniversary/{id}": {
       "put": {
         "tags": ["Anniversaries"],
@@ -390,6 +390,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"
@@ -419,6 +422,219 @@
         "tags": ["Anniversaries"],
         "summary": "Delete an Anniversary by Id",
         "description": "This will delete a single anniversary from the database by Id. This action is permanent.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/news/createnews": {
+      "post": {
+        "tags": ["News"],
+        "summary": "Create a News Story",
+        "description": "Create a news story by providing all required information.",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "newsTitle": "News Title",
+                "newsBody": "News paragraphs",
+                "status": "public",
+                "postedBy": "IndividualId",
+                "dateCreated": "YYYY-MM-DD",
+                "picture": "URL of picture"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/news/getall": {
+      "get": {
+        "tags": ["News"],
+        "summary": "Get all News Stories",
+        "description": "This will return all the news stories in the database",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/news/{id}": {
+      "get": {
+        "tags": ["News"],
+        "summary": "Get Single News Story by newsId",
+        "description": "This will return a single news story by news Id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/news/author/{postedBy}": {
+      "get": {
+        "tags": ["News"],
+        "summary": "Get News by Author",
+        "description": "This will return all news stories with postedBy matching the provided individualId",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "postedBy",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/news/status/{status}": {
+      "get": {
+        "tags": ["News"],
+        "summary": "Get News by Status",
+        "description": "This will return all news stories with status matching the requested status",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/news/updatenews/{id}": {
+      "put": {
+        "tags": ["News"],
+        "summary": "Update a News Story by Id",
+        "description": "Update an existing news story by providing all required information.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "newsTitle": "News Title",
+                "newsBody": "News paragraphs",
+                "status": "public",
+                "postedBy": "IndividualId",
+                "dateCreated": "YYYY-MM-DD",
+                "picture": "URL of picture"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/news/deletenews/{id}": {
+      "delete": {
+        "tags": ["News"],
+        "summary": "Delete a News Story by Id",
+        "description": "This will delete a single news story from the database by Id. This action is permanent.",
         "parameters": [
           {
             "name": "id",

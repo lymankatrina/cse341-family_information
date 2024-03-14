@@ -1,7 +1,9 @@
 const routes = require('express').Router();
 
-routes.use('/', require('./swaggerRoutes'));
-routes.use('/individuals', require('./individualRoutes'));
-routes.use('/anniversaries', require('./anniversaryRoutes'));
+routes
+  .use('/', require('./swaggerRoutes'))
+  .use('/individuals', require('./individualRoutes'))
+  .use('/anniversaries', require('./anniversaryRoutes'))
+  .use('/news', require('./newsRoutes'));
 
 module.exports = routes;
