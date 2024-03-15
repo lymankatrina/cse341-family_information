@@ -22,7 +22,9 @@
   "paths": {
     "/individuals/createindividual": {
       "post": {
-        "tags": ["Individuals"],
+        "tags": [
+          "Individuals"
+        ],
         "summary": "Create an Individual",
         "description": "Create an Individual by providing all required information.",
         "responses": {
@@ -42,7 +44,10 @@
                 "middleName": "Jacob",
                 "lastName": "Jingleheimer",
                 "birthdate": "YYYY-MM-DD",
-                "parents": ["65c6f726d51fdd04775b0a54", "65c6f726d51fdd04775b0a55"],
+                "parents": [
+                  "65c6f726d51fdd04775b0a54",
+                  "65c6f726d51fdd04775b0a55"
+                ],
                 "phone": "123-456-7890",
                 "email": "jjjingle@gmail.com",
                 "household": "65c6f726d51fdd04775b0a57",
@@ -56,7 +61,9 @@
     },
     "/individuals/getindividuals": {
       "get": {
-        "tags": ["Individuals"],
+        "tags": [
+          "Individuals"
+        ],
         "summary": "Get all Individuals",
         "description": "This will list all individuals in the database",
         "responses": {
@@ -68,7 +75,9 @@
     },
     "/individuals/getindividual/{id}": {
       "get": {
-        "tags": ["Individuals"],
+        "tags": [
+          "Individuals"
+        ],
         "summary": "Get a single individual by ID",
         "description": "This will return a single individual in the database by individual Id",
         "parameters": [
@@ -93,7 +102,9 @@
     },
     "/individuals/getindividualsbyparent/{parentId}": {
       "get": {
-        "tags": ["Individuals"],
+        "tags": [
+          "Individuals"
+        ],
         "summary": "Get individuals by parent Id",
         "description": "This will return a list of individuals associated with a provided parent Id",
         "parameters": [
@@ -121,7 +132,9 @@
     },
     "/individuals/getindividualsbyhousehold/{householdId}": {
       "get": {
-        "tags": ["Individuals"],
+        "tags": [
+          "Individuals"
+        ],
         "summary": "Get individuals by parent Id",
         "description": "This will return a list of individuals associated with a provided parent Id",
         "parameters": [
@@ -199,7 +212,9 @@
     },
     "/individuals/updateindividual/{id}": {
       "put": {
-        "tags": ["Individuals"],
+        "tags": [
+          "Individuals"
+        ],
         "summary": "Update an Individual by Id",
         "description": "Update an existing individual by providing all required information.",
         "parameters": [
@@ -235,7 +250,10 @@
                 "middleName": "Jacob",
                 "lastName": "Jingleheimer",
                 "birthdate": "YYYY-MM-DD",
-                "parents": ["65c6f726d51fdd04775b0a54", "65c6f726d51fdd04775b0a55"],
+                "parents": [
+                  "65c6f726d51fdd04775b0a54",
+                  "65c6f726d51fdd04775b0a55"
+                ],
                 "phone": "123-456-7890",
                 "email": "jjjingle@gmail.com",
                 "household": "65c6f726d51fdd04775b0a57",
@@ -249,7 +267,9 @@
     },
     "/individuals/deleteindividual/{id}": {
       "delete": {
-        "tags": ["Individuals"],
+        "tags": [
+          "Individuals"
+        ],
         "summary": "Delete an Individual by Id",
         "description": "This will delete a single individual from the database by Id. This action is permanent.",
         "parameters": [
@@ -277,7 +297,9 @@
     },
     "/anniversaries/createanniversary": {
       "post": {
-        "tags": ["Anniversaries"],
+        "tags": [
+          "Anniversaries"
+        ],
         "summary": "Create an Anniversary",
         "description": "Create an Anniversary by providing all required information.",
         "responses": {
@@ -299,7 +321,10 @@
           "content": {
             "application/json": {
               "example": {
-                "couple": ["individualId1", "individualId2"],
+                "couple": [
+                  "individualId1",
+                  "individualId2"
+                ],
                 "anniversaryDate": "2020-06-30"
               }
             }
@@ -309,7 +334,9 @@
     },
     "/anniversaries/getall": {
       "get": {
-        "tags": ["Anniversaries"],
+        "tags": [
+          "Anniversaries"
+        ],
         "summary": "Get all Anniversaries",
         "description": "This will list all anniversaries in the database",
         "responses": {
@@ -321,10 +348,14 @@
     },
     "/anniversaries/{individualId}": {
       "get": {
-        "tags": ["Anniversaries"],
+        "tags": [
+          "Anniversaries"
+        ],
         "summary": "Get a single anniversary by an Individual ID",
         "description": "This will return a single anniversary in the database by an individual",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "individualId",
@@ -345,7 +376,9 @@
     },
     "/anniversaries/{month}": {
       "get": {
-        "tags": ["Anniversaries"],
+        "tags": [
+          "Anniversaries"
+        ],
         "summary": "Get anniversaries by month",
         "description": "This will return a list of anniversaries that occur in the specified month",
         "parameters": [
@@ -374,7 +407,9 @@
     },
     "/anniversaries/updateanniversary/{id}": {
       "put": {
-        "tags": ["Anniversaries"],
+        "tags": [
+          "Anniversaries"
+        ],
         "summary": "Update an Anniversary by Id",
         "description": "Update an existing anniversary by providing the anniversaryId and the updated information.",
         "parameters": [
@@ -409,7 +444,10 @@
           "content": {
             "application/json": {
               "example": {
-                "couple": ["individualId1", "individualId2"],
+                "couple": [
+                  "individualId1",
+                  "individualId2"
+                ],
                 "anniversaryDate": "2020-06-30"
               }
             }
@@ -419,7 +457,9 @@
     },
     "/anniversaries/deleteanniversary/{id}": {
       "delete": {
-        "tags": ["Anniversaries"],
+        "tags": [
+          "Anniversaries"
+        ],
         "summary": "Delete an Anniversary by Id",
         "description": "This will delete a single anniversary from the database by Id. This action is permanent.",
         "parameters": [
@@ -447,7 +487,9 @@
     },
     "/news/createnews": {
       "post": {
-        "tags": ["News"],
+        "tags": [
+          "News"
+        ],
         "summary": "Create a News Story",
         "description": "Create a news story by providing all required information.",
         "responses": {
@@ -483,10 +525,14 @@
     },
     "/news/getall": {
       "get": {
-        "tags": ["News"],
+        "tags": [
+          "News"
+        ],
         "summary": "Get all News Stories",
         "description": "This will return all the news stories in the database",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -496,10 +542,14 @@
     },
     "/news/{id}": {
       "get": {
-        "tags": ["News"],
+        "tags": [
+          "News"
+        ],
         "summary": "Get Single News Story by newsId",
         "description": "This will return a single news story by news Id",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -525,10 +575,14 @@
     },
     "/news/author/{postedBy}": {
       "get": {
-        "tags": ["News"],
+        "tags": [
+          "News"
+        ],
         "summary": "Get News by Author",
         "description": "This will return all news stories with postedBy matching the provided individualId",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "postedBy",
@@ -554,10 +608,14 @@
     },
     "/news/status/{status}": {
       "get": {
-        "tags": ["News"],
+        "tags": [
+          "News"
+        ],
         "summary": "Get News by Status",
         "description": "This will return all news stories with status matching the requested status",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "status",
@@ -583,7 +641,9 @@
     },
     "/news/updatenews/{id}": {
       "put": {
-        "tags": ["News"],
+        "tags": [
+          "News"
+        ],
         "summary": "Update a News Story by Id",
         "description": "Update an existing news story by providing all required information.",
         "parameters": [
@@ -632,7 +692,9 @@
     },
     "/news/deletenews/{id}": {
       "delete": {
-        "tags": ["News"],
+        "tags": [
+          "News"
+        ],
         "summary": "Delete a News Story by Id",
         "description": "This will delete a single news story from the database by Id. This action is permanent.",
         "parameters": [
