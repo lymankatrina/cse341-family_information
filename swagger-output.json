@@ -11,7 +11,7 @@
   },
   "servers": [
     {
-      "url": "https://cse341proj2.onrender.com/",
+      "url": "https://cse341-family_information.onrender.com/",
       "description": "Render website"
     },
     {
@@ -20,29 +20,66 @@
     }
   ],
   "paths": {
-    "/individuals/createindividual": {
+    "/individuals/createIndividual": {
       "post": {
-        "description": "",
+        "tags": [
+          "Individuals"
+        ],
+        "summary": "Create an Individual",
+        "description": "Create an Individual by providing all required information.",
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "firstName": "John",
+                "middleName": "Jacob",
+                "lastName": "Jingleheimer",
+                "birthDate": "YYYY-MM-DD",
+                "parents": [
+                  "65c6f726d51fdd04775b0a54",
+                  "65c6f726d51fdd04775b0a55"
+                ],
+                "phone": "123-456-7890",
+                "email": "jjjingle@gmail.com",
+                "household": "65c6f726d51fdd04775b0a57",
+                "headOfHousehold": true,
+                "picture": "https://avatars.dicebear.com/api/male/john.svg"
+              }
+            }
           }
         }
       }
     },
-    "/individuals/getindividuals": {
+    "/individuals/getIndividuals": {
       "get": {
-        "description": "",
+        "tags": [
+          "Individuals"
+        ],
+        "summary": "Get all Individuals",
+        "description": "This will list all individuals in the database",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
           }
         }
       }
     },
-    "/individuals/getindividual/{id}": {
+    "/individuals/getIndividual/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Individuals"
+        ],
+        "summary": "Get a single individual by ID",
+        "description": "This will return a single individual in the database by individual Id",
         "parameters": [
           {
             "name": "id",
@@ -54,105 +91,22 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
     },
-    "/individuals/getindividualsbyparent/{parentId}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "parentId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/individuals/getindividualsbyhousehold/{householdId}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "householdId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/individuals/getbirthdays": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/individuals/getbirthdays/{month}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "month",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/individuals/getbirthdays/{parentId}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "parentId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/individuals/updateindividual/{id}": {
+    "/individuals/updateIndividual/{id}": {
       "put": {
-        "description": "",
+        "tags": [
+          "Individuals"
+        ],
+        "summary": "Update an Individual by Id",
+        "description": "Update an existing individual by providing all required information.",
         "parameters": [
           {
             "name": "id",
@@ -164,15 +118,50 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "firstName": "John",
+                "middleName": "Jacob",
+                "lastName": "Jingleheimer",
+                "birthDate": "YYYY-MM-DD",
+                "parents": [
+                  "65c6f726d51fdd04775b0a54",
+                  "65c6f726d51fdd04775b0a55"
+                ],
+                "phone": "123-456-7890",
+                "email": "jjjingle@gmail.com",
+                "household": "65c6f726d51fdd04775b0a57",
+                "headOfHousehold": true,
+                "picture": "https://avatars.dicebear.com/api/male/john.svg"
+              }
+            }
           }
         }
       }
     },
-    "/individuals/deleteindividual/{id}": {
+    "/individuals/deleteIndividual/{id}": {
       "delete": {
-        "description": "",
+        "tags": [
+          "Individuals"
+        ],
+        "summary": "Delete an Individual by Id",
+        "description": "This will delete a single individual from the database by Id. This action is permanent.",
         "parameters": [
           {
             "name": "id",
@@ -184,8 +173,14 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }

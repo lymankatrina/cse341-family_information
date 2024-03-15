@@ -1,7 +1,7 @@
 const routes = require('express').Router();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger-output.json');
-const { requiresAuth } = require('express-openid-connect');
+//const { requiresAuth } = require('express-openid-connect');
 
 routes
   .use(
