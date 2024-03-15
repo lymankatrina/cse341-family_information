@@ -1,0 +1,64 @@
+{
+  "individual": [
+    {
+      "firstName": "John",
+      "middleName": "Bart",
+      "lastName": "Doe",
+      "birthDate": "1947-01-13",
+      "parents": [],
+      "phone": "123-456-7890",
+      "email": "jbdoe@gmail.com",
+      "household": "",
+      "headOfHousehold": true,
+      "picture": "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+      "firstName": "Jane",
+      "middleName": "Mary",
+      "lastName": "Doe",
+      "birthDate": "1950-01-13",
+      "parents": [],
+      "phone": "123-456-7890",
+      "email": "jmdoe@gmail.com",
+      "household": "",
+      "headOfHousehold": true,
+      "picture": "https://randomuser.me/api/portraits/women/23.jpg"
+    },
+    {
+      "firstName": "Alice",
+      "middleName": "Grace",
+      "lastName": "Smith",
+      "birthDate": "1985-05-20",
+      "parents": ["John Smith", "Mary Smith"],
+      "phone": "987-654-3210",
+      "email": "alice.smith@example.com",
+      "household": "Smith Household",
+      "headOfHousehold": false,
+      "picture": "https://randomuser.me/api/portraits/women/42.jpg"
+    },
+    {
+      "firstName": "Bob",
+      "middleName": "Joseph",
+      "lastName": "Johnson",
+      "birthDate": "1978-12-10",
+      "parents": [],
+      "phone": "555-123-4567",
+      "email": "bob.johnson@example.com",
+      "household": "",
+      "headOfHousehold": true,
+      "picture": "https://randomuser.me/api/portraits/men/15.jpg"
+    },
+    {
+      "firstName": "Emily",
+      "middleName": "",
+      "lastName": "Brown",
+      "birthDate": "2000-03-03",
+      "parents": ["David Brown", "Sarah Brown"],
+      "phone": "111-222-3333",
+      "email": "emily.brown@example.com",
+      "household": "Brown Household",
+      "headOfHousehold": false,
+      "picture": "https://randomuser.me/api/portraits/women/88.jpg"
+    }
+  ]
+}
