@@ -16,7 +16,7 @@ const doc = {
     },
   ],
   definitions: {
-    Individual: {
+    Individuals: {
       type: 'object',
       properties: {
         firstName: { type: 'string' },
@@ -33,7 +33,7 @@ const doc = {
     }
   },
   paths: {
-    '/individual/{id}': {
+    '/individuals/{id}': {
       put: {
         tags: ['Individuals'],
         summary: 'Update an individual',
@@ -51,7 +51,7 @@ const doc = {
             description: 'Updated individual object',
             required: true,
             schema: {
-              $ref: '#/definitions/Individual'
+              $ref: '#/definitions/Individuals'
             }
           }
         ],

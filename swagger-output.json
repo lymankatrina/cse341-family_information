@@ -197,7 +197,7 @@
     }
   },
   "definitions": {
-    "Individual": {
+    "Individuals": {
       "type": "object",
       "properties": {
         "type": {
