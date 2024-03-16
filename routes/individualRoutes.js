@@ -1,38 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const individualController = require('../controllers/individualController');
+//const security = require('../middleware/authorize.js');
 
-// Create an Individual
-router.post('/createindividual', individualController.createIndividual);
+const individualController = require('../controllers/individualController');
+//const validation = require('../middleware/validate');
+
 
 // Get a list of all Individuals
-router.get('/getindividuals', individualController.getAllIndividuals);
+router.get('/getAllIndividuals', individualController.getAllIndividuals);
 
-// Get a single individual by id
-router.get('/getindividual/:id', individualController.getSingleIndividual);
+// Get a single Individual by id
 
-// Get individuals by parent id
-router.get('/getindividualsbyparent/:parentId', individualController.getIndividualsByParent);
+router.get('/getSingleIndividual/:id', individualController.getSingleIndividual);
 
-// Get individuals by household id
-router.get(
-  '/getindividualsbyhousehold/:householdId',
-  individualController.getIndividualsByHousehold
-);
+router.post('/', individualController.createIndividual);
 
-// Get birthday list
-router.get('/getbirthdays', individualController.getBirthdays);
+router.put('/:id', individualController.updateIndividual);
 
-// Get birthdays by month
-router.get('/getbirthdays/:month', individualController.getBirthdaysByMonth);
-
-// Get birthdays by parent id
-router.get('/getbirthdays/:parentId', individualController.getBirthdaysByParents);
-
-// Update a single individual by id
-router.put('/updateindividual/:id', individualController.updateIndividual);
-
-// Delete an individual by id
-router.delete('/deleteindividual/:id', individualController.deleteIndividual);
+router.delete('/:id', individualController.deleteIndividual);
 
 module.exports = router;
