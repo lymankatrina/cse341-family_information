@@ -4,7 +4,7 @@ const ObjectId = require('mongodb').ObjectId;
 const getAllIndividuals = async (req, res) => {
   try {
     const db = mongodb.getDb(); // Get the database object once
-    const result = await db.db().collection('individuals').find().toArray();
+    const result = await db.collection('individuals').find().toArray();
     res.status(200).json(result);
   } catch (error) {
     res
