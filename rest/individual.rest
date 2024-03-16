@@ -1,6 +1,6 @@
 // LOCAL HOST REQUESTS
 ### get all individuals
-GET http://localhost:5500/tests/individuals HTTP/1.1
+GET http://localhost:3000/tests/individuals HTTP/1.1
 
 
 ### get a single individual
