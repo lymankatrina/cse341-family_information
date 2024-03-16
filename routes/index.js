@@ -1,5 +1,3 @@
-
-
 // Application endpoints index
 
 const routes = require('express').Router();
@@ -9,7 +7,6 @@ routes
   .use('/individuals', require('./individualRoutes'))
   .use('/anniversaries', require('./anniversaryRoutes'))
   .use('/news', require('./newsRoutes'))
-  .use('/household', require('./householdRoutes'))
+  .use('/household', require('./householdRoutes'));
 
 module.exports = routes;
-

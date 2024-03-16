@@ -29,7 +29,6 @@ const individualValidationRules = () => {
   return rules;
 };
 
-
 // Place all validation rules above this validate function!
 const validate = (req, res, next) => {
   const errors = validationResult(req);

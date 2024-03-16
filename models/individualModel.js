@@ -9,12 +9,10 @@ module.exports = (mongoose) => {
         birthDate: String,
         parents: String,
         phone: Number,
-        email: String,  
+        email: String,
         household: Number,
         headOfHousehold: String,
         picture: String
-
-        
       },
       { timestamps: true }
     )
@@ -25,7 +23,6 @@ module.exports = (mongoose) => {
 
 const mongoose = require('mongoose');
 
-
 //Using Mongoose for Model Definition - GraphQL
 const individualSchema = new mongoose.Schema({
   firstName: String,
@@ -34,7 +31,7 @@ const individualSchema = new mongoose.Schema({
   birthDate: String,
   parents: String,
   phone: Number,
-  email: String,  
+  email: String,
   household: Number,
   headOfHousehold: String,
   picture: String

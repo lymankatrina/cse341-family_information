@@ -5,27 +5,27 @@ dotenv.config();
 let _db;
 
 const initDb = async () => {
-    if (!_db) {
-        try {
-            const client = await MongoClient.connect(process.env.MONGODB_URI);
-            _db = client.db();
-            console.log('Connected to MongoDB');
-        } catch (error) {
-            console.error('Error connecting to MongoDB:', error);
-            throw error;
-        }
+  if (!_db) {
+    try {
+      const client = await MongoClient.connect(process.env.MONGODB_URI);
+      _db = client.db();
+      console.log('Connected to MongoDB');
+    } catch (error) {
+      console.error('Error connecting to MongoDB:', error);
+      throw error;
     }
-    return _db;
+  }
+  return _db;
 };
 
 const getDb = () => {
-    if (!_db) {
-        throw Error('DB not initialized!');
-    }
-    return _db;
+  if (!_db) {
+    throw Error('DB not initialized!');
+  }
+  return _db;
 };
 
 module.exports = {
-    initDb,
-    getDb
+  initDb,
+  getDb
 };

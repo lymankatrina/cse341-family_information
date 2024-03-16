@@ -8,5 +8,4 @@ db.mongoose = mongoose;
 db.url = dbConfig.url;
 db.individual = require('./individualModel.js')(mongoose);
 
-
 module.exports = db;
