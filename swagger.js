@@ -1,4 +1,5 @@
 const options = {
+
   openapi: '3.0.0',
   autoHeaders: true,
   autoQuery: true,
@@ -19,7 +20,7 @@ const doc = {
   },
   servers: [
     {
-      url: 'https://cse341proj2.onrender.com/',
+     url: 'https://cse341-family-information-winter-2024.onrender.com/',
       description: 'Render website'
     },
     {
@@ -39,3 +40,4 @@ const outputFile = './swagger-output.json';
 const endpointsFile = ['./routes/index.js'];
 
 swaggerAutogen(outputFile, endpointsFile, doc);
+

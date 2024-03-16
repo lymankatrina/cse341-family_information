@@ -1,3 +1,7 @@
+
+
+// Application endpoints index
+
 const routes = require('express').Router();
 
 routes
@@ -8,3 +12,4 @@ routes
   .use('/household', require('./householdRoutes'))
 
 module.exports = routes;
+

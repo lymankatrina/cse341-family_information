@@ -1,9 +1,11 @@
 // LOCAL HOST REQUESTS
 ### get all individuals
+
 GET http://localhost:3000/individuals/getindividuals
 
 ### get a single individual
 GET http://localhost:3000/individuals/getindividual/<individualid>
+
 
 ### get individuals by parent id
 GET http://localhost:3000/individuals/getindividualsbyparent/<parentid>
