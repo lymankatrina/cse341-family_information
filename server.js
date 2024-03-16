@@ -12,16 +12,6 @@ const port = process.env.PORT || 3000;
 const individualRoutes = require('./routes/individualRoutes');
 
 
-const corsOptions = {
-    origin: 'https://cse341-family_information.onrender.com',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  };
-  
-  app.use(cors(corsOptions));
-
-
-
 
 app.use(cors());
 app.use(bodyParser.json());
