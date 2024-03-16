@@ -19,7 +19,7 @@ const options = {
     },
     servers: [
       {
-        url: 'https://cse341proj2.onrender.com/',
+        url: 'https://cse341-family-information-winter-2024.onrender.com/',
         description: 'Render website'
       },
       {
