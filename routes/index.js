@@ -1,6 +1,11 @@
-const routes = require('express').Router();
-const express = require('express');
-routes.use('/', require('./swaggerRoutes'));
-routes.use('/individuals', require('./individualRoutes'));
 
-module.exports = routes;
+// Application endpoints index
+
+const express = require('express');
+const router = express.Router();
+
+router.use('/', require('./swaggerRoutes'));
+router.use('/individuals', require('./individualRoutes'));
+
+
+module.exports = router;

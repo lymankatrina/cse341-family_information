@@ -3,7 +3,7 @@ const router = express.Router();
 //const security = require('../middleware/authorize.js');
 
 const individualController = require('../controllers/individualController');
-const validation = require('../middleware/validate');
+//const validation = require('../middleware/validate');
 
 router.get('/', individualController.getAll);
 
