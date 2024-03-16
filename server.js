@@ -21,8 +21,9 @@ app.use((req, res, next) => {
 });
 
 
-app.use('/', require('./routes'));
+app.use('/', require('./routes/individualRoutes'));
 app.use('/individuals', individualRoutes);
+
 
   
   
