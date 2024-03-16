@@ -20,7 +20,7 @@ const getSingleIndividual = async (req, res) => {
   try {
     const db = mongodb.getDb(); // Get the database object once
     const userId = new ObjectId(req.params.id);
-    const result = await db.collection('individuals').findOne({ _id: userId });
+    const result = await db.db().collection('individuals').findOne({ _id: userId });
     res.status(200).json(result);
   } catch (error) {
     res
@@ -46,7 +46,7 @@ const createIndividual = async (req, res) => {
       headOfHousehold: req.body.headOfHousehold,
       picture: req.body.picture
     };
-    const response = await db.collection('individuals').insertOne(individual, { wtimeout: 60000 }); // 30 seconds timeout
+    const response = await db.db().collection('individuals').insertOne(individual, { wtimeout: 60000 }); // 30 seconds timeout
     if (response.acknowledged) {
       res.status(201).json(response);
     } else {
@@ -76,7 +76,7 @@ const updateIndividual = async (req, res) => {
       headOfHousehold: req.body.headOfHousehold,
       picture: req.body.picture
     };
-    const response = await db.collection('individuals').replaceOne({ _id: userId }, individual);
+    const response = await db.db().collection('individuals').replaceOne({ _id: userId }, individual);
     if (response.modifiedCount > 0) {
       res.status(204).send();
     } else {
@@ -96,7 +96,7 @@ const deleteIndividual = async (req, res) => {
   try {
     const db = mongodb.getDb(); // Get the database object once
     const userId = new ObjectId(req.params.id);
-    const response = await db.collection('individuals').deleteOne({ _id: userId });
+    const response = await db.db().collection('individuals').deleteOne({ _id: userId });
     if (response.deletedCount > 0) {
       res.status(200).send();
     } else {
