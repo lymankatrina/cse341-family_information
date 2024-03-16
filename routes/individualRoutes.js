@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 //const security = require('../middleware/authorize.js');
 
 const individualController = require('../controllers/individualController');
@@ -18,5 +19,6 @@ router.post('/', individualController.createIndividual);
 router.put('/:id', individualController.updateIndividual);
 
 router.delete('/:id', individualController.deleteIndividual);
+
 
 module.exports = router;
