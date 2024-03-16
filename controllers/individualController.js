@@ -22,11 +22,9 @@ const getSingleIndividual = async (req, res) => {
     const result = await db.db().collection('individuals').findOne({ _id: userId });
     res.status(200).json(result);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        error: error.message || 'Some error occurred while retrieving a single individual.'
-      });
+    res.status(500).json({
+      error: error.message || 'Some error occurred while retrieving a single individual.'
+    });
   }
 };
 
@@ -45,7 +43,10 @@ const createIndividual = async (req, res) => {
       headOfHousehold: req.body.headOfHousehold,
       picture: req.body.picture
     };
-    const response = await db.db().collection('individuals').insertOne(individual, { wtimeout: 60000 }); // 30 seconds timeout
+    const response = await db
+      .db()
+      .collection('individuals')
+      .insertOne(individual, { wtimeout: 60000 }); // 30 seconds timeout
     if (response.acknowledged) {
       res.status(201).json(response);
     } else {
@@ -75,7 +76,10 @@ const updateIndividual = async (req, res) => {
       headOfHousehold: req.body.headOfHousehold,
       picture: req.body.picture
     };
-    const response = await db.db().collection('individuals').replaceOne({ _id: userId }, individual);
+    const response = await db
+      .db()
+      .collection('individuals')
+      .replaceOne({ _id: userId }, individual);
     if (response.modifiedCount > 0) {
       res.status(204).send();
     } else {
