@@ -122,7 +122,7 @@ exports.getNewsByAuthor = async (req, res) => {
 exports.getNewsByStatus = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Get News by Status'
-  // #swagger.description = 'This will return all news stories with status matching the requested status'
+  // #swagger.description = 'This will return all news stories with status matching the requested status of 'public' or 'private''
   const status = req.params.status;
   try {
     const news = await mongodb.getDb().db().collection('news').find({ status: status }).toArray();

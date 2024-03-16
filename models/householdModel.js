@@ -4,8 +4,8 @@ const householdExample = {
   state: 'ID',
   zip: '83440',
   country: 'United States',
-  headOfHousehold: [],
-  residents: []
+  headOfHousehold: ['', ''],
+  residents: ['', '', '']
 };
 
 module.exports = householdExample;
