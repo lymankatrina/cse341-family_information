@@ -1,0 +1,26 @@
+### Get all households
+GET http://localhost:3000/households/gethouseholds
+
+### Get household by ID
+GET http://localhost:3000/households/gethousehold/<householdid>
+
+### Get household by head of household
+GET http://localhost:3000/households/gethousehold/<hoh>
+
+### Get household by address
+GET http://localhost:3000/households/gethousehold/<address>
+
+### Create household
+POST http://localhost:3000/households/createhousehold
+
+{{ householdExample }}
+
+### Update household by ID
+PUT http://localhost:3000/households/createhousehold/<householdid>
+
+{{ householdExample }}
+
+### Delete household by ID
+DELETE http://localhost:3000/households/deletehousehold/<householdid>
+
+{{ householdExample }}

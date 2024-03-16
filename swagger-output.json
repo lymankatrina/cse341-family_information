@@ -22,7 +22,9 @@
   "paths": {
     "/individuals/createindividual": {
       "post": {
-        "tags": ["Individuals"],
+        "tags": [
+          "Individuals"
+        ],
         "summary": "Create an Individual",
         "description": "Create an Individual by providing all required information.",
         "responses": {
@@ -42,7 +44,10 @@
                 "middleName": "Jacob",
                 "lastName": "Jingleheimer",
                 "birthdate": "YYYY-MM-DD",
-                "parents": ["65c6f726d51fdd04775b0a54", "65c6f726d51fdd04775b0a55"],
+                "parents": [
+                  "65c6f726d51fdd04775b0a54",
+                  "65c6f726d51fdd04775b0a55"
+                ],
                 "phone": "123-456-7890",
                 "email": "jjjingle@gmail.com",
                 "household": "65c6f726d51fdd04775b0a57",
@@ -56,7 +61,9 @@
     },
     "/individuals/getindividuals": {
       "get": {
-        "tags": ["Individuals"],
+        "tags": [
+          "Individuals"
+        ],
         "summary": "Get all Individuals",
         "description": "This will list all individuals in the database",
         "responses": {
@@ -68,7 +75,9 @@
     },
     "/individuals/getindividual/{id}": {
       "get": {
-        "tags": ["Individuals"],
+        "tags": [
+          "Individuals"
+        ],
         "summary": "Get a single individual by ID",
         "description": "This will return a single individual in the database by individual Id",
         "parameters": [
@@ -93,7 +102,9 @@
     },
     "/individuals/getindividualsbyparent/{parentId}": {
       "get": {
-        "tags": ["Individuals"],
+        "tags": [
+          "Individuals"
+        ],
         "summary": "Get individuals by parent Id",
         "description": "This will return a list of individuals associated with a provided parent Id",
         "parameters": [
@@ -121,7 +132,9 @@
     },
     "/individuals/getindividualsbyhousehold/{householdId}": {
       "get": {
-        "tags": ["Individuals"],
+        "tags": [
+          "Individuals"
+        ],
         "summary": "Get individuals by parent Id",
         "description": "This will return a list of individuals associated with a provided parent Id",
         "parameters": [
@@ -199,7 +212,9 @@
     },
     "/individuals/updateindividual/{id}": {
       "put": {
-        "tags": ["Individuals"],
+        "tags": [
+          "Individuals"
+        ],
         "summary": "Update an Individual by Id",
         "description": "Update an existing individual by providing all required information.",
         "parameters": [
@@ -235,7 +250,10 @@
                 "middleName": "Jacob",
                 "lastName": "Jingleheimer",
                 "birthdate": "YYYY-MM-DD",
-                "parents": ["65c6f726d51fdd04775b0a54", "65c6f726d51fdd04775b0a55"],
+                "parents": [
+                  "65c6f726d51fdd04775b0a54",
+                  "65c6f726d51fdd04775b0a55"
+                ],
                 "phone": "123-456-7890",
                 "email": "jjjingle@gmail.com",
                 "household": "65c6f726d51fdd04775b0a57",
@@ -249,9 +267,229 @@
     },
     "/individuals/deleteindividual/{id}": {
       "delete": {
-        "tags": ["Individuals"],
+        "tags": [
+          "Individuals"
+        ],
         "summary": "Delete an Individual by Id",
         "description": "This will delete a single individual from the database by Id. This action is permanent.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/household/gethouseholds": {
+      "get": {
+        "tags": [
+          "Households"
+        ],
+        "summary": "Get all Households",
+        "description": "This will list all households in the database",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/household/gethousehold/{id}": {
+      "get": {
+        "tags": [
+          "Households"
+        ],
+        "summary": "Get a single household by its ID",
+        "description": "Returns a single household by its id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/household/gethouseholds/{hoh}": {
+      "get": {
+        "tags": [
+          "Households"
+        ],
+        "summary": "Get a single household by its head of household",
+        "description": "Returns a single household by the head of the household",
+        "parameters": [
+          {
+            "name": "hoh",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/household/gethouseholds/{address}": {
+      "get": {
+        "tags": [
+          "Households"
+        ],
+        "summary": "Get a single household by its address",
+        "description": "Returns a single household by its address",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/household/createhousehold": {
+      "post": {
+        "tags": [
+          "Households"
+        ],
+        "summary": "Create a Household",
+        "description": "Create a Household by providing all required information.",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "streetAddress": "123 Applebottom Street",
+                "city": "Rexburg",
+                "state": "ID",
+                "zip": "83440",
+                "country": "United States",
+                "headOfHousehold": [
+                  "",
+                  ""
+                ],
+                "residents": [
+                  "",
+                  "",
+                  ""
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/household/updatehousehold/{id}": {
+      "put": {
+        "tags": [
+          "Households"
+        ],
+        "summary": "Update a Household by its ID",
+        "description": "Update an existing household by providing all required information.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "streetAddress": "123 Applebottom Street",
+                "city": "Rexburg",
+                "state": "ID",
+                "zip": "83440",
+                "country": "United States",
+                "headOfHousehold": [
+                  "",
+                  ""
+                ],
+                "residents": [
+                  "",
+                  "",
+                  ""
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/household/deletehousehold/{id}": {
+      "delete": {
+        "tags": [
+          "Households"
+        ],
+        "summary": "Delete a household by its ID",
+        "description": "Permanently delete a household by its ID",
         "parameters": [
           {
             "name": "id",
