@@ -1,40 +1,18 @@
 const express = require('express');
 const router = express.Router();
+//const security = require('../middleware/authorize.js');
+
 const individualController = require('../controllers/individualController');
-const { requiresAuth } = require('express-openid-connect');
-//const { ownerValidationRules, validate } = require('../middleware/validate.js');
+const validation = require('../middleware/validate');
 
-// Create an Individual
-router.post('/createIndividual', individualController.createIndividual);
+router.get('/', individualController.getAll);
 
-// Get a list of all Individuals
-router.get('/getIndividuals', individualController.getAllIndividuals);
+router.get('/:id', individualController.getSingle);
 
-// Get a single individual by id
-router.get('/getIndividual/:id', individualController.getSingleIndividual);
+router.post('/', individualController.createIndividual);
 
-// Get individuals by parent id
-//router.get('/getIndividualsbyparent/:parentId', individualController.getIndividualsByParent);
+router.put('/:id', individualController.updateIndividual);
 
-// Get individuals by household id
-//router.get(
-  //'/getindIvidualsbyhousehold/:householdId',
-  //individualController.getIndividualsByHousehold
-//);
-
-// Get birthday list
-//router.get('/getbirthdays', individualController.getBirthdays);
-
-// Get birthdays by month
-//router.get('/getbirthDays/:month', individualController.getBirthdaysByMonth);
-
-// Get birthdays by parent id
-//router.get('/getbirthDays/:parentId', individualController.getBirthdaysByParents);
-
-// Update a single individual by id
-router.put('/updateIndividual/:id', individualController.updateIndividual);
-
-// Delete an individual by id
-router.delete('/deleteIndividual/:id', individualController.deleteIndividual);
+router.delete('/:id', individualController.deleteIndividual);
 
 module.exports = router;

@@ -1,14 +1,45 @@
-const individualExample = {
-    firstName: 'John',
-    middleName: 'Jacob',
-    lastName: 'Jingleheimer',
-    birthDate: 'YYYY-MM-DD',
-    parents: ['65c6f726d51fdd04775b0a54', '65c6f726d51fdd04775b0a55'],
-    phone: '123-456-7890',
-    email: 'jjjingle@gmail.com',
-    household: '65c6f726d51fdd04775b0a56',
-    headOfHousehold: true,
-    picture: 'https://avatars.dicebear.com/api/male/john.svg'
-  };
-  
-  module.exports = individualExample;
+module.exports = (mongoose) => {
+  const individual = mongoose.model(
+    'individual',
+    mongoose.Schema(
+      {
+        firstName: String,
+        middleName: String,
+        lastName: String,
+        birthDate: String,
+        parents: String,
+        phone: Number,
+        email: String,  
+        household: Number,
+        headOfHousehold: String,
+        picture: String
+
+        
+      },
+      { timestamps: true }
+    )
+  );
+
+  return individual;
+};
+
+const mongoose = require('mongoose');
+
+
+//Using Mongoose for Model Definition - GraphQL
+const individualSchema = new mongoose.Schema({
+  firstName: String,
+  middleName: String,
+  lastName: String,
+  birthDate: String,
+  parents: String,
+  phone: Number,
+  email: String,  
+  household: Number,
+  headOfHousehold: String,
+  picture: String
+});
+
+const individual = mongoose.model('individual', individualSchema);
+
+module.exports = individual;

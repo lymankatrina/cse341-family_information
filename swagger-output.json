@@ -1,119 +1,162 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
-    "title": "Family Information API",
-    "description": "This is a family information app created by team d for the CSE341 team project assignment",
-    "contact": {
-      "name": "CSE 341 Team D",
-      "url": "https://github.com/ajrobbins04/cse341-family_information"
-    }
+    "title": "Our Team Final Project CSE 341",
+    "description": "Family Information API",
+    "version": "1.0.0"
   },
-  "servers": [
+  "host": "cse341-family_information.onrender.com",
+  "basePath": "/",
+  "tags": [
     {
-      "url": "https://cse341-family_information.onrender.com/",
-      "description": "Render website"
-    },
-    {
-      "url": "http://localhost:3000",
-      "description": "Local development server"
+      "name": "Individuals",
+      "description": "Operations related to individuals"
     }
   ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
-    "/individuals/createIndividual": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
       "post": {
-        "tags": [
-          "Individuals"
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "middleName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "birthDate": {
+                  "example": "any"
+                },
+                "parents": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "household": {
+                  "example": "any"
+                },
+                "headOfHousehold": {
+                  "example": "any"
+                },
+                "picture": {
+                  "example": "any"
+                }
+              }
+            }
+          }
         ],
-        "summary": "Create an Individual",
-        "description": "Create an Individual by providing all required information.",
         "responses": {
           "201": {
             "description": "Created"
           },
-          "404": {
-            "description": "Not Found"
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "example": {
-                "firstName": "John",
-                "middleName": "Jacob",
-                "lastName": "Jingleheimer",
-                "birthDate": "YYYY-MM-DD",
-                "parents": [
-                  "65c6f726d51fdd04775b0a54",
-                  "65c6f726d51fdd04775b0a55"
-                ],
-                "phone": "123-456-7890",
-                "email": "jjjingle@gmail.com",
-                "household": "65c6f726d51fdd04775b0a57",
-                "headOfHousehold": true,
-                "picture": "https://avatars.dicebear.com/api/male/john.svg"
-              }
-            }
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/individuals/getIndividuals": {
+    "/{id}": {
       "get": {
-        "tags": [
-          "Individuals"
-        ],
-        "summary": "Get all Individuals",
-        "description": "This will list all individuals in the database",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/individuals/getIndividual/{id}": {
-      "get": {
-        "tags": [
-          "Individuals"
-        ],
-        "summary": "Get a single individual by ID",
-        "description": "This will return a single individual in the database by individual Id",
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
           },
-          "404": {
-            "description": "Not Found"
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
-      }
-    },
-    "/individuals/updateIndividual/{id}": {
+      },
       "put": {
-        "tags": [
-          "Individuals"
-        ],
-        "summary": "Update an Individual by Id",
-        "description": "Update an existing individual by providing all required information.",
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
             "schema": {
-              "type": "string"
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "middleName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "birthDate": {
+                  "example": "any"
+                },
+                "parents": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "household": {
+                  "example": "any"
+                },
+                "headOfHousehold": {
+                  "example": "any"
+                },
+                "picture": {
+                  "example": "any"
+                }
+              }
             }
           }
         ],
@@ -124,63 +167,144 @@
           "400": {
             "description": "Bad Request"
           },
-          "404": {
-            "description": "Not Found"
-          },
           "500": {
             "description": "Internal Server Error"
           }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "example": {
-                "firstName": "John",
-                "middleName": "Jacob",
-                "lastName": "Jingleheimer",
-                "birthDate": "YYYY-MM-DD",
-                "parents": [
-                  "65c6f726d51fdd04775b0a54",
-                  "65c6f726d51fdd04775b0a55"
-                ],
-                "phone": "123-456-7890",
-                "email": "jjjingle@gmail.com",
-                "household": "65c6f726d51fdd04775b0a57",
-                "headOfHousehold": true,
-                "picture": "https://avatars.dicebear.com/api/male/john.svg"
-              }
-            }
-          }
         }
-      }
-    },
-    "/individuals/deleteIndividual/{id}": {
+      },
       "delete": {
-        "tags": [
-          "Individuals"
-        ],
-        "summary": "Delete an Individual by Id",
-        "description": "This will delete a single individual from the database by Id. This action is permanent.",
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
           },
-          "404": {
-            "description": "Not Found"
+          "400": {
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Individual": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "object"
+        },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "firstName": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            },
+            "middleName": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            },
+            "lastName": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            },
+            "birthDate": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            },
+            "parents": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            },
+            "email": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            },
+            "household": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            },
+            "headOfHousehold": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            },
+            "picture": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        },
+        "required": {
+          "type": "array",
+          "example": [
+            "firstName",
+            "middleName",
+            "lastName",
+            "birthDate",
+            "parents",
+            "email",
+            "household",
+            "headOfHousehold",
+            "picture"
+          ],
+          "items": {
+            "type": "string"
           }
         }
       }
