@@ -11,14 +11,28 @@ const port = process.env.PORT || 3000;
 
 const individualRoutes = require('./routes/individualRoutes');
 
-app
-  .use(cors())
-  .use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    next();
-  })
-  .use('/', require('./routes'))
-  .use('/individuals', individualRoutes);
+
+const corsOptions = {
+    origin: 'https://cse341-family_information.onrender.com',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  };
+  
+  app.use(cors(corsOptions));
+
+
+
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Z-Key');
+  next();
+});
+
+
+app.use('/', require('./routes'));
+app.use('/individuals', individualRoutes);
 
   
   
