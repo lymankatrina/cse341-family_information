@@ -1,9 +1,6 @@
 {
-  "anniversary": {
-    "couple": {
-      "individual1_Id": " ",
-      "individual2_Id": " "
-    },
-    "anniversaryDate": "1999-01-13"
-  }
+  "anniversary": [
+    { "couple": ["", ""], "anniversaryDate": "1999-01-13" },
+    { "couple": ["", ""], "anniversaryDate": "2020-06-23" }
+  ]
 }
