@@ -11,19 +11,28 @@
   },
   "servers": [
     {
-      "host": "cse341-family-information-winter-2024.onrender.com",
-      "basePath": "/api-docs",
-      "schemes": ["https"],
+      "url": "https://cse341-family-information-winter-2024.onrender.com/",
       "description": "Render website"
     },
     {
-      "host": "localhost:3000",
-      "basePath": "/api-docs",
-      "schemes": ["http"],
+      "host": "http://localhost:3000/",
       "description": "Local development server"
     }
   ],
   "paths": {
+    "/api-docs": {
+      "get": {
+        "description": "Documents all API endpoints.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/individuals/getAllIndividuals": {
       "get": {
         "description": "",
