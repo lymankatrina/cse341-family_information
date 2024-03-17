@@ -15,14 +15,43 @@
       "description": "Render website"
     },
     {
-      "url": "http://localhost:3000",
+      "host": "http://localhost:3000/",
       "description": "Local development server"
     }
   ],
   "paths": {
+    "/": {
+      "get": {
+        "tags": ["General"],
+        "summary": "Displays home page",
+        "description": "Displays welcome message on home page",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "tags": ["General"],
+        "summary": "View API documentation page",
+        "description": "Documents all API endpoints.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/individuals/getAllIndividuals": {
       "get": {
-        "description": "",
+        "tags": ["Individuals"],
+        "summary": "Get information for all individuals",
+        "description": "Gets personal information for all individuals",
         "responses": {
           "200": {
             "description": "OK"
@@ -35,7 +64,9 @@
     },
     "/individuals/getSingleIndividual/{id}": {
       "get": {
-        "description": "",
+        "tags": ["Individuals"],
+        "summary": "Get information for specified individual",
+        "description": "Get all personal information for individual specified by id",
         "parameters": [
           {
             "name": "id",
@@ -61,7 +92,9 @@
     },
     "/individuals/": {
       "post": {
-        "description": "",
+        "tags": ["Individuals"],
+        "summary": "Add individual to family database",
+        "description": "Adds an individual to the family database",
         "responses": {
           "201": {
             "description": "Created"
@@ -115,7 +148,9 @@
     },
     "/individuals/{id}": {
       "put": {
-        "description": "",
+        "tags": ["Individuals"],
+        "summary": "Edits an individual's information",
+        "description": "Edits an individual's personal information by id",
         "parameters": [
           {
             "name": "id",
@@ -180,7 +215,9 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": ["Individuals"],
+        "summary": "Delete individual from family database",
+        "description": "Deletes individual from the family database by id",
         "parameters": [
           {
             "name": "id",
