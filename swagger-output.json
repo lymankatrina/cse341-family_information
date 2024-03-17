@@ -11,11 +11,15 @@
   },
   "servers": [
     {
-      "url": "https://cse341-family-information-winter-2024.onrender.com/",
+      "host": "cse341-family-information-winter-2024.onrender.com",
+      "basePath": "/api-docs",
+      "schemes": ["https"],
       "description": "Render website"
     },
     {
-      "url": "http://localhost:3000",
+      "host": "localhost:3000",
+      "basePath": "/api-docs",
+      "schemes": ["http"],
       "description": "Local development server"
     }
   ],
