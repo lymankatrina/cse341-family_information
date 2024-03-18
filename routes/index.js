@@ -3,6 +3,7 @@
 const routes = require('express').Router();
 
 routes
+  .use('/', require('./authRoutes'))
   .use('/', require('./swaggerRoutes'))
   .use('/individuals', require('./individualRoutes'))
   .use('/anniversaries', require('./anniversaryRoutes'))
