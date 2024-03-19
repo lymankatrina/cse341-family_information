@@ -105,7 +105,9 @@ exports.getMailingLabels = async (req, res) => {
     const individuals = await individualsCollection.find().toArray();
     const mailingLabels = [];
     for (const individual of individuals) {
-      const household = await householdsCollection.findOne({ residents: { $in: [individual._id.toString()] } });
+      const household = await householdsCollection.findOne({
+        residents: { $in: [individual._id.toString()] }
+      });
       if (household) {
         const labelName = `${individual.firstName} ${individual.lastName}`;
         const addressLine1 = `${household.streetAddress}`;
