@@ -1,6 +1,5 @@
-const dotenv = require('dotenv');
-dotenv.config();
-const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
+const { MONGODB_URI } = require('../config/config.js');
 
 let _db;
 
@@ -9,14 +8,16 @@ const initDb = (callback) => {
     console.log('Db is already initialized!');
     return callback(null, _db);
   }
-  MongoClient.connect(process.env.MONGODB_URI)
-    .then((client) => {
-      _db = client;
-      callback(null, _db);
-    })
-    .catch((err) => {
-      callback(err);
-    });
+  mongoose.connect(MONGODB_URI);
+
+  _db = mongoose.connection;
+  _db.on('error', (err) => {
+    callback(err);
+  });
+  _db.once('open', () => {
+    console.log('Connected to database');
+    callback(null, _db);
+  });
 };
 
 const getDb = () => {

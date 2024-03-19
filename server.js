@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const mongodb = require('./db/connect');
+const { initDb } = require('./db/connect');
 /* Auth middleware goes here */
 
 const routes = require('./routes');
@@ -15,7 +15,7 @@ app
   /* use auth middleware here */
   .use('/', routes);
 
-mongodb.initDb((err) => {
+initDb((err) => {
   if (err) {
     console.log(err);
   } else {

@@ -1,9 +1,10 @@
-const mongodb = require('../db/connect');
-const ObjectId = require('mongodb').ObjectId;
+const { getDb } = require('../db/connect');
+const { ObjectId } = require('mongoose').Types;
+const Individual = require('../models/individualModel');
 
 const getAllIndividuals = async (req, res) => {
   try {
-    const result = await mongodb.getDb().db().collection('individuals').find().toArray();
+    const result = await Individual.find();
     res.status(200).json(result);
   } catch (error) {
     res
@@ -17,9 +18,7 @@ const getSingleIndividual = async (req, res) => {
     res.status(400).json('Must use a valid individual id to find an individual.');
   }
   try {
-    const db = mongodb.getDb(); // Get the database object once
-    const userId = new ObjectId(req.params.id);
-    const result = await db.db().collection('individuals').findOne({ _id: userId });
+    const result = await Individual.findById(req.params.id);
     res.status(200).json(result);
   } catch (error) {
     res.status(500).json({
@@ -30,8 +29,7 @@ const getSingleIndividual = async (req, res) => {
 
 const createIndividual = async (req, res) => {
   try {
-    const db = mongodb.getDb(); // Get the database object once
-    const individual = {
+    const individual = new Individual({
       firstName: req.body.firstName,
       middleName: req.body.middleName,
       lastName: req.body.lastName,
@@ -42,18 +40,11 @@ const createIndividual = async (req, res) => {
       household: req.body.household,
       headOfHousehold: req.body.headOfHousehold,
       picture: req.body.picture
-    };
-    const response = await db
-      .db()
-      .collection('individuals')
-      .insertOne(individual, { wtimeout: 60000 }); // 30 seconds timeout
-    if (response.acknowledged) {
-      res.status(201).json(response);
-    } else {
-      res.status(500).json(response.error || 'Some error occurred while creating the individual.');
-    }
+    });
+    const response = await individual.save();
+    res.status(201).json(response);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message || 'Some error occurred while creating the individual.'});
   }
 };
 
@@ -62,33 +53,13 @@ const updateIndividual = async (req, res) => {
     res.status(400).json('Must use a valid individual id to update an individual.');
   }
   try {
-    const db = mongodb.getDb(); // Get the database object once
-    const userId = new ObjectId(req.params.id);
-    const individual = {
-      firstName: req.body.firstName,
-      middleName: req.body.middleName,
-      lastName: req.body.lastName,
-      birthDate: req.body.birthDate,
-      parents: [req.body.parents],
-      phone: req.body.phone,
-      email: req.body.email,
-      household: req.body.household,
-      headOfHousehold: req.body.headOfHousehold,
-      picture: req.body.picture
-    };
-    const response = await db
-      .db()
-      .collection('individuals')
-      .replaceOne({ _id: userId }, individual);
-    if (response.modifiedCount > 0) {
-      res.status(204).send();
-    } else {
-      throw new Error('Some error occurred while updating the individual.');
+    const updatedIndividual = await Individual.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedIndividual) {
+      return res.status(404).json({ error: 'Individual not found' });
     }
+    res.status(200).json(updatedIndividual);
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: error.message || 'Some error occurred while updating the individual.' });
+    res.status(500).json({ error: error.message || 'Some error occurred while updating the individual.' });
   }
 };
 
@@ -97,14 +68,8 @@ const deleteIndividual = async (req, res) => {
     res.status(400).json('Must use a valid individual id to delete an individual.');
   }
   try {
-    const db = mongodb.getDb(); // Get the database object once
-    const userId = new ObjectId(req.params.id);
-    const response = await db.db().collection('individuals').deleteOne({ _id: userId });
-    if (response.deletedCount > 0) {
-      res.status(200).send();
-    } else {
-      throw new Error('Some error occurred while deleting the individual.');
-    }
+    await Individual.findByIdAndDelete(req.params.id);
+    res.status(200).send();
   } catch (error) {
     res.status(500).json(error.message || 'Some error occurred while deleting the individual.');
   }
