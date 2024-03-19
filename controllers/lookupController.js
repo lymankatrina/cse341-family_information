@@ -28,7 +28,7 @@ exports.getBirthdays = async (req, res) => {
         birthDay: birthDate.getUTCDate(),
         age
       };
-      
+
       formattedBirthdays.push(birthdayInfo);
     });
     formattedBirthdays.sort((a, b) => {
@@ -88,6 +88,33 @@ exports.getBirthdaysByMonth = async (req, res) => {
     } else {
       res.json(formattedBirthdays);
     }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// Get Address Mailing Label Information
+exports.getMailingLabels = async (req, res) => {
+  // #swagger.tags = ['Mailing Labels']
+  // #swagger.summary = 'Get Mailing Labels'
+  // #swagger.description = 'This will return the full names of all individuals in the database with their mailing address.'
+  try {
+    const individualsCollection = mongodb.getDb().db().collection('individuals');
+    const householdsCollection = mongodb.getDb().db().collection('households');
+    const individuals = await individualsCollection.find().toArray();
+    const mailingLabels = [];
+    for (const individual of individuals) {
+      const household = await householdsCollection.findOne({ residents: { $in: [individual._id.toString()] } });
+      if (household) {
+        const labelName = `${individual.firstName} ${individual.lastName}`;
+        const addressLine1 = `${household.streetAddress}`;
+        const addressLine2 = `${household.city}, ${household.state} ${household.zip}`;
+        const addressLine3 = `${household.country}`;
+        mailingLabels.push({ labelName, addressLine1, addressLine2, addressLine3 });
+      }
+    }
+    res.json(mailingLabels);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Internal server error' });

@@ -857,13 +857,13 @@
         }
       }
     },
-    "/birthdays/getAll": {
+    "/lookup/birthdays": {
       "get": {
         "tags": [
           "Birthdays"
         ],
         "summary": "Get all birthdays",
-        "description": "This will return the full names and birth dates of all individuals in the database sorted by birth month along with their date of birth and the age of the individual as of today",
+        "description": "This will return the full names of all individuals in the database sorted by birth month and date along with their date of birth and the age of the individual as of today",
         "responses": {
           "200": {
             "description": "OK"
@@ -877,13 +877,13 @@
         }
       }
     },
-    "/birthdays/{month}": {
+    "/lookup/birthdays/{month}": {
       "get": {
         "tags": [
           "Birthdays"
         ],
         "summary": "Get birthdays by month",
-        "description": "This will return the full names and birth dates of all individuals in the database born in the specified month along with their date of birth and the age of the individual as of today",
+        "description": "This will return the full names of all individuals in the database born in the specified month along with their date of birth and the age of the individual as of today",
         "parameters": [
           {
             "name": "month",
@@ -897,6 +897,23 @@
         "responses": {
           "default": {
             "description": ""
+          }
+        }
+      }
+    },
+    "/lookup/mailingLabels": {
+      "get": {
+        "tags": [
+          "Mailing Labels"
+        ],
+        "summary": "Get Mailing Labels",
+        "description": "This will return the full names of all individuals in the database with their mailing address.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }

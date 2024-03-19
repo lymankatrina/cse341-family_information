@@ -9,6 +9,6 @@ routes
   .use('/household', require('./householdRoutes'))
   .use('/anniversaries', require('./anniversaryRoutes'))
   .use('/news', require('./newsRoutes'))
-  .use('/birthdays', require('./lookupRoutes'));
+  .use('/lookup', require('./lookupRoutes'));
 
 module.exports = routes;
