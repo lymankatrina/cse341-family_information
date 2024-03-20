@@ -15,10 +15,10 @@ router.post(
 router.get('/getall', anniversaryController.getAllAnniversaries);
 
 // Get a single Anniversary by Individual id
-router.get('/:individualId', anniversaryController.getAnniversaryByIndividual);
+router.get('/getbyindividual/:individualId', anniversaryController.getAnniversaryByIndividual);
 
 // Get a single Anniversaries by Month
-router.get('/:month', anniversaryController.getAnniversariesByMonth);
+router.get('/getbymonth/:month', anniversaryController.getAnniversariesByMonth);
 
 // Update a single Anniversary by id
 router.put(

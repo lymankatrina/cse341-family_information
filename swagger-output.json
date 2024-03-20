@@ -127,55 +127,17 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
           },
+          "404": {
+            "description": "Not Found"
+          },
           "500": {
             "description": "Internal Server Error"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "firstName": {
-                    "example": "any"
-                  },
-                  "middleName": {
-                    "example": "any"
-                  },
-                  "lastName": {
-                    "example": "any"
-                  },
-                  "birthDate": {
-                    "example": "any"
-                  },
-                  "parents": {
-                    "example": "any"
-                  },
-                  "phone": {
-                    "example": "any"
-                  },
-                  "email": {
-                    "example": "any"
-                  },
-                  "household": {
-                    "example": "any"
-                  },
-                  "headOfHousehold": {
-                    "example": "any"
-                  },
-                  "picture": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
           }
         }
       },
@@ -433,9 +395,6 @@
           "201": {
             "description": "Created"
           },
-          "400": {
-            "description": "Bad Request"
-          },
           "422": {
             "description": "Unprocessable Entity"
           },
@@ -469,11 +428,14 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/anniversaries/{individualId}": {
+    "/anniversaries/getbyindividual/{individualId}": {
       "get": {
         "tags": [
           "Anniversaries"
@@ -501,13 +463,16 @@
         "requestBody": {}
       }
     },
-    "/anniversaries/{month}": {
+    "/anniversaries/getbymonth/{month}": {
       "get": {
         "tags": [
           "Anniversaries"
         ],
         "summary": "Get anniversaries by month",
         "description": "This will return a list of anniversaries that occur in the specified month",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "month",
@@ -552,9 +517,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"
