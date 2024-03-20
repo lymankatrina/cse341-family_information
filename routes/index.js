@@ -1,5 +1,3 @@
-// Application endpoints index
-
 const routes = require('express').Router();
 
 routes

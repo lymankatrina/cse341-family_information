@@ -395,9 +395,6 @@
           "201": {
             "description": "Created"
           },
-          "422": {
-            "description": "Unprocessable Entity"
-          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -442,9 +439,6 @@
         ],
         "summary": "Get a single anniversary by an Individual ID",
         "description": "This will return a single anniversary in the database by an individual",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "individualId",
@@ -470,9 +464,6 @@
         ],
         "summary": "Get anniversaries by month",
         "description": "This will return a list of anniversaries that occur in the specified month",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "month",
@@ -520,9 +511,6 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "422": {
-            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
@@ -590,9 +578,6 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "422": {
-            "description": "Unprocessable Entity"
           }
         },
         "requestBody": {
@@ -754,9 +739,6 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "422": {
-            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
