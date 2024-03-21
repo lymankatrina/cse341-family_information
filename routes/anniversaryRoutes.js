@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const anniversaryController = require('../controllers/anniversaryController');
-const { anniversaryRules } = require('../middleware/anniversaryValidator.js');
-const { validate } = require('../helpers/helperValidator.js');
+const { anniversaryValidator } = require('../middleware/anniversaryValidator');
 
 // Create an Anniversary
-router.post('/createanniversary', anniversaryRules(), validate, anniversaryController.createAnniversary);
+router.post('/createanniversary', anniversaryValidator, anniversaryController.createAnniversary);
 
 // Get a list of all anniversaries
 router.get('/getall', anniversaryController.getAllAnniversaries);
@@ -17,12 +16,7 @@ router.get('/getbyindividual/:individualId', anniversaryController.getAnniversar
 router.get('/getbymonth/:month', anniversaryController.getAnniversariesByMonth);
 
 // Update a single Anniversary by id
-router.put(
-  '/updateanniversary/:id',
-  anniversaryRules(),
-  validate,
-  anniversaryController.updateAnniversary
-);
+router.put('/updateanniversary/:id', anniversaryValidator, anniversaryController.updateAnniversary);
 
 // Delete an Anniversary by id
 router.delete('/deleteanniversary/:id', anniversaryController.deleteAnniversary);

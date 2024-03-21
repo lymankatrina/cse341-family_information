@@ -168,9 +168,7 @@
     },
     "/household/gethouseholds": {
       "get": {
-        "tags": [
-          "Households"
-        ],
+        "tags": ["Households"],
         "summary": "Get all Households",
         "description": "This will list all households in the database",
         "responses": {
@@ -182,9 +180,7 @@
     },
     "/household/gethousehold/{id}": {
       "get": {
-        "tags": [
-          "Households"
-        ],
+        "tags": ["Households"],
         "summary": "Get a single household by its ID",
         "description": "Returns a single household by its id",
         "parameters": [
@@ -209,9 +205,7 @@
     },
     "/household/gethouseholds/{hoh}": {
       "get": {
-        "tags": [
-          "Households"
-        ],
+        "tags": ["Households"],
         "summary": "Get a single household by its head of household",
         "description": "Returns a single household by the head of the household",
         "parameters": [
@@ -236,9 +230,7 @@
     },
     "/household/gethouseholds/{address}": {
       "get": {
-        "tags": [
-          "Households"
-        ],
+        "tags": ["Households"],
         "summary": "Get a single household by its address",
         "description": "Returns a single household by its address",
         "parameters": [
@@ -263,9 +255,7 @@
     },
     "/household/createhousehold": {
       "post": {
-        "tags": [
-          "Households"
-        ],
+        "tags": ["Households"],
         "summary": "Create a Household",
         "description": "Create a Household by providing all required information.",
         "responses": {
@@ -286,15 +276,8 @@
                 "state": "ID",
                 "zip": "83440",
                 "country": "United States",
-                "headOfHousehold": [
-                  "",
-                  ""
-                ],
-                "residents": [
-                  "",
-                  "",
-                  ""
-                ]
+                "headOfHousehold": ["", ""],
+                "residents": ["", "", ""]
               }
             }
           }
@@ -303,9 +286,7 @@
     },
     "/household/updatehousehold/{id}": {
       "put": {
-        "tags": [
-          "Households"
-        ],
+        "tags": ["Households"],
         "summary": "Update a Household by its ID",
         "description": "Update an existing household by providing all required information.",
         "parameters": [
@@ -339,15 +320,8 @@
                 "state": "ID",
                 "zip": "83440",
                 "country": "United States",
-                "headOfHousehold": [
-                  "",
-                  ""
-                ],
-                "residents": [
-                  "",
-                  "",
-                  ""
-                ]
+                "headOfHousehold": ["", ""],
+                "residents": ["", "", ""]
               }
             }
           }
@@ -356,9 +330,7 @@
     },
     "/household/deletehousehold/{id}": {
       "delete": {
-        "tags": [
-          "Households"
-        ],
+        "tags": ["Households"],
         "summary": "Delete a household by its ID",
         "description": "Permanently delete a household by its ID",
         "parameters": [
@@ -386,17 +358,18 @@
     },
     "/anniversaries/createanniversary": {
       "post": {
-        "tags": [
-          "Anniversaries"
-        ],
+        "tags": ["Anniversaries"],
         "summary": "Create an Anniversary",
         "description": "Create an Anniversary by providing all required information.",
         "responses": {
           "201": {
             "description": "Created"
           },
-          "500": {
-            "description": "Internal Server Error"
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           }
         },
         "requestBody": {
@@ -404,10 +377,7 @@
           "content": {
             "application/json": {
               "example": {
-                "couple": [
-                  "individualId1",
-                  "individualId2"
-                ],
+                "couple": ["individualId1", "individualId2"],
                 "anniversaryDate": "2020-06-30"
               }
             }
@@ -417,26 +387,19 @@
     },
     "/anniversaries/getall": {
       "get": {
-        "tags": [
-          "Anniversaries"
-        ],
+        "tags": ["Anniversaries"],
         "summary": "Get all Anniversaries",
         "description": "This will list all anniversaries in the database",
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
     },
     "/anniversaries/getbyindividual/{individualId}": {
       "get": {
-        "tags": [
-          "Anniversaries"
-        ],
+        "tags": ["Anniversaries"],
         "summary": "Get a single anniversary by an Individual ID",
         "description": "This will return a single anniversary in the database by an individual",
         "parameters": [
@@ -459,9 +422,7 @@
     },
     "/anniversaries/getbymonth/{month}": {
       "get": {
-        "tags": [
-          "Anniversaries"
-        ],
+        "tags": ["Anniversaries"],
         "summary": "Get anniversaries by month",
         "description": "This will return a list of anniversaries that occur in the specified month",
         "parameters": [
@@ -480,9 +441,6 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         },
         "requestBody": {}
@@ -490,9 +448,7 @@
     },
     "/anniversaries/updateanniversary/{id}": {
       "put": {
-        "tags": [
-          "Anniversaries"
-        ],
+        "tags": ["Anniversaries"],
         "summary": "Update an Anniversary by Id",
         "description": "Update an existing anniversary by providing the anniversaryId and the updated information.",
         "parameters": [
@@ -512,8 +468,8 @@
           "404": {
             "description": "Not Found"
           },
-          "500": {
-            "description": "Internal Server Error"
+          "412": {
+            "description": "Precondition Failed"
           }
         },
         "requestBody": {
@@ -521,10 +477,7 @@
           "content": {
             "application/json": {
               "example": {
-                "couple": [
-                  "individualId1",
-                  "individualId2"
-                ],
+                "couple": ["individualId1", "individualId2"],
                 "anniversaryDate": "2020-06-30"
               }
             }
@@ -534,9 +487,7 @@
     },
     "/anniversaries/deleteanniversary/{id}": {
       "delete": {
-        "tags": [
-          "Anniversaries"
-        ],
+        "tags": ["Anniversaries"],
         "summary": "Delete an Anniversary by Id",
         "description": "This will delete a single anniversary from the database by Id. This action is permanent.",
         "parameters": [
@@ -555,29 +506,24 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
     },
     "/news/createnews": {
       "post": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Create a News Story",
         "description": "Create a news story by providing all required information.",
         "responses": {
           "201": {
             "description": "Created"
           },
-          "400": {
-            "description": "Bad Request"
-          },
           "404": {
             "description": "Not Found"
+          },
+          "412": {
+            "description": "Precondition Failed"
           }
         },
         "requestBody": {
@@ -599,14 +545,9 @@
     },
     "/news/getall": {
       "get": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Get all News Stories",
         "description": "This will return all the news stories in the database",
-        "produces": [
-          "application/json"
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -616,14 +557,9 @@
     },
     "/news/{id}": {
       "get": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Get Single News Story by newsId",
         "description": "This will return a single news story by news Id",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -640,23 +576,15 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
     },
     "/news/author/{postedBy}": {
       "get": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Get News by Author",
         "description": "This will return all news stories with postedBy matching the provided individualId",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "postedBy",
@@ -673,23 +601,15 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
     },
     "/news/status/{status}": {
       "get": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Get News by Status",
         "description": "This will return all news stories with status matching the requested status of ",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "status",
@@ -706,18 +626,13 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
     },
     "/news/updatenews/{id}": {
       "put": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Update a News Story by Id",
         "description": "Update an existing news story by providing all required information.",
         "parameters": [
@@ -731,17 +646,11 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
+          "412": {
+            "description": "Precondition Failed"
           }
         },
         "requestBody": {
@@ -763,9 +672,7 @@
     },
     "/news/deletenews/{id}": {
       "delete": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Delete a News Story by Id",
         "description": "This will delete a single news story from the database by Id. This action is permanent.",
         "parameters": [
@@ -781,21 +688,13 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
     },
     "/lookup/birthdays": {
       "get": {
-        "tags": [
-          "Birthdays"
-        ],
+        "tags": ["Birthdays"],
         "summary": "Get all birthdays",
         "description": "This will return the full names of all individuals in the database sorted by birth month and date along with their date of birth and the age of the individual as of today",
         "responses": {
@@ -813,9 +712,7 @@
     },
     "/lookup/birthdays/{month}": {
       "get": {
-        "tags": [
-          "Birthdays"
-        ],
+        "tags": ["Birthdays"],
         "summary": "Get birthdays by month",
         "description": "This will return the full names of all individuals in the database born in the specified month along with their date of birth and the age of the individual as of today",
         "parameters": [
@@ -837,9 +734,7 @@
     },
     "/lookup/mailingLabels": {
       "get": {
-        "tags": [
-          "Mailing Labels"
-        ],
+        "tags": ["Mailing Labels"],
         "summary": "Get Mailing Labels",
         "description": "This will return the full names of all individuals in the database with their mailing address.",
         "responses": {

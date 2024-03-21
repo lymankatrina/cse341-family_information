@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 const { ObjectId } = require('mongoose').Types;
 const Anniversary = require('../models/anniversaryModel.js');
-const Individual = require('../models/individualModel.js');
-const { formatAnniversary, formatIndividualName } = require('../helpers/formatHelpers.js');
+const {
+  formatAnniversary,
+  formatIndividualName,
+  handleServerError,
+  findIndividualsByIds
+} = require('../helpers/helpers.js');
 
 exports.getAllAnniversaries = async (req, res) => {
   // #swagger.tags = ['Anniversaries']
@@ -13,7 +17,7 @@ exports.getAllAnniversaries = async (req, res) => {
     const result = await Promise.all(anniversaries.map(formatAnniversary));
     res.status(200).json(result);
   } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
+    handleServerError(res, error);
   }
 };
 
@@ -30,19 +34,18 @@ exports.getAnniversaryByIndividual = async (req, res) => {
     if (!anniversary) {
       return res.status(404).json({ error: 'Anniversary for Individual not found' });
     }
-    const individuals = await Individual.find({ _id: { $in: anniversary.couple } });
+    const individuals = await findIndividualsByIds(anniversary.couple);
     const coupleNames = individuals.map(formatIndividualName);
     res.status(200).json({
       anniversaryId: anniversary._id,
       couple: coupleNames,
       anniversaryDate: anniversary.anniversaryDate
     });
-  } catch (err) {
-    res.status(500).json({ error: 'Internal server error' });
+  } catch (error) {
+    handleServerError(res, error);
   }
 };
 
-// Get Anniversaries by month
 exports.getAnniversariesByMonth = async (req, res) => {
   // #swagger.tags = ['Anniversaries']
   // #swagger.summary = 'Get anniversaries by month'
@@ -77,22 +80,17 @@ exports.getAnniversariesByMonth = async (req, res) => {
         }
       }
     ]);
-
     const formattedAnniversaries = await Promise.all(anniversaries.map(formatAnniversary));
-
     if (formattedAnniversaries.length > 0) {
       res.status(200).json(formattedAnniversaries);
     } else {
       res.status(404).json({ error: 'No anniversaries found by that month' });
     }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Internal server error' });
+  } catch (error) {
+    handleServerError(res, error);
   }
 };
 
-/* POST REQUESTS */
-// Create an Anniversary
 exports.createAnniversary = async (req, res) => {
   // #swagger.tags = ['Anniversaries']
   // #swagger.summary = 'Create an Anniversary'
@@ -113,20 +111,25 @@ exports.createAnniversary = async (req, res) => {
     }
   }
   */
+  const { couple, anniversaryDate } = req.body;
+  const coupleIds = couple.map((id) => new ObjectId(id));
   try {
-    const anniversaryDate = new Date(req.body.anniversaryDate);
-    const couple = req.body.couple;
+    const individuals = await findIndividualsByIds(coupleIds);
+    if (individuals.length !== 2) {
+      return res.status(422).json({
+        errors: {
+          couple: ['Both individuals must exist in the individuals collection']
+        }
+      });
+    }
     const newAnniversary = new Anniversary({ couple, anniversaryDate });
     await newAnniversary.save();
     res.status(201).json(newAnniversary);
-  } catch (err) {
-    console.error('Error creating anniversary:', err);
-    return res.status(500).json({ error: 'Internal server error' });
+  } catch (error) {
+    handleServerError(res, error);
   }
 };
 
-/* PUT REQUESTS */
-// Update a single anniversary by id
 exports.updateAnniversary = async (req, res) => {
   // #swagger.tags = ['Anniversaries']
   // #swagger.summary = 'Update an Anniversary by Id'
@@ -161,14 +164,11 @@ exports.updateAnniversary = async (req, res) => {
     } else {
       res.status(404).json({ error: 'Anniversary not found' });
     }
-  } catch (err) {
-    console.error('Error updating anniversary:', err);
-    return res.status(500).json({ error: 'Internal server error' });
+  } catch (error) {
+    handleServerError(res, error);
   }
 };
 
-/* DELETE REQUESTS */
-// Delete an anniversary by id
 exports.deleteAnniversary = async (req, res) => {
   // #swagger.tags = ['Anniversaries']
   // #swagger.summary = 'Delete an Anniversary by Id'
@@ -181,8 +181,7 @@ exports.deleteAnniversary = async (req, res) => {
     } else {
       res.status(404).json({ error: 'Anniversary not found' });
     }
-  } catch (err) {
-    console.error('Error deleting anniversary:', err);
-    res.status(500).json({ error: 'Internal server error' });
+  } catch (error) {
+    handleServerError(res, error);
   }
 };
