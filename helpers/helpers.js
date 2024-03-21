@@ -42,10 +42,34 @@ function handleServerError(res, error) {
   res.status(500).json({ error: 'Internal server error' });
 }
 
+// Helper function to calculate age
+function calculateAge(birthDate) {
+  const today = new Date();
+  let age = today.getUTCFullYear() - birthDate.getUTCFullYear();
+  const month = today.getUTCMonth() - birthDate.getUTCMonth();
+  if (month < 0 || (month === 0 && today.getUTCDate() < birthDate.getUTCDate())) {
+    age--;
+  }
+  return age;
+}
+
+// Helper function to format birthday data
+function formatBirthdayIndividual(individual) {
+  const birthDate = individual.birthDate;
+  return {
+    fullName: `${individual.firstName} ${individual.middleName ? individual.middleName + ' ' : ''}${individual.lastName}`,
+    birthMonth: birthDate.getUTCMonth() + 1,
+    birthDay: birthDate.getUTCDate(),
+    age: calculateAge(birthDate)
+  };
+}
+
 module.exports = {
   formatAnniversary,
   formatIndividualName,
   formatNews,
   handleServerError,
-  findIndividualsByIds
+  findIndividualsByIds,
+  calculateAge,
+  formatBirthdayIndividual
 };

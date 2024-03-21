@@ -6,12 +6,12 @@ const individualSchema = new mongoose.Schema(
     firstName: String,
     middleName: String,
     lastName: String,
-    birthDate: String,
+    birthDate: Date,
     parents: [String], // Define parents as an array of strings
     phone: String,
     email: String,
     household: String,
-    headOfHousehold: String,
+    headOfHousehold: Boolean,
     picture: String
   },
   { timestamps: true }
