@@ -1,7 +1,13 @@
 const { ObjectId } = require('mongoose').Types;
 const Individual = require('../models/individualModel');
 
+/* GET REQUESTS */
+// Get a list of all Individuals
+ 
 const getAllIndividuals = async (req, res) => {
+  // #swagger.tags = ['Individuals']
+  // #swagger.summary = 'Get all individuals'
+  // #swagger.description = 'This will return all the individuals in the database'
   try {
     const result = await Individual.find();
     res.status(200).json(result);
@@ -12,7 +18,12 @@ const getAllIndividuals = async (req, res) => {
   }
 };
 
+// Get a single Individual by Id
 const getSingleIndividual = async (req, res) => {
+  // #swagger.tags = ['Individuals']
+  // #swagger.summary = 'Get an individual by Id'
+  // #swagger.description = 'This will return an individual by Id'
+
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid individual id to find an individual.');
   }
@@ -26,8 +37,13 @@ const getSingleIndividual = async (req, res) => {
   }
 };
 
+/* POST REQUESTS */
+// Create an Individual
 const createIndividual = async (req, res) => {
-  try {
+  // #swagger.tags = ['Individuals']
+  // #swagger.summary = 'Create a new Individual to the collection'
+  // #swagger.description = 'Create an Individual by providing all required information.'
+   try {
     const individual = new Individual({
       firstName: req.body.firstName,
       middleName: req.body.middleName,
@@ -39,22 +55,29 @@ const createIndividual = async (req, res) => {
       household: req.body.household,
       headOfHousehold: req.body.headOfHousehold,
       picture: req.body.picture
-    });
-    const response = await individual.save();
-    res.status(201).json(response);
+    };
+    const response = await db.db().collection('individuals').insertOne(individual, { wtimeout: 60000 }); // 30 seconds timeout
+    if (response.acknowledged) {
+      res.status(201).json(response);
+    } else {
+      res.status(500).json(response.error || 'Some error occurred while creating the individual.');
+    }
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: error.message || 'Some error occurred while creating the individual.' });
+    res.status(500).json({ error: error.message });
   }
 };
 
+/* PUT REQUESTS */
+// Update a single individual by id
 const updateIndividual = async (req, res) => {
+  // #swagger.tags = ['Individuals']
+  // #swagger.summary = 'Update an existing Individual by Id'
+  // #swagger.description = 'Update an existing individual by providing all required information.'
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid individual id to update an individual.');
   }
   try {
-    const updatedIndividual = await Individual.findByIdAndUpdate(req.params.id, req.body, {
+     const updatedIndividual = await Individual.findByIdAndUpdate(req.params.id, req.body, {
       new: true
     });
     if (!updatedIndividual) {
@@ -68,7 +91,12 @@ const updateIndividual = async (req, res) => {
   }
 };
 
+/* DELETE REQUESTS */
+// Delete an individual by id
 const deleteIndividual = async (req, res) => {
+  // #swagger.tags = ['Individuals']
+  // #swagger.summary = 'Delete an Individual by Id'
+  // #swagger.description = 'This will delete a single individual from the database by Id. This action is permanent.'
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid individual id to delete an individual.');
   }
@@ -79,7 +107,6 @@ const deleteIndividual = async (req, res) => {
     res.status(500).json(error.message || 'Some error occurred while deleting the individual.');
   }
 };
-
 module.exports = {
   getAllIndividuals,
   getSingleIndividual,
@@ -87,3 +114,5 @@ module.exports = {
   updateIndividual,
   deleteIndividual
 };
+
+
