@@ -24,7 +24,7 @@ exports.getBirthdaysByMonth = async (req, res) => {
   try {
     const month = parseInt(req.params.month);
     const individuals = await Individual.find({
-      $expr: { $eq: [{ $month: '$birthDate' }, month] }
+      $expr: { $eq: [{ $month: { $toDate: '$birthDate' } }, month] }
     });
     if (individuals.length === 0) {
       return res.status(400).json({ message: 'No birthdays found for this month' });

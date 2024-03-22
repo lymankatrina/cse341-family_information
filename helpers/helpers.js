@@ -51,7 +51,7 @@ function calculateAge(birthDate) {
     age--;
   }
   return age;
-}
+} 
 
 // Helper function to format birthday data
 function formatBirthdayIndividual(individual) {
@@ -60,6 +60,7 @@ function formatBirthdayIndividual(individual) {
     fullName: `${individual.firstName} ${individual.middleName ? individual.middleName + ' ' : ''}${individual.lastName}`,
     birthMonth: birthDate.getUTCMonth() + 1,
     birthDay: birthDate.getUTCDate(),
+    birthYear: birthDate.getUTCFullYear(),
     age: calculateAge(birthDate)
   };
 }
