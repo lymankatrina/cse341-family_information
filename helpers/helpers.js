@@ -51,7 +51,7 @@ function calculateAge(birthDate) {
     age--;
   }
   return age;
-} 
+}
 
 // Helper function to format birthday data
 function formatBirthdayIndividual(individual) {

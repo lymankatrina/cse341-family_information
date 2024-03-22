@@ -1,80 +1,47 @@
 {
   "anniversary": [
-    { 
-      "couple": [
-        "65fc9426fc13ae5d6a50fa9c",
-        "65fc9d58fc13ae5b6c50fb00"
-      ],
+    {
+      "couple": ["65fc9426fc13ae5d6a50fa9c", "65fc9d58fc13ae5b6c50fb00"],
       "anniversaryDate": "1997-01-13"
     },
-    { 
-      "couple": [
-        "65fc9426fc13ae5d6a50fa9e",
-        "65fc9d58fc13ae5b6c50fb01"
-      ],
+    {
+      "couple": ["65fc9426fc13ae5d6a50fa9e", "65fc9d58fc13ae5b6c50fb01"],
       "anniversaryDate": "1996-01-13"
     },
-    { 
-      "couple": [
-        "65fc9426fc13ae5d6a50faa0",
-        "65fc9d58fc13ae5b6c50fb02"
-      ],
+    {
+      "couple": ["65fc9426fc13ae5d6a50faa0", "65fc9d58fc13ae5b6c50fb02"],
       "anniversaryDate": "1994-01-13"
     },
-    { 
-      "couple": [
-        "65fc9426fc13ae5d6a50faa2",
-        "65fc9d58fc13ae5b6c50fb03"
-      ],
+    {
+      "couple": ["65fc9426fc13ae5d6a50faa2", "65fc9d58fc13ae5b6c50fb03"],
       "anniversaryDate": "2007-01-13"
     },
-    { 
-      "couple": [
-        "65fc9426fc13ae5d6a50faa4",
-        "65fc9d58fc13ae5b6c50fb04"
-      ],
-      "anniversaryDate": "2005-01-13"
-    },
-    { 
-      "couple": [
-        "65fc9426fc13ae5d6a50faa6",
-        "65fc9d58fc13ae5b6c50fb05"
-      ],
-      "anniversaryDate": "2004-01-13"
-    },
-    { 
-      "couple": [
-        "65fc9426fc13ae5d6a50faa8",
-        "65fc9d58fc13ae5b6c50fb06"
-      ],
-      "anniversaryDate": "2003-01-13"
-    },
-    { 
-      "couple": [
-        "65fc9426fc13ae5d6a50faaa",
-        "65fc9d58fc13ae5b6c50fb07"
-      ],
-      "anniversaryDate": "2004-01-13"
-    },
-    { 
-      "couple": [
-        "65fc9426fc13ae5d6a50faac",
-        "65fc9d58fc13ae5b6c50fb08"
-      ],
-      "anniversaryDate": "2007-01-13"
-    },
-    { 
-      "couple": [
-        "65fc9426fc13ae5d6a50faae",
-        "65fc9d58fc13ae5b6c50fb09"
-      ],
+    {
+      "couple": ["65fc9426fc13ae5d6a50faa4", "65fc9d58fc13ae5b6c50fb04"],
       "anniversaryDate": "2005-01-13"
     },
     {
-      "couple": [
-        "65fcb4a2fc13ae711c50faa6",
-        "65fcb4a2fc13ae711c50faca"
-      ],
+      "couple": ["65fc9426fc13ae5d6a50faa6", "65fc9d58fc13ae5b6c50fb05"],
+      "anniversaryDate": "2004-01-13"
+    },
+    {
+      "couple": ["65fc9426fc13ae5d6a50faa8", "65fc9d58fc13ae5b6c50fb06"],
+      "anniversaryDate": "2003-01-13"
+    },
+    {
+      "couple": ["65fc9426fc13ae5d6a50faaa", "65fc9d58fc13ae5b6c50fb07"],
+      "anniversaryDate": "2004-01-13"
+    },
+    {
+      "couple": ["65fc9426fc13ae5d6a50faac", "65fc9d58fc13ae5b6c50fb08"],
+      "anniversaryDate": "2007-01-13"
+    },
+    {
+      "couple": ["65fc9426fc13ae5d6a50faae", "65fc9d58fc13ae5b6c50fb09"],
+      "anniversaryDate": "2005-01-13"
+    },
+    {
+      "couple": ["65fcb4a2fc13ae711c50faa6", "65fcb4a2fc13ae711c50faca"],
       "anniversaryDate": "2018-12-15"
     }
   ]
