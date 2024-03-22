@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const newsController = require('../controllers/newsController');
-const { newsValidationRules, validate } = require('../middleware/validator.js');
+const { newsValidator } = require('../middleware/newsValidator');
 
 // Create a news story
-router.post('/createnews', newsValidationRules(), validate, newsController.createNewsStory);
+router.post('/createnews', newsValidator, newsController.createNewsStory);
 
 // Get all news
 router.get('/getall', newsController.getAllNews);
@@ -19,7 +19,7 @@ router.get('/author/:postedBy', newsController.getNewsByAuthor);
 router.get('/status/:status', newsController.getNewsByStatus);
 
 // Update a news story
-router.put('/updatenews/:id', newsValidationRules(), validate, newsController.updateNewsById);
+router.put('/updatenews/:id', newsValidator, newsController.updateNewsById);
 
 // Delete news story
 router.delete('/deletenews/:id', newsController.deleteNewsById);

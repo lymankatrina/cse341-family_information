@@ -6,4 +6,3 @@ const validator = (body, rules, customMessages, callback) => {
 };
 
 module.exports = validator;
-

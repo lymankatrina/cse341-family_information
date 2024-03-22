@@ -1,6 +1,18 @@
-const anniversaryExample = {
-  couple: ['65ef74ae7c211814c571e01b', '65ef767a878cf056c7d1d30f'],
-  anniversaryDate: '1971-01-13'
-};
+const mongoose = require('mongoose');
 
-module.exports = anniversaryExample;
+const anniversarySchema = new mongoose.Schema({
+  couple: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Individual'
+    }
+  ],
+  anniversaryDate: {
+    type: Date,
+    required: true
+  }
+});
+
+const Anniversary = mongoose.model('Anniversary', anniversarySchema);
+
+module.exports = Anniversary;

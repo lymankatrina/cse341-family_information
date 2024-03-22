@@ -1,62 +1,72 @@
-const mongodb = require('../db/connect');
+const Individual = require('../models/individualModel');
+const Household = require('../models/householdModel');
+const { formatBirthdayIndividual, handleServerError } = require('../helpers/helpers');
 
-/* GET REQUESTS */
-// Get individual information
-exports.getIndividualInfo = async (req, res) => {
-  // #swagger.tags = ['Lookup']
-  // #swagger.summary = 'Get individual information'
-  // #swagger.description = 'This will list all individuals with their information'
-  const result = await mongodb
-    .getDb()
-    .db()
-    .collection('individuals')
-    .aggregate([
-      {
-        $match: {
-          petOwner: { $ne: '' } // Filter out empty pet Owner values
+exports.getBirthdays = async (req, res) => {
+  // #swagger.tags = ['Birthdays']
+  // #swagger.summary = 'Get all birthdays'
+  // #swagger.description = 'This will return the full names of all individuals in the database sorted by birth month and date along with their date of birth and the age of the individual as of today's date.'
+  try {
+    const individuals = await Individual.find({}, 'firstName middleName lastName birthDate');
+    const formattedBirthdays = individuals
+      .map(formatBirthdayIndividual)
+      .sort((a, b) => a.birthMonth - b.birthMonth || a.birthDay - b.birthDay);
+    res.json(formattedBirthdays);
+  } catch (error) {
+    handleServerError(res, error);
+  }
+};
+
+exports.getBirthdaysByMonth = async (req, res) => {
+  // #swagger.tags = ['Birthdays']
+  // #swagger.summary = 'Get birthdays by month'
+  // #swagger.description = 'This will return the full names of all individuals in the database born in the specified month along with their date of birth and the age of the individual as of today's date. This data is sorted by month and date of birth.'
+  try {
+    const month = parseInt(req.params.month);
+    const individuals = await Individual.find({
+      $expr: { $eq: [{ $month: { $toDate: '$birthDate' } }, month] }
+    });
+    if (individuals.length === 0) {
+      return res.status(400).json({ message: 'No birthdays found for this month' });
+    }
+    const formattedBirthdays = individuals
+      .map(formatBirthdayIndividual)
+      .sort((a, b) => a.birthMonth - b.birthMonth || a.birthDay - b.birthDay);
+    res.json(formattedBirthdays);
+  } catch (error) {
+    handleServerError(res, error);
+  }
+};
+
+exports.getMailingLabels = async (req, res) => {
+  // #swagger.tags = ['Mailing Labels']
+  // #swagger.summary = 'Get Mailing Labels'
+  // #swagger.description = 'This will return the full names of all individuals in the database with their mailing address.'
+  try {
+    const individuals = await Individual.find({}, 'firstName lastName household');
+    const mailingLabels = [];
+    for (const individual of individuals) {
+      const household = await Household.findOne({ residents: individual._id });
+      if (household) {
+        let careOf = null;
+        const isHOH = household.headOfHousehold.some((id) => id.equals(individual._id));
+        if (!isHOH) {
+          const hoh = await Individual.findById(household.headOfHousehold[0]);
+          if (hoh) {
+            careOf = `c/o ${hoh.firstName} ${hoh.lastName}`;
+          }
         }
-      },
-      {
-        $lookup: {
-          from: 'owners',
-          let: { ownerId: { $toObjectId: '$petOwner' } },
-          pipeline: [
-            {
-              $match: {
-                $expr: { $eq: ['$_id', '$$ownerId'] }
-              }
-            },
-            {
-              $project: {
-                _id: 0,
-                petName: 1,
-                firstName: 1,
-                lastName: 1,
-                address: 1,
-                city: 1,
-                state: 1,
-                zip: 1
-              }
-            }
-          ],
-          as: 'owners'
-        }
-      },
-      {
-        $project: {
-          _id: 0,
-          petName: 1,
-          'owners.firstName': 1,
-          'owners.lastName': 1,
-          'owners.address': 1,
-          'owners.city': 1,
-          'owners.state': 1,
-          'owners.zip': 1
-        }
+        mailingLabels.push({
+          labelName: `${individual.firstName} ${individual.lastName}`,
+          ...(careOf && { careOf }),
+          addressLine1: `${household.streetAddress}`,
+          addressLine2: `${household.city}, ${household.state} ${household.zip}`,
+          addressLine3: `${household.country}`
+        });
       }
-    ]);
-  result.toArray().then((lists) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
-  });
+    }
+    res.json(mailingLabels);
+  } catch (error) {
+    handleServerError(res, error);
+  }
 };

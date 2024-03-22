@@ -94,7 +94,9 @@ exports.createHousehold = async (req, res) => {
     headOfHousehold: req.body.headOfHousehold,
     residents: req.body.residents
   };
-  const response = await db.getDb.db().collection('households').insertOne(household);
+
+  const response = await db.getDb().db().collection('households').insertOne(household);
+
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
@@ -160,4 +162,7 @@ exports.deleteHousehold = async (req, res) => {
   } else if (response.deletedCount <= 0) {
     res.status(404).json({ error: 'Household was not found' });
   } else [res.status(500).json({ error: 'The Household could not be deleted' })];
+
+
 };
+

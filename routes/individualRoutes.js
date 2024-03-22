@@ -5,7 +5,6 @@ const router = express.Router();
 const individualController = require('../controllers/individualController');
 //const validation = require('../middleware/validate');
 
-
 // Get a list of all Individuals
 router.get('/getAllIndividuals', individualController.getAllIndividuals);
 

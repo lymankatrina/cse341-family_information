@@ -1,11 +1,12 @@
+const routes = require('express').Router();
 
-// Application endpoints index
+routes
+  .use('/', require('./authRoutes'))
+  .use('/', require('./swaggerRoutes'))
+  .use('/individuals', require('./individualRoutes'))
+  .use('/household', require('./householdRoutes'))
+  .use('/anniversaries', require('./anniversaryRoutes'))
+  .use('/news', require('./newsRoutes'))
+  .use('/lookup', require('./lookupRoutes'));
 
-const express = require('express');
-const router = express.Router();
-
-router.use('/', require('./swaggerRoutes'));
-router.use('/individuals', require('./individualRoutes'));
-
-
-module.exports = router;
+module.exports = routes;

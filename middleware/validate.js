@@ -9,7 +9,7 @@ const saveIndividual = (req, res, next) => {
     parents: 'required|string',
     email: 'required|string',
     household: 'required|Number', // Removed space before Number
-    headOfHousehold: 'required|string',
+    headOfHousehold: 'required|string'
   };
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {

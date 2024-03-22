@@ -1,14 +1,15 @@
-const mongodb = require('../db/connect');
-const ObjectId = require('mongodb').ObjectId;
+const { ObjectId } = require('mongoose').Types;
+const Individual = require('../models/individualModel');
 
 /* GET REQUESTS */
 // Get a list of all Individuals
+ 
 const getAllIndividuals = async (req, res) => {
   // #swagger.tags = ['Individuals']
   // #swagger.summary = 'Get all individuals'
   // #swagger.description = 'This will return all the individuals in the database'
   try {
-    const result = await mongodb.getDb().db().collection('individuals').find().toArray();
+    const result = await Individual.find();
     res.status(200).json(result);
   } catch (error) {
     res
@@ -16,18 +17,18 @@ const getAllIndividuals = async (req, res) => {
       .json({ error: error.message || 'Some error occurred while retrieving all individuals.' });
   }
 };
+
 // Get a single Individual by Id
 const getSingleIndividual = async (req, res) => {
   // #swagger.tags = ['Individuals']
   // #swagger.summary = 'Get an individual by Id'
   // #swagger.description = 'This will return an individual by Id'
+
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid individual id to find an individual.');
   }
   try {
-    const db = mongodb.getDb(); // Get the database object once
-    const userId = new ObjectId(req.params.id);
-    const result = await db.db().collection('individuals').findOne({ _id: userId });
+    const result = await Individual.findById(req.params.id);
     res.status(200).json(result);
   } catch (error) {
     res.status(500).json({
@@ -42,14 +43,13 @@ const createIndividual = async (req, res) => {
   // #swagger.tags = ['Individuals']
   // #swagger.summary = 'Create a new Individual to the collection'
   // #swagger.description = 'Create an Individual by providing all required information.'
-  try {
-    const db = mongodb.getDb(); // Get the database object once
-    const individual = {
+   try {
+    const individual = new Individual({
       firstName: req.body.firstName,
       middleName: req.body.middleName,
       lastName: req.body.lastName,
       birthDate: req.body.birthDate,
-      parents: [req.body.parents],
+      parents: req.body.parents,
       phone: req.body.phone,
       email: req.body.email,
       household: req.body.household,
@@ -77,29 +77,13 @@ const updateIndividual = async (req, res) => {
     res.status(400).json('Must use a valid individual id to update an individual.');
   }
   try {
-    const db = mongodb.getDb(); // Get the database object once
-    const userId = new ObjectId(req.params.id);
-    const individual = {
-      firstName: req.body.firstName,
-      middleName: req.body.middleName,
-      lastName: req.body.lastName,
-      birthDate: req.body.birthDate,
-      parents: [req.body.parents],
-      phone: req.body.phone,
-      email: req.body.email,
-      household: req.body.household,
-      headOfHousehold: req.body.headOfHousehold,
-      picture: req.body.picture
-    };
-    const response = await db
-      .db()
-      .collection('individuals')
-      .replaceOne({ _id: userId }, individual);
-    if (response.modifiedCount > 0) {
-      res.status(204).send();
-    } else {
-      throw new Error('Some error occurred while updating the individual.');
+     const updatedIndividual = await Individual.findByIdAndUpdate(req.params.id, req.body, {
+      new: true
+    });
+    if (!updatedIndividual) {
+      return res.status(404).json({ error: 'Individual not found' });
     }
+    res.status(200).json(updatedIndividual);
   } catch (error) {
     res
       .status(500)
@@ -117,19 +101,12 @@ const deleteIndividual = async (req, res) => {
     res.status(400).json('Must use a valid individual id to delete an individual.');
   }
   try {
-    const db = mongodb.getDb(); // Get the database object once
-    const userId = new ObjectId(req.params.id);
-    const response = await db.db().collection('individuals').deleteOne({ _id: userId });
-    if (response.deletedCount > 0) {
-      res.status(200).send();
-    } else {
-      throw new Error('Some error occurred while deleting the individual.');
-    }
+    await Individual.findByIdAndDelete(req.params.id);
+    res.status(200).send();
   } catch (error) {
     res.status(500).json(error.message || 'Some error occurred while deleting the individual.');
   }
 };
-
 module.exports = {
   getAllIndividuals,
   getSingleIndividual,
