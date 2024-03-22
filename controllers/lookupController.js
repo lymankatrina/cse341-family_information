@@ -1,6 +1,6 @@
 const Individual = require('../models/individualModel');
 const Household = require('../models/householdModel');
-const { formatBirthdayIndividual, handleServerError, calculateAge } = require('../helpers/helpers');
+const { formatBirthdayIndividual, handleServerError } = require('../helpers/helpers');
 
 exports.getBirthdays = async (req, res) => {
   // #swagger.tags = ['Birthdays']
@@ -8,7 +8,8 @@ exports.getBirthdays = async (req, res) => {
   // #swagger.description = 'This will return the full names of all individuals in the database sorted by birth month and date along with their date of birth and the age of the individual as of today's date.'
   try {
     const individuals = await Individual.find({}, 'firstName middleName lastName birthDate');
-    const formattedBirthdays = individuals.map(formatBirthdayIndividual)
+    const formattedBirthdays = individuals
+      .map(formatBirthdayIndividual)
       .sort((a, b) => a.birthMonth - b.birthMonth || a.birthDay - b.birthDay);
     res.json(formattedBirthdays);
   } catch (error) {
@@ -22,13 +23,14 @@ exports.getBirthdaysByMonth = async (req, res) => {
   // #swagger.description = 'This will return the full names of all individuals in the database born in the specified month along with their date of birth and the age of the individual as of today's date. This data is sorted by month and date of birth.'
   try {
     const month = parseInt(req.params.month);
-    const individuals = await Individual.find(
-      { $expr: { $eq: [{ $month: '$birthDate' }, month] } }
-    );
+    const individuals = await Individual.find({
+      $expr: { $eq: [{ $month: '$birthDate' }, month] }
+    });
     if (individuals.length === 0) {
       return res.status(400).json({ message: 'No birthdays found for this month' });
-    } 
-    const formattedBirthdays = individuals.map(formatBirthdayIndividual)
+    }
+    const formattedBirthdays = individuals
+      .map(formatBirthdayIndividual)
       .sort((a, b) => a.birthMonth - b.birthMonth || a.birthDay - b.birthDay);
     res.json(formattedBirthdays);
   } catch (error) {
@@ -47,7 +49,7 @@ exports.getMailingLabels = async (req, res) => {
       const household = await Household.findOne({ residents: individual._id });
       if (household) {
         let careOf = null;
-        const isHOH = household.headOfHousehold.some(id => id.equals(individual._id));
+        const isHOH = household.headOfHousehold.some((id) => id.equals(individual._id));
         if (!isHOH) {
           const hoh = await Individual.findById(household.headOfHousehold[0]);
           if (hoh) {

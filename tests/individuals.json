@@ -59,42 +59,6 @@
       "household": "Brown Household",
       "headOfHousehold": false,
       "picture": "https://randomuser.me/api/portraits/women/88.jpg"
-    },
-    {
-      "firstName": "Verlin",
-      "middleName": "Anson",
-      "lastName": "Hatch",
-      "birthDate": "1947-03-30",
-      "parents": ["individualId1", "individualId2"],
-      "phone": "555-888-1111",
-      "email": "vah123@fake.com",
-      "household": "",
-      "headOfHousehold": true,
-      "picture": "https://fakeimg.pl/600x400?text=Verlin+Hatch"
-    },
-    {
-      "firstName": "Stella",
-      "middleName": "Colleen",
-      "lastName": "Hatch",
-      "birthDate": "1950-07-16",
-      "parents": ["individualId3", "individualId4"],
-      "phone": "555-888-2222",
-      "email": "sch123@fake.com",
-      "household": "",
-      "headOfHousehold": true,
-      "picture": "https://fakeimg.pl/600x400?text=Stella+Hatch"
-    },
-    {
-      "firstName": "Anson",
-      "middleName": "Verlin",
-      "lastName": "Hatch",
-      "birthDate": "1972-10-10",
-      "parents": ["65fa5e1215cb7d3de3ff079a", "65fa5e5f15cb7d3de3ff079c"],
-      "phone": "555-888-3333",
-      "email": "avh123@fake.com",
-      "household": "",
-      "headOfHousehold": true,
-      "picture": "https://fakeimg.pl/600x400?text=Anson+Hatch"
     }
   ]
 }
