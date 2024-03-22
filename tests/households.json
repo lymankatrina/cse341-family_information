@@ -1,17 +1,224 @@
-{
-  "household": {
-    "streetAddress": "123 Lucky Lane",
-    "city": "Any City",
+[
+  {
+    "_id": { "$oid": "65fc9426fc13ae5d6a50fa9d" },
+    "streetAddress": "123 Desert View Drive",
+    "city": "Blanding",
     "state": "UT",
-    "country": "USA",
-    "postalCode": 84000
+    "zip": "84511",
+    "country": "United States",
+    "headOfHousehold": [
+      { "$oid": "65fc9426fc13ae5d6a50fa9c" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb00" }
+    ],
+    "residents": [
+      { "$oid": "65fc9426fc13ae5d6a50fa9c" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb00" },
+      { "$oid": "65fcb4a2fc13ae711c50fa9c" },
+      { "$oid": "65fcb4a2fc13ae711c50fa9d" },
+      { "$oid": "65fcb4a2fc13ae711c50fa9e" },
+      { "$oid": "65fcb4a2fc13ae711c50fa9f" },
+      { "$oid": "65fcb4a2fc13ae711c50faa0" },
+      { "$oid": "65fcb4a2fc13ae711c50faa1" },
+      { "$oid": "65fcb4a2fc13ae711c50faa2" }
+    ]
   },
-
-  "household2": {
-    "streetAddress": "250 Voortrekker Road",
-    "city": "Salt Lake",
+  {
+    "_id": { "$oid": "65fc9426fc13ae5d6a50fa9f" },
+    "streetAddress": "2454 Mountainland Ave",
+    "city": "Eagle Mountain",
     "state": "UT",
-    "country": "USA",
-    "postalCode": 84044
+    "zip": "84005",
+    "country": "United States",
+    "headOfHousehold": [
+      { "$oid": "65fc9426fc13ae5d6a50fa9e" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb01" }
+    ],
+    "residents": [
+      { "$oid": "65fc9426fc13ae5d6a50fa9e" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb01" },
+      { "$oid": "65fcb4a2fc13ae711c50faa3" },
+      { "$oid": "65fcb4a2fc13ae711c50faa4" },
+      { "$oid": "65fcb4a2fc13ae711c50faa5" }
+    ]
+  },
+  {
+    "_id": { "$oid": "65fc9426fc13ae5d6a50faa1" },
+    "streetAddress": "5610 Lakeview Drive",
+    "city": "Fayette",
+    "state": "UT",
+    "zip": "84630",
+    "country": "United States",
+    "headOfHousehold": [
+      { "$oid": "65fc9426fc13ae5d6a50faa0" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb02" }
+    ],
+    "residents": [
+      { "$oid": "65fc9426fc13ae5d6a50faa0" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb02" },
+      { "$oid": "65fcb4a2fc13ae711c50faa7" },
+      { "$oid": "65fcb4a2fc13ae711c50faa8" },
+      { "$oid": "65fcb4a2fc13ae711c50faa9" }
+    ]
+  },
+  {
+    "_id": { "$oid": "65fc9426fc13ae5d6a50faa3" },
+    "streetAddress": "2464 Elkview Road",
+    "city": "Hyrum",
+    "state": "UT",
+    "zip": "84319",
+    "country": "United States",
+    "headOfHousehold": [
+      { "$oid": "65fc9426fc13ae5d6a50faa2" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb03" }
+    ],
+    "residents": [
+      { "$oid": "65fc9426fc13ae5d6a50faa2" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb03" },
+      { "$oid": "65fcb4a2fc13ae711c50faaa" },
+      { "$oid": "65fcb4a2fc13ae711c50faab" },
+      { "$oid": "65fcb4a2fc13ae711c50faac" },
+      { "$oid": "65fcb4a2fc13ae711c50faad" }
+    ]
+  },
+  {
+    "_id": { "$oid": "65fc9426fc13ae5d6a50faa5" },
+    "streetAddress": "123 North Pine Ridge Dr",
+    "city": "Lyman",
+    "state": "WY",
+    "zip": "82937",
+    "country": "United States",
+    "headOfHousehold": [
+      { "$oid": "65fc9426fc13ae5d6a50faa4" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb04" }
+    ],
+    "residents": [
+      { "$oid": "65fc9426fc13ae5d6a50faa4" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb04" },
+      { "$oid": "65fcb4a2fc13ae711c50faae" },
+      { "$oid": "65fcb4a2fc13ae711c50faaf" },
+      { "$oid": "65fcb4a2fc13ae711c50fab0" },
+      { "$oid": "65fcb4a2fc13ae711c50fab1" }
+    ]
+  },
+  {
+    "_id": { "$oid": "65fc9426fc13ae5d6a50faa7" },
+    "streetAddress": "4422 Cherry Blossom Lane",
+    "city": "Broadlands",
+    "state": "VA",
+    "zip": "20148",
+    "country": "United States",
+    "headOfHousehold": [
+      { "$oid": "65fc9426fc13ae5d6a50faa6" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb05" }
+    ],
+    "residents": [
+      { "$oid": "65fc9426fc13ae5d6a50faa6" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb05" },
+      { "$oid": "65fcb4a2fc13ae711c50fab2" },
+      { "$oid": "65fcb4a2fc13ae711c50fab3" },
+      { "$oid": "65fcb4a2fc13ae711c50fab4" },
+      { "$oid": "65fcb4a2fc13ae711c50fab5" }
+    ]
+  },
+  {
+    "_id": { "$oid": "65fc9426fc13ae5d6a50faa9" },
+    "streetAddress": "776 Scarlet Bluff Circle",
+    "city": "West Jordan",
+    "state": "UT",
+    "zip": "84081",
+    "country": "United States",
+    "headOfHousehold": [
+      { "$oid": "65fc9426fc13ae5d6a50faa8" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb06" }
+    ],
+    "residents": [
+      { "$oid": "65fc9426fc13ae5d6a50faa8" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb06" },
+      { "$oid": "65fcb4a2fc13ae711c50fab6" },
+      { "$oid": "65fcb4a2fc13ae711c50fab7" },
+      { "$oid": "65fcb4a2fc13ae711c50fab8" },
+      { "$oid": "65fcb4a2fc13ae711c50fab9" },
+      { "$oid": "65fcb4a2fc13ae711c50faba" },
+      { "$oid": "65fcb4a2fc13ae711c50fabb" },
+      { "$oid": "65fcb4a2fc13ae711c50fabc" }
+    ]
+  },
+  {
+    "_id": { "$oid": "65fc9426fc13ae5d6a50faab" },
+    "streetAddress": "10204 Country Club Dr",
+    "city": "Highland",
+    "state": "UT",
+    "zip": "84003",
+    "country": "United States",
+    "headOfHousehold": [
+      { "$oid": "65fc9426fc13ae5d6a50faaa" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb07" }
+    ],
+    "residents": [
+      { "$oid": "65fc9426fc13ae5d6a50faaa" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb07" },
+      { "$oid": "65fcb4a2fc13ae711c50fabd" },
+      { "$oid": "65fcb4a2fc13ae711c50fabe" },
+      { "$oid": "65fcb4a2fc13ae711c50fabf" },
+      { "$oid": "65fcb4a2fc13ae711c50fac0" }
+    ]
+  },
+  {
+    "_id": { "$oid": "65fc9426fc13ae5d6a50faad" },
+    "streetAddress": "64 Beehive Court",
+    "city": "North Las Vegas",
+    "state": "NV",
+    "zip": "89084",
+    "country": "United States",
+    "headOfHousehold": [
+      { "$oid": "65fc9426fc13ae5d6a50faac" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb08" }
+    ],
+    "residents": [
+      { "$oid": "65fc9426fc13ae5d6a50faac" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb08" },
+      { "$oid": "65fcb4a2fc13ae711c50fac1" },
+      { "$oid": "65fcb4a2fc13ae711c50fac2" },
+      { "$oid": "65fcb4a2fc13ae711c50fac3" },
+      { "$oid": "65fcb4a2fc13ae711c50fac4" }
+    ]
+  },
+  {
+    "_id": { "$oid": "65fc9426fc13ae5d6a50faaf" },
+    "streetAddress": "1650 N Spanish Mission Dr",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "83440",
+    "country": "United States",
+    "headOfHousehold": [
+      { "$oid": "65fc9426fc13ae5d6a50faae" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb09" }
+    ],
+    "residents": [
+      { "$oid": "65fc9426fc13ae5d6a50faae" },
+      { "$oid": "65fc9d58fc13ae5b6c50fb09" },
+      { "$oid": "65fcb4a2fc13ae711c50fac5" },
+      { "$oid": "65fcb4a2fc13ae711c50fac6" },
+      { "$oid": "65fcb4a2fc13ae711c50fac7" },
+      { "$oid": "65fcb4a2fc13ae711c50fac8" },
+      { "$oid": "65fcb4a2fc13ae711c50fac9" }
+    ]
+  },
+  {
+    "_id": { "$oid": "" },
+    "streetAddress": "123 Cactus Lane",
+    "city": "St George",
+    "state": "UT",
+    "zip": "84555",
+    "country": "United States",
+    "headOfHousehold": [
+      { "$oid": "65fcb4a2fc13ae711c50faa6" },
+      { "$oid": "65fcb4a2fc13ae711c50faca" }
+    ],
+    "residents": [
+      { "$oid": "65fcb4a2fc13ae711c50faa6" },
+      { "$oid": "65fcb4a2fc13ae711c50faca" },
+      { "$oid": "65fcb4a2fc13ae711c50facb" }
+    ]
   }
-}
+]

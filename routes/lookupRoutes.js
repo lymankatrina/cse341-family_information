@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const lookupController = require('../controllers/lookupController');
-const { requiresAuth } = require('express-openid-connect');
 
-// Get mailing label information
-router.get('/mailingLabels', requiresAuth(), lookupController.getMailingLabelInfo);
+// Get all birthdays
+router.get('/birthdays', lookupController.getBirthdays);
+
+// Get birthdays by month
+router.get('/birthdays/:month', lookupController.getBirthdaysByMonth);
+
+// Get mailing labels
+router.get('/mailingLabels', lookupController.getMailingLabels);
 
 module.exports = router;
