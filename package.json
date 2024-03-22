@@ -1,3 +1,4 @@
+{
   "name": "cse341-family_information",
   "version": "1.0.0",
   "description": "",
@@ -37,5 +38,4 @@
     "nodemon": "^3.1.0",
     "swagger-autogen": "^2.23.7"
   }
-
 }

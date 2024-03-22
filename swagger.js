@@ -1,3 +1,4 @@
+const options = {
   openapi: '3.0.0',
   autoHeaders: true,
   autoQuery: true,

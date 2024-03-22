@@ -22,7 +22,11 @@
   "paths": {
     "/individuals/getAllIndividuals": {
       "get": {
-        "description": "",
+        "tags": [
+          "Individuals"
+        ],
+        "summary": "Get all individuals",
+        "description": "This will return all the individuals in the database",
         "responses": {
           "200": {
             "description": "OK"
@@ -35,7 +39,11 @@
     },
     "/individuals/getSingleIndividual/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Individuals"
+        ],
+        "summary": "Get an individual by Id",
+        "description": "This will return an individual by Id",
         "parameters": [
           {
             "name": "id",
@@ -61,7 +69,11 @@
     },
     "/individuals/": {
       "post": {
-        "description": "",
+        "tags": [
+          "Individuals"
+        ],
+        "summary": "Create a new Individual to the collection",
+        "description": "Create an Individual by providing all required information.",
         "responses": {
           "201": {
             "description": "Created"
@@ -115,7 +127,11 @@
     },
     "/individuals/{id}": {
       "put": {
-        "description": "",
+        "tags": [
+          "Individuals"
+        ],
+        "summary": "Update an existing Individual by Id",
+        "description": "Update an existing individual by providing all required information.",
         "parameters": [
           {
             "name": "id",
@@ -142,7 +158,11 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Individuals"
+        ],
+        "summary": "Delete an Individual by Id",
+        "description": "This will delete a single individual from the database by Id. This action is permanent.",
         "parameters": [
           {
             "name": "id",
