@@ -3,7 +3,7 @@ const Individual = require('../models/individualModel');
 
 /* GET REQUESTS */
 // Get a list of all Individuals
- 
+
 const getAllIndividuals = async (req, res) => {
   // #swagger.tags = ['Individuals']
   // #swagger.summary = 'Get all individuals'
@@ -23,7 +23,6 @@ const getSingleIndividual = async (req, res) => {
   // #swagger.tags = ['Individuals']
   // #swagger.summary = 'Get an individual by Id'
   // #swagger.description = 'This will return an individual by Id'
-
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid individual id to find an individual.');
   }
@@ -43,7 +42,7 @@ const createIndividual = async (req, res) => {
   // #swagger.tags = ['Individuals']
   // #swagger.summary = 'Create a new Individual to the collection'
   // #swagger.description = 'Create an Individual by providing all required information.'
-   try {
+  try {
     const individual = new Individual({
       firstName: req.body.firstName,
       middleName: req.body.middleName,
@@ -55,13 +54,9 @@ const createIndividual = async (req, res) => {
       household: req.body.household,
       headOfHousehold: req.body.headOfHousehold,
       picture: req.body.picture
-    };
-    const response = await db.db().collection('individuals').insertOne(individual, { wtimeout: 60000 }); // 30 seconds timeout
-    if (response.acknowledged) {
-      res.status(201).json(response);
-    } else {
-      res.status(500).json(response.error || 'Some error occurred while creating the individual.');
-    }
+    });
+    const response = await individual.save();
+    res.status(201).json(response);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -77,7 +72,7 @@ const updateIndividual = async (req, res) => {
     res.status(400).json('Must use a valid individual id to update an individual.');
   }
   try {
-     const updatedIndividual = await Individual.findByIdAndUpdate(req.params.id, req.body, {
+    const updatedIndividual = await Individual.findByIdAndUpdate(req.params.id, req.body, {
       new: true
     });
     if (!updatedIndividual) {
@@ -114,5 +109,3 @@ module.exports = {
   updateIndividual,
   deleteIndividual
 };
-
-
