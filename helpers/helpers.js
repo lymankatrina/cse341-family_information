@@ -45,9 +45,13 @@ function handleServerError(res, error) {
 // Helper function to calculate age
 function calculateAge(birthDate) {
   const today = new Date();
+  birthDate.setUTCHours(0, 0, 0, 0);
+  today.setUTCHours(0, 0, 0, 0);
+
   let age = today.getUTCFullYear() - birthDate.getUTCFullYear();
-  const month = today.getUTCMonth() - birthDate.getUTCMonth();
-  if (month < 0 || (month === 0 && today.getUTCDate() < birthDate.getUTCDate())) {
+  if (
+    today.getUTCMonth() < birthDate.getUTCMonth() ||
+    (today.getUTCMonth() === birthDate.getUTCMonth() && today.getUTCDate() < birthDate.getUTCDate())) {
     age--;
   }
   return age;
