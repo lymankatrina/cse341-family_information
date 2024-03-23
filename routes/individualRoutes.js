@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 //const security = require('../middleware/authorize.js');
 
 const individualController = require('../controllers/individualController');
