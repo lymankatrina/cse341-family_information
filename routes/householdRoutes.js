@@ -3,16 +3,16 @@ const router = express.Router();
 const houseController = require('../controllers/householdController');
 
 // Get all households
-router.get('/gethouseholds', houseController.getHouseholds);
+router.get('/getall', houseController.getHouseholds);
 
 // Get household by id
-router.get('/gethousehold/:id', houseController.getHouseholdById);
+router.get('/getbyid/:id', houseController.getHouseholdById);
 
 // Get household by head of household
-router.get('/gethouseholds/:hoh', houseController.getHouseholdsByHoh);
+router.get('/getbyhoh/:hoh', houseController.getHouseholdsByHoh);
 
 // Get household by address
-router.get('/gethouseholds/:address', houseController.getHouseholdsByAddress);
+router.get('/getbyaddress/:street/:city/:state/:zip', houseController.getHouseholdsByAddress);
 
 // Create household
 router.post('/createhousehold', houseController.createHousehold);
