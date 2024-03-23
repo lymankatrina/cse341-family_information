@@ -73,21 +73,6 @@ exports.getHouseholdsByAddress = async (req, res) => {
   // #swagger.tags = ['Households']
   // #swagger.summary = 'Get a single household by its address'
   // #swagger.description = 'Returns a single household by its address'
-  /*
-    #swagger.requestBody = {
-      required: true,
-      content: {
-        "application/json": {
-          example: {
-            streetAddress: "123 Applebottom Street",
-            city: "Rexburg",
-            state: "ID",
-            zip: "83440",
-          }
-        }
-      }
-    }
-    */
   const address = {
     street: req.params.street,
     city: req.params.city,
@@ -119,23 +104,23 @@ exports.createHousehold = async (req, res) => {
   // #swagger.summary = 'Create a Household'
   // #swagger.description = 'Create a Household by providing all required information.'
   /*
-    #swagger.requestBody = {
-      required: true,
-      content: {
-        "application/json": {
-          example: {
-            streetAddress: "123 Applebottom Street",
-            city: "Rexburg",
-            state: "ID",
-            zip: "83440",
-            country: "United States",
-            headOfHousehold: ["", ""],
-            residents: ["", "", ""]
-          }
+  #swagger.requestBody = {
+    required: true,
+    content: {
+      "application/json": {
+        example: {
+          streetAddress: "Test Street",
+          city: "Rexburg",
+          state: "ID",
+          zip: "83440",
+          country: "United States",
+          headOfHousehold: ["65f2162017c8cc6b12754e5e", "65f2166117c8cc6b12754e5f"],
+          residents: ["65f2162017c8cc6b12754e5e", "65f2166117c8cc6b12754e5f", "65f59e49db24e761d695d77e"]
         }
       }
     }
-    */
+  }
+  */
   const household = {
     streetAddress: req.body.streetAddress,
     city: req.body.city,
@@ -152,7 +137,7 @@ exports.createHousehold = async (req, res) => {
   } else {
     try {
       const newHousehold = new Household(household)
-      const result = await household.save();
+      const result = await newHousehold.save();
       if (!result) {
         res.status(404).json({ error: "Household could not be saved"})
       } else {
@@ -170,23 +155,23 @@ exports.updateHousehold = async (req, res) => {
   // #swagger.summary = 'Update a Household by its ID'
   // #swagger.description = 'Update an existing household by providing all required information.'
   /*
-    #swagger.requestBody = {
-      required: true,
-      content: {
-        "application/json": {
-          example: {
-            streetAddress: "123 Applebottom Street",
-            city: "Rexburg",
-            state: "ID",
-            zip: "83440",
-            country: "United States",
-            headOfHousehold: ["", ""],
-            residents: ["", "", ""]
-          }
+  #swagger.requestBody = {
+    required: true,
+    content: {
+      "application/json": {
+        example: {
+          streetAddress: "123 Jeans Street",
+          city: "Rexburg",
+          state: "ID",
+          zip: "83440",
+          country: "United States",
+          headOfHousehold: ["65f2162017c8cc6b12754e5e", "65f2166117c8cc6b12754e5f"],
+          residents: ["65f2162017c8cc6b12754e5e", "65f2166117c8cc6b12754e5f", "65f59e49db24e761d695d77e"]
         }
       }
     }
-    */
+  }
+  */
   const id = req.params.id;
   const household = {
     streetAddress: req.body.streetAddress,
@@ -198,17 +183,28 @@ exports.updateHousehold = async (req, res) => {
     residents: req.body.residents
   };
 
-  const response = await db
-    .getDb()
-    .db()
-    .collection('households')
-    .replaceOne({ _id: id, household });
-  if (response.modifiedCount > 0) {
-    res.status(204).send();
-  } else if (response.modifiedCount <= 0) {
-    res.status(404).json({ error: 'Household was not found' });
-  } else {
-    res.status(500).json({ error: 'Household was not able to be updated' });
+  res.setHeader('Content-Type', 'application/json');
+
+  if (!isValidHousehold(household)){
+    res.status(422).json({ error: "Household is invalid"})
+  } else if (!isValidObjectId) {
+    res.status(422).json({ error: "Household id is invalid"})
+  }else {
+    try {
+      const result = await Household.findOneAndUpdate(
+        { _id: id },
+        { $set: { streetAddress, city, state, zip, country, headOfHousehold, residents } },
+        { returnDocument: 'after' }
+      );
+      if (!result) {
+        res.status(404).json({ error: "Household was not found"})
+      } else {
+        const household = result.toObject()
+        res.status(200).json(household)
+      }
+    } catch (e) {
+      res.status(500).json({ error: "Server error" })
+    }
   }
 };
 
@@ -217,10 +213,21 @@ exports.deleteHousehold = async (req, res) => {
   // #swagger.summary = 'Delete a household by its ID'
   // #swagger.description = 'Permanently delete a household by its ID'
   const id = req.params.id;
-  const response = await await db.getDb().db().collection('households').deleteOne({ _id: id });
-  if (response.deletedCount > 0) {
-    res.status(200).send();
-  } else if (response.deletedCount <= 0) {
-    res.status(404).json({ error: 'Household was not found' });
-  } else [res.status(500).json({ error: 'The Household could not be deleted' })];
+  res.setHeader('Content-Type', 'application/json');
+
+  if (!isValidObjectId(id)){
+    res.status(422).json({ error: "Id is invalid"})
+  } else {
+    try {
+      const result = await Household.findByIdAndDelete(id);
+      if (!result) {
+        res.status(404).json({ error: "Household was not deleted"})
+      } else {
+        const household = result.toObject()
+        res.status(200).json(household)
+      }
+    } catch (e) {
+      res.status(500).json({ error: "Server error" })
+    }
+  }
 };
