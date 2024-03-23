@@ -94,7 +94,9 @@ exports.createHousehold = async (req, res) => {
     headOfHousehold: req.body.headOfHousehold,
     residents: req.body.residents
   };
+
   const response = await db.getDb().db().collection('households').insertOne(household);
+
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
