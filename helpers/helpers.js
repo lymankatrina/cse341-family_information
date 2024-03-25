@@ -51,7 +51,8 @@ function calculateAge(birthDate) {
   let age = today.getUTCFullYear() - birthDate.getUTCFullYear();
   if (
     today.getUTCMonth() < birthDate.getUTCMonth() ||
-    (today.getUTCMonth() === birthDate.getUTCMonth() && today.getUTCDate() < birthDate.getUTCDate())) {
+    (today.getUTCMonth() === birthDate.getUTCMonth() && today.getUTCDate() < birthDate.getUTCDate())
+  ) {
     age--;
   }
   return age;

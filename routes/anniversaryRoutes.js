@@ -10,7 +10,7 @@ router.post('/createanniversary', anniversaryValidator, anniversaryController.cr
 router.get('/getall', anniversaryController.getAllAnniversaries);
 
 // Get a single Anniversary by Individual id
-router.get('/getbyindividual/:individualId', anniversaryController.getAnniversaryByIndividual);
+router.get('/getbyid/:id', anniversaryController.getAnniversaryById);
 
 // Get a single Anniversaries by Month
 router.get('/getbymonth/:month', anniversaryController.getAnniversariesByMonth);

@@ -407,14 +407,14 @@
         }
       }
     },
-    "/anniversaries/getbyindividual/{individualId}": {
+    "/anniversaries/getbyid/{id}": {
       "get": {
         "tags": ["Anniversaries"],
-        "summary": "Get a single anniversary by an Individual ID",
-        "description": "This will return a single anniversary in the database by an individual",
+        "summary": "Get a single anniversary by anniversary Id",
+        "description": "This will return a single anniversary in the database by anniversary Id",
         "parameters": [
           {
-            "name": "individualId",
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": {
@@ -423,8 +423,11 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "requestBody": {}

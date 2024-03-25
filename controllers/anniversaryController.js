@@ -5,7 +5,6 @@ const { ObjectId } = Types;
 const Anniversary = require('../models/anniversaryModel.js');
 const {
   formatAnniversary,
-  formatIndividualName,
   handleServerError,
   findIndividualsByIds
 } = require('../helpers/helpers.js');
@@ -23,26 +22,19 @@ exports.getAllAnniversaries = async (req, res) => {
   }
 };
 
-exports.getAnniversaryByIndividual = async (req, res) => {
+exports.getAnniversaryById = async (req, res) => {
   // #swagger.tags = ['Anniversaries']
-  // #swagger.summary = 'Get a single anniversary by an Individual ID'
-  // #swagger.description = 'This will return a single anniversary in the database by an individual's Id'
+  // #swagger.summary = 'Get a single anniversary by anniversary Id'
+  // #swagger.description = 'This will return a single anniversary in the database by anniversary Id'
   // #swagger.requestBody = false
-  const individualId = req.params.individualId;
   try {
-    const anniversary = await Anniversary.findOne({
-      couple: { $in: [mongoose.Types.ObjectId(individualId)] }
-    });
+    const anniversaryId = req.params.id;
+    const anniversary = await Anniversary.findById(anniversaryId);
     if (!anniversary) {
-      return res.status(404).json({ error: 'Anniversary for Individual not found' });
+      return res.status(404).json({ error: 'Anniversary not found' });
     }
-    const individuals = await findIndividualsByIds(anniversary.couple);
-    const coupleNames = individuals.map(formatIndividualName);
-    res.status(200).json({
-      anniversaryId: anniversary._id,
-      couple: coupleNames,
-      anniversaryDate: anniversary.anniversaryDate
-    });
+    const result = await formatAnniversary(anniversary);
+    res.status(200).json(result);
   } catch (error) {
     handleServerError(res, error);
   }
@@ -57,10 +49,13 @@ exports.getAnniversariesByMonth = async (req, res) => {
   try {
     const anniversaries = await Anniversary.aggregate([
       {
+        $addFields: {
+          anniversaryMonth: { $month: { $toDate: '$anniversaryDate' } }
+        }
+      },
+      {
         $match: {
-          $expr: {
-            $eq: [{ $month: '$anniversaryDate' }, month]
-          }
+          anniversaryMonth: month
         }
       },
       {
@@ -78,7 +73,8 @@ exports.getAnniversariesByMonth = async (req, res) => {
       },
       {
         $project: {
-          coupleDetails: 0
+          coupleDetails: 0,
+          anniversaryMonth: 0
         }
       }
     ]);
@@ -153,7 +149,7 @@ exports.updateAnniversary = async (req, res) => {
   }
   */
   try {
-    const anniversaryId = mongoose.Types.ObjectId(req.params.id);
+    const anniversaryId = new ObjectId(req.params.id);
     const couple = req.body.couple;
     const anniversaryDate = new Date(req.body.anniversaryDate);
     const updatedAnniversary = await Anniversary.findOneAndUpdate(
