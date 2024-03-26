@@ -191,11 +191,12 @@ exports.updateHousehold = async (req, res) => {
     res.status(422).json({ error: "Household id is invalid"})
   }else {
     try {
-      const result = await Household.findOneAndUpdate(
-        { _id: id },
-        { $set: { streetAddress, city, state, zip, country, headOfHousehold, residents } },
-        { returnDocument: 'after' }
-      );
+      // const result = await Household.findOneAndUpdate(
+      //   { _id: id },
+      //   { $set: { streetAddress, city, state, zip, country, headOfHousehold, residents } },
+      //   { returnDocument: 'after' }
+      // );
+      const result = await Household.findByIdAndUpdate(id, req.body, {new: true})
       if (!result) {
         res.status(404).json({ error: "Household was not found"})
       } else {
@@ -203,7 +204,7 @@ exports.updateHousehold = async (req, res) => {
         res.status(200).json(household)
       }
     } catch (e) {
-      res.status(500).json({ error: "Server error" })
+      res.status(500).json({ error: e.message })
     }
   }
 };
