@@ -9,13 +9,13 @@ const findIndividualsByIds = async (individualId) => {
 // Helper function to format anniversary data
 const formatAnniversary = async (anniversary) => {
   const individuals = await Individual.find({ _id: { $in: anniversary.couple } });
-  const coupleNames = individuals.map(formatIndividualName);
+  const coupleNames = individuals.map(formatFullName);
   const formattedDate = anniversary.anniversaryDate.toISOString().split('T')[0];
   return { anniversaryId: anniversary._id, couple: coupleNames, formattedDate };
 };
 
 // Helper function to format individual name
-const formatIndividualName = (individual) => ({
+const formatFullName = (individual) => ({
   firstName: individual.firstName,
   lastName: individual.lastName
 });
@@ -51,7 +51,8 @@ function calculateAge(birthDate) {
   let age = today.getUTCFullYear() - birthDate.getUTCFullYear();
   if (
     today.getUTCMonth() < birthDate.getUTCMonth() ||
-    (today.getUTCMonth() === birthDate.getUTCMonth() && today.getUTCDate() < birthDate.getUTCDate())) {
+    (today.getUTCMonth() === birthDate.getUTCMonth() && today.getUTCDate() < birthDate.getUTCDate())
+  ) {
     age--;
   }
   return age;
@@ -71,7 +72,7 @@ function formatBirthdayIndividual(individual) {
 
 module.exports = {
   formatAnniversary,
-  formatIndividualName,
+  formatFullName,
   formatNews,
   handleServerError,
   findIndividualsByIds,

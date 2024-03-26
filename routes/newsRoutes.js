@@ -3,9 +3,6 @@ const router = express.Router();
 const newsController = require('../controllers/newsController');
 const { newsValidator } = require('../middleware/newsValidator');
 
-// Create a news story
-router.post('/createnews', newsValidator, newsController.createNewsStory);
-
 // Get all news
 router.get('/getall', newsController.getAllNews);
 
@@ -17,6 +14,9 @@ router.get('/author/:postedBy', newsController.getNewsByAuthor);
 
 // Get news by status
 router.get('/status/:status', newsController.getNewsByStatus);
+
+// Create a news story
+router.post('/createnews', newsValidator, newsController.createNewsStory);
 
 // Update a news story
 router.put('/updatenews/:id', newsValidator, newsController.updateNewsById);
