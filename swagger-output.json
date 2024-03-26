@@ -176,7 +176,7 @@
         }
       }
     },
-    "/household/gethouseholds": {
+    "/household/getall": {
       "get": {
         "tags": ["Households"],
         "summary": "Get all Households",
@@ -184,11 +184,17 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/household/gethousehold/{id}": {
+    "/household/getbyid/{id}": {
       "get": {
         "tags": ["Households"],
         "summary": "Get a single household by its ID",
@@ -209,11 +215,17 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/household/gethouseholds/{hoh}": {
+    "/household/getbyhoh/{hoh}": {
       "get": {
         "tags": ["Households"],
         "summary": "Get a single household by its head of household",
@@ -234,18 +246,48 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/household/gethouseholds/{address}": {
+    "/household/getbyaddress/{street}/{city}/{state}/{zip}": {
       "get": {
         "tags": ["Households"],
         "summary": "Get a single household by its address",
         "description": "Returns a single household by its address",
         "parameters": [
           {
-            "name": "address",
+            "name": "street",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "zip",
             "in": "path",
             "required": true,
             "schema": {
@@ -259,6 +301,12 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -269,11 +317,17 @@
         "summary": "Create a Household",
         "description": "Create a Household by providing all required information.",
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "OK"
           },
           "404": {
             "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "requestBody": {
@@ -281,13 +335,20 @@
           "content": {
             "application/json": {
               "example": {
-                "streetAddress": "123 Applebottom Street",
+                "streetAddress": "Test Street",
                 "city": "Rexburg",
                 "state": "ID",
                 "zip": "83440",
                 "country": "United States",
-                "headOfHousehold": ["", ""],
-                "residents": ["", "", ""]
+                "headOfHousehold": [
+                  "65f2162017c8cc6b12754e5e",
+                  "65f2166117c8cc6b12754e5f"
+                ],
+                "residents": [
+                  "65f2162017c8cc6b12754e5e",
+                  "65f2166117c8cc6b12754e5f",
+                  "65f59e49db24e761d695d77e"
+                ]
               }
             }
           }
@@ -310,11 +371,14 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK"
           },
           "404": {
             "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
@@ -325,13 +389,20 @@
           "content": {
             "application/json": {
               "example": {
-                "streetAddress": "123 Applebottom Street",
+                "streetAddress": "123 Jeans Street",
                 "city": "Rexburg",
                 "state": "ID",
                 "zip": "83440",
                 "country": "United States",
-                "headOfHousehold": ["", ""],
-                "residents": ["", "", ""]
+                "headOfHousehold": [
+                  "65f2162017c8cc6b12754e5e",
+                  "65f2166117c8cc6b12754e5f"
+                ],
+                "residents": [
+                  "65f2162017c8cc6b12754e5e",
+                  "65f2166117c8cc6b12754e5f",
+                  "65f59e49db24e761d695d77e"
+                ]
               }
             }
           }
@@ -359,6 +430,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
