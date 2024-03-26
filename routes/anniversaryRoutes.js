@@ -3,9 +3,6 @@ const router = express.Router();
 const anniversaryController = require('../controllers/anniversaryController');
 const { anniversaryValidator } = require('../middleware/anniversaryValidator');
 
-// Create an Anniversary
-router.post('/createanniversary', anniversaryValidator, anniversaryController.createAnniversary);
-
 // Get a list of all anniversaries
 router.get('/getall', anniversaryController.getAllAnniversaries);
 
@@ -14,6 +11,9 @@ router.get('/getbyid/:id', anniversaryController.getAnniversaryById);
 
 // Get a single Anniversaries by Month
 router.get('/getbymonth/:month', anniversaryController.getAnniversariesByMonth);
+
+// Create an Anniversary
+router.post('/createanniversary', anniversaryValidator, anniversaryController.createAnniversary);
 
 // Update a single Anniversary by id
 router.put('/updateanniversary/:id', anniversaryValidator, anniversaryController.updateAnniversary);

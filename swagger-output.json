@@ -464,40 +464,6 @@
         }
       }
     },
-    "/anniversaries/createanniversary": {
-      "post": {
-        "tags": [
-          "Anniversaries"
-        ],
-        "summary": "Create an Anniversary",
-        "description": "Create an Anniversary by providing all required information.",
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "412": {
-            "description": "Precondition Failed"
-          },
-          "422": {
-            "description": "Unprocessable Entity"
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "example": {
-                "couple": [
-                  "individualId1",
-                  "individualId2"
-                ],
-                "anniversaryDate": "2020-06-30"
-              }
-            }
-          }
-        }
-      }
-    },
     "/anniversaries/getall": {
       "get": {
         "tags": [
@@ -536,8 +502,7 @@
           "404": {
             "description": "Not Found"
           }
-        },
-        "requestBody": {}
+        }
       }
     },
     "/anniversaries/getbymonth/{month}": {
@@ -564,8 +529,41 @@
           "404": {
             "description": "Not Found"
           }
+        }
+      }
+    },
+    "/anniversaries/createanniversary": {
+      "post": {
+        "tags": [
+          "Anniversaries"
+        ],
+        "summary": "Create an Anniversary",
+        "description": "Create an Anniversary by providing all required information.",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
         },
-        "requestBody": {}
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "couple": [
+                  "individualId1",
+                  "individualId2"
+                ],
+                "anniversaryDate": "2020-06-30"
+              }
+            }
+          }
+        }
       }
     },
     "/anniversaries/updateanniversary/{id}": {
@@ -635,41 +633,6 @@
           },
           "404": {
             "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/news/createnews": {
-      "post": {
-        "tags": [
-          "News"
-        ],
-        "summary": "Create a News Story",
-        "description": "Create a news story by providing all required information.",
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "412": {
-            "description": "Precondition Failed"
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "example": {
-                "newsTitle": "News Title",
-                "newsBody": "News paragraphs",
-                "status": "public",
-                "postedBy": "IndividualId",
-                "dateCreated": "YYYY-MM-DD",
-                "picture": "URL of picture"
-              }
-            }
           }
         }
       }
@@ -765,6 +728,41 @@
           },
           "404": {
             "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/news/createnews": {
+      "post": {
+        "tags": [
+          "News"
+        ],
+        "summary": "Create a News Story",
+        "description": "Create a news story by providing all required information.",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "newsTitle": "News Title",
+                "newsBody": "News paragraphs",
+                "status": "public",
+                "postedBy": "IndividualId",
+                "dateCreated": "YYYY-MM-DD",
+                "picture": "URL of picture"
+              }
+            }
           }
         }
       }

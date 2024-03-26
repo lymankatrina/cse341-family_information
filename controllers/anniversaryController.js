@@ -26,7 +26,6 @@ exports.getAnniversaryById = async (req, res) => {
   // #swagger.tags = ['Anniversaries']
   // #swagger.summary = 'Get a single anniversary by anniversary Id'
   // #swagger.description = 'This will return a single anniversary in the database by anniversary Id'
-  // #swagger.requestBody = false
   try {
     const anniversaryId = req.params.id;
     const anniversary = await Anniversary.findById(anniversaryId);
@@ -44,7 +43,6 @@ exports.getAnniversariesByMonth = async (req, res) => {
   // #swagger.tags = ['Anniversaries']
   // #swagger.summary = 'Get anniversaries by month'
   // #swagger.description = 'This will return a list of anniversaries that occur in the specified month'
-  // #swagger.requestBody = false
   const month = parseInt(req.params.month);
   try {
     const anniversaries = await Anniversary.aggregate([
