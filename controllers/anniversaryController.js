@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const { ObjectId } = require('mongoose').Types;
+const { Types } = require('mongoose');
+// eslint-disable-next-line no-unused-vars
+const { ObjectId } = Types;
 const Anniversary = require('../models/anniversaryModel.js');
 const {
   formatAnniversary,
@@ -29,7 +31,7 @@ exports.getAnniversaryByIndividual = async (req, res) => {
   const individualId = req.params.individualId;
   try {
     const anniversary = await Anniversary.findOne({
-      couple: { $in: [new mongoose.Types.ObjectId(individualId)] }
+      couple: { $in: [mongoose.Types.ObjectId(individualId)] }
     });
     if (!anniversary) {
       return res.status(404).json({ error: 'Anniversary for Individual not found' });
@@ -112,7 +114,7 @@ exports.createAnniversary = async (req, res) => {
   }
   */
   const { couple, anniversaryDate } = req.body;
-  const coupleIds = couple.map((id) => new ObjectId(id));
+  const coupleIds = couple.map((id) => mongoose.Types.ObjectId(id));
   try {
     const individuals = await findIndividualsByIds(coupleIds);
     if (individuals.length !== 2) {
@@ -151,7 +153,7 @@ exports.updateAnniversary = async (req, res) => {
   }
   */
   try {
-    const anniversaryId = new ObjectId(req.params.id);
+    const anniversaryId = mongoose.Types.ObjectId(req.params.id);
     const couple = req.body.couple;
     const anniversaryDate = new Date(req.body.anniversaryDate);
     const updatedAnniversary = await Anniversary.findOneAndUpdate(
@@ -173,7 +175,7 @@ exports.deleteAnniversary = async (req, res) => {
   // #swagger.tags = ['Anniversaries']
   // #swagger.summary = 'Delete an Anniversary by Id'
   // #swagger.description = 'This will delete a single anniversary from the database by Id. This action is permanent.'
-  const anniversaryId = new ObjectId(req.params.id);
+  const anniversaryId = mongoose.Types.ObjectId(req.params.id);
   try {
     const response = await Anniversary.deleteOne({ _id: anniversaryId });
     if (response.deletedCount > 0) {
