@@ -3,7 +3,7 @@ const router = express.Router();
 const lookupController = require('../controllers/lookupController');
 
 // Get children
-router.get('/children/:parentId', lookupController, lookupController.getChildren);
+router.get('/children/:parentId', lookupController.getChildren);
 
 // Get grandchildren
 router.get('/grandchildren/:grandparentId', lookupController.getGrandchildren);
