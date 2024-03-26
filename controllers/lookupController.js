@@ -1,6 +1,62 @@
 const Individual = require('../models/individualModel');
 const Household = require('../models/householdModel');
-const { formatBirthdayIndividual, handleServerError } = require('../helpers/helpers');
+const { formatBirthdayIndividual, handleServerError, formatFullName } = require('../helpers/helpers');
+
+exports.getChildren = async (req, res) => {
+  // #swagger.tags = ['Relationships']
+  // #swagger.summary = 'Get children'
+  // #swagger.description = 'This will return a list of individuals with the provided parentId listed in the parents array.'
+  const parentId = req.params.parentId;
+  try {
+    const children = await Individual.find({ parents: { $in: [parentId] } }).select('firstName middleName lastName birthDate');
+    if (children.length > 0) {
+      const formattedChildren = children.map(child => ({
+        fullName: formatFullName(child),
+        birthDate: child.birthDate.toISOString().split('T')[0]
+      }));
+      res.status(200).json(formattedChildren);
+    } else {
+      res.status(404).json({ error: 'No children found for that parent Id' });
+    }
+  } catch (error) {
+    console.error(error);
+    handleServerError(res, error, {});
+  }
+};
+
+exports.getGrandchildren = async (req, res) => {
+  // #swagger.tags = ['Relationships']
+  // #swagger.summary = 'Get grandchildren'
+  // #swagger.description = 'This will return a list of individuals who are grandchildren of the provided grandparentId.'
+  const grandparentId = req.params.grandparentId;
+  try {
+    // Find the children of the grandparent
+    const children = await Individual.find({ parents: { $in: [grandparentId] } });
+
+    // Array to store grandchildren
+    let grandchildren = [];
+
+    // For each child, find their children (grandchildren)
+    for (let child of children) {
+      const childId = child._id;
+      const childGrandchildren = await Individual.find({ parents: { $in: [childId] } });
+      grandchildren = grandchildren.concat(childGrandchildren);
+    }
+
+    if (grandchildren.length > 0) {
+      const formattedGrandchildren = grandchildren.map(grandchild => ({
+        fullName: formatFullName(grandchild),
+        birthDate: grandchild.birthDate.toISOString().split('T')[0]
+      }));
+      res.status(200).json(formattedGrandchildren);
+    } else {
+      res.status(404).json({ error: 'No grandchildren found for that grandparent Id' });
+    }
+  } catch (error) {
+    console.error(error);
+    handleServerError(res, error, {});
+  }
+};
 
 exports.getBirthdays = async (req, res) => {
   // #swagger.tags = ['Birthdays']

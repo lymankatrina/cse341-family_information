@@ -2,6 +2,12 @@ const express = require('express');
 const router = express.Router();
 const lookupController = require('../controllers/lookupController');
 
+// Get children
+router.get('/children/:parentId', lookupController, lookupController.getChildren);
+
+// Get grandchildren
+router.get('/grandchildren/:grandparentId', lookupController.getGrandchildren);
+
 // Get all birthdays
 router.get('/birthdays', lookupController.getBirthdays);
 
