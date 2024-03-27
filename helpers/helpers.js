@@ -48,14 +48,14 @@ function calculateAge(birthDate) {
   birthDate.setUTCHours(0, 0, 0, 0);
   today.setUTCHours(0, 0, 0, 0);
 
-  let age = today.getUTCFullYear() - birthDate.getUTCFullYear();
-  if (
+    let age = today.getUTCFullYear() - birthDate.getUTCFullYear();
+    if (
     today.getUTCMonth() < birthDate.getUTCMonth() ||
-    (today.getUTCMonth() === birthDate.getUTCMonth() && today.getUTCDate() < birthDate.getUTCDate())) {
-    age--;
+      (today.getUTCMonth() === birthDate.getUTCMonth() && today.getUTCDate() < birthDate.getUTCDate())) {
+      age--;
+    }
+    return age;
   }
-  return age;
-}
 
 // Helper function to format birthday data
 function formatBirthdayIndividual(individual) {
