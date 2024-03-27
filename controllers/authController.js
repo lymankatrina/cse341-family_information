@@ -11,6 +11,9 @@ const callback = (req, res) => {
 };
 
 const getProfile = (req, res) => {
+  // #swagger.tags = ['Authentication']
+  // #swagger.summary = 'Get Profile'
+  // #swagger.description = 'This will return the user profile information for the current authenticated user.'
   res.status(200).json({
     userProfile: req.oidc.user,
     title: 'Profile page'
