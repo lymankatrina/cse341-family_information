@@ -847,6 +847,30 @@
         }
       }
     },
+    "/lookup/parents/{id}": {
+      "get": {
+        "tags": [
+          "Relationships"
+        ],
+        "summary": "Get parents",
+        "description": "This will return a list of parents for the individual id provided.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/lookup/children/{parentId}": {
       "get": {
         "tags": [
