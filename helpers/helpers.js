@@ -15,10 +15,9 @@ const formatAnniversary = async (anniversary) => {
 };
 
 // Helper function to format individual name
-const formatFullName = (individual) => ({
-  firstName: individual.firstName,
-  lastName: individual.lastName
-});
+const formatFullName = (individual) => (
+  `${individual.firstName} ${individual.lastName}`
+);
 
 // Helper function to format news stories
 async function formatNews(news) {
@@ -28,7 +27,7 @@ async function formatNews(news) {
     news.newsBody.length > 100 ? news.newsBody.substring(0, 100) + '...' : news.newsBody;
   return {
     newsId: news._id,
-    postedBy: `${author.firstName} ${author.lastName}`,
+    postedBy: formatFullName(author),
     dateCreated: dateCreated,
     newsTitle: news.newsTitle,
     newsBody: shortNewsBody,

@@ -1,9 +1,9 @@
-const { calculateAge } = require('../helpers/helpers');
+const { calculateAge } = require('../../helpers/helpers');
 
 describe('Calculate Age', () => {
   const testCases = [
-    { birthDate: new Date('2020-03-27'), expectedAge: 3 }, // Test tomorrow's Date
-    { birthDate: new Date('2020-03-26'), expectedAge: 4 }, // Test today's date
+    { birthDate: new Date('2020-03-28'), expectedAge: 3 }, // Test tomorrow's Date
+    { birthDate: new Date('2020-03-26'), expectedAge: 4 },
     { birthDate: new Date(), expectedAge: 0 }
   ];
   testCases.forEach(({ birthDate, expectedAge }) => {
