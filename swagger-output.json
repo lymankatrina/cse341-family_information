@@ -20,6 +20,20 @@
     }
   ],
   "paths": {
+    "/profile": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Get Profile",
+        "description": "This will return the user profile information for the current authenticated user.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/individuals/getAllIndividuals": {
       "get": {
         "tags": [

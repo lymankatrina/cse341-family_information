@@ -1,10 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const { landingPage } = require('../controllers/authController');
+const authController = require('../controllers/authController');
+const { requiresAuth } = require('express-openid-connect');
 
 router.get(
-  '/',
-  landingPage // '#swagger.ignore = true'
+  '/', 
+  authController.checkAuth // '#swagger.ignore = true'
 );
+
+router.get(
+  '/landingpage',
+  authController.callback // '#swagger.ignore = true'
+);
+
+router.get('/profile', requiresAuth(), authController.getProfile);
+
 
 module.exports = router;

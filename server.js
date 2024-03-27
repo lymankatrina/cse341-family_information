@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { initDb } = require('./db/connect');
-/* Auth middleware goes here */
+const authMiddleware = require('./middleware/authMiddleware');
 
 const routes = require('./routes');
 
@@ -12,7 +12,7 @@ app
   .use(cors())
   .use(express.json())
   .use(express.urlencoded({ extended: true }))
-  /* use auth middleware here */
+  .use(authMiddleware.authMiddleware)
   .use('/', routes);
 
 initDb((err) => {

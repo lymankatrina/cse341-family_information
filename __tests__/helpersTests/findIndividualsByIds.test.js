@@ -1,5 +1,5 @@
-const { findIndividualsByIds } = require('../helpers/helpers');
-const Individual = require('../models/individualModel');
+const { findIndividualsByIds } = require('../../helpers/helpers');
+const Individual = require('../../models/individualModel');
 
 describe('findIndividualsByIds', () => {
   it('should return an array of individuals for the given ids', async () => {
