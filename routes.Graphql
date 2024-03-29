@@ -9,12 +9,25 @@ https://cse341-family-information-winter-2024.onrender.com/graphQL?query=query%2
 
 
 ### Query to retrieve one individual by name
+https://cse341-family-information-winter-2024.onrender.com/graphQL?operationName=IndividualByName&query=query%20IndividualByName%20%7B%0A%20%20individualByName(firstName%3A%20%22Rhianon%22)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20firstName%0A%20%20%20%20middleName%0A%20%20%20%20lastName%0A%20%20%20%20birthDate%0A%20%20%20%20parents%0A%20%20%20%20phone%0A%20%20%20%20email%0A%20%20%20%20household%0A%20%20%20%20headOfHousehold%0A%20%20%20%20picture%0A%20%20%7D%0A%7D%0A
+
+
+### Query to create a new Individual to the individuals collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?operationName=a&query=%0A%23%20Query%20to%20Add%20a%20new%20author%20to%20the%20collection%0Amutation%20%20%7B%0A%20%20createIndividual(%0A%20%20%20%20firstName%3A%20%22Elie%22%2C%0A%20%20%20%20middleName%3A%20%22Silvere%22%2C%20%0A%20%20%20%20lastName%3A%20%22Mambou%22%2C%0A%20%20%20%20birthDate%3A%20%222000-01-01%22%2C%0A%20%20%20%20parents%3A%22na%22%2C%0A%20%20%20%20phone%3A%20%22123-342-1234%22%2C%0A%20%20%20%20email%3A%20%22chearleader%40gmail.com%22%2C%0A%20%20%20%20household%3A%20%22%22%2C%0A%20%20%20%20headOfHousehold%3A%20true%2C%0A%20%20%20%20picture%3A%20%22none%22%0A%20%20%20%20)%0A%20%20%7B%0A%20%20%20%20firstName%0A%20%20%20%20middleName%0A%20%20%20%20lastName%0A%20%20%20%20birthDate%0A%20%20%20%20parents%0A%20%20%20%20phone%0A%20%20%20%20email%0A%20%20%20%20household%0A%20%20%20%20headOfHousehold%0A%20%20%20%20picture%0A%20%20%7D%0A%7D%0A
+
+
+
+### Query to update an individual information by ID
+https://cse341-family-information-winter-2024.onrender.com/graphQL?operationName=UpdateIndividual&query=%23%20Query%20to%20update%20an%20existing%20individual%20information%0Amutation%20UpdateIndividual%20%7B%0A%20%20updateIndividual(%0A%20%20%09id%3A%20%2265ef74ae7c211814c571e01b%22%2C%0A%20%20%20%20firstName%3A%20%22John%22%2C%0A%20%20%20%20middleName%3A%22Bart%20Etienne%22%2C%0A%20%20%20%20lastName%3A%20%22Doe%22%0A%20%20%20%20birthDate%3A%20%22988-01-01%22%2C%0A%20%20%20%20parents%3A%22%20na%22%2C%0A%20%20%20%20phone%3A%20%22830-345-9833%22%2C%0A%20%20%20%20email%3A%22johnDoe%40byui.edu%22%2C%0A%20%20%20%20household%3A%20%22%22%2C%0A%20%20%20%20headOfHousehold%3A%20true%2C%0A%20%20%20%20picture%3A%22none%22)%0A%20%20%0A%20%20%7B%0A%20%20%09_id%0A%20%20%20%20firstName%0A%20%20%20%20middleName%0A%20%20%20%20lastName%0A%20%20%20%20birthDate%0A%20%20%20%20parents%0A%20%20%20%20phone%0A%20%20%20%20email%0A%20%20%20%20household%0A%20%20%20%20headOfHousehold%0A%20%20%20%20picture%0A%20%20%7D%0A%7D%0A%0A
+
+
 
 
 
 # routes.Graphql
 
 # GraphQL Query to Retrieve All Individuals from the Individuals collection
+
 query GetAllIndividuals {
 individuals{
     _id
@@ -31,11 +44,8 @@ individuals{
   }
 }
 
-### Query to retrieve one individual by name
-
-
-
 ### Query to retrieve one individual by ID
+
 query IndividualByID {
   individual(id: "65ef74ae7c211814c571e01b") {
     _id
@@ -52,4 +62,129 @@ query IndividualByID {
   }
 }
 
+
+### Query to retrieve one individual by name
+
+query IndividualByName {
+  individualByName(firstName: "Rhianon") {
+    _id
+    firstName
+    middleName
+    lastName
+    birthDate
+    parents
+    phone
+    email
+    household
+    headOfHousehold
+    picture
+  }
+}
+
+
 ### Mutation to add a new individual to the collection
+
+# Query to Add a new author to the collection
+
+mutation  {
+  createIndividual(
+    firstName: "Elie",
+    middleName: "Silvere", 
+    lastName: "Mambou",
+    birthDate: "2000-01-01",
+    parents:"na",
+    phone: "123-342-1234",
+    email: "chearleader@gmail.com",
+    household: "",
+    headOfHousehold: true,
+    picture: "none"
+    )
+  {
+    firstName
+    middleName
+    lastName
+    birthDate
+    parents
+    phone
+    email
+    household
+    headOfHousehold
+    picture
+  }
+}
+
+
+# Query to update an existing individual information
+
+mutation UpdateIndividual {
+  updateIndividual(
+  	id: "65ef74ae7c211814c571e01b",
+    firstName: "John",
+    middleName:"Bart Etienne",
+    lastName: "Doe"
+    birthDate: "988-01-01",
+    parents:" na",
+    phone: "830-345-9833",
+    email:"johnDoe@byui.edu",
+    household: "",
+    headOfHousehold: true,
+    picture:"none")
+  
+  {
+  	_id
+    firstName
+    middleName
+    lastName
+    birthDate
+    parents
+    phone
+    email
+    household
+    headOfHousehold
+    picture
+  }
+}
+
+
+# Query to delete an existing individual from the collection
+
+mutation DeleteIndividual {
+  deleteIndividual(id: "65e39668adcab8306401f891") {
+	_id
+    firstName
+    middleName
+    lastName
+    birthDate
+    parents
+    phone
+    email
+    household
+    headOfHousehold
+    picture
+  }
+}
+
+
+
+# GraphQL Query to Retrieve All households
+
+query {
+  households {
+    _id
+    streetAddress
+    city
+    state
+    zip
+    country
+    headOfHousehold {
+      _id
+      firstName
+      lastName
+    }
+    residents {
+      _id
+      firstName
+      lastName
+    }
+  }
+}

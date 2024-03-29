@@ -5,11 +5,12 @@ const {
     GraphQLSchema,
     GraphQLNonNull,
     GraphQLBoolean,
-    GraphQLID // Add import for GraphQLID
+    GraphQLID 
 } = require('graphql');
 
 const { ObjectId } = require('mongoose').Types;
 const Individual = require('./models/individualModel'); // Import Individual model
+const Household = require('./models/householdModel'); // Import Household model
 
 // Define Individual type
 const IndividualType = new GraphQLObjectType({
@@ -26,6 +27,21 @@ const IndividualType = new GraphQLObjectType({
         household: { type: GraphQLString },
         headOfHousehold: { type: GraphQLBoolean },
         picture: { type: GraphQLString }
+    })
+});
+
+// Define Household type
+const HouseholdType = new GraphQLObjectType({
+    name: 'Household',
+    fields: () => ({
+        _id: { type: GraphQLID },
+        streetAddress: { type: GraphQLString },
+        city: { type: GraphQLString },
+        state: { type: GraphQLString },
+        zip: { type: GraphQLString },
+        country: { type: GraphQLString },
+        headOfHousehold: { type: new GraphQLList(GraphQLString) },
+        residents: { type: new GraphQLList(GraphQLString) }
     })
 });
 
@@ -50,14 +66,33 @@ const RootQuery = new GraphQLObjectType({
                 return Individual.findById(args.id);
             }
         },
-        // Query to get an Individual by Name
-        individualByName: {
+           // Query to get an Individual by Name
+           individualByName: {
             type: new GraphQLList(IndividualType),
             args: {
                 firstName: { type: GraphQLString }
             },
             resolve(parent, args) {
                 return Individual.find({ firstName: args.firstName });
+            }
+        },
+
+        // Query to get all Households
+        households: {
+            type: new GraphQLList(HouseholdType),
+            resolve(parent, args) {
+                return Household.find();
+            }
+        },
+        
+        // Query to get a Household by Id
+        household: {
+            type: HouseholdType,
+            args: {
+                id: { type: GraphQLID }
+            },
+            resolve(parent, args) {
+                return Household.findById(args.id);
             }
         }
     }
@@ -130,6 +165,64 @@ const Mutation = new GraphQLObjectType({
             },
             resolve(parent, args) {
                 return Individual.findByIdAndDelete(args.id);
+            }
+        },
+        // Mutation to create a Household
+        createHousehold: {
+            type: HouseholdType,
+            args: {
+                streetAddress: { type: new GraphQLNonNull(GraphQLString) },
+                city: { type: new GraphQLNonNull(GraphQLString) },
+                state: { type: new GraphQLNonNull(GraphQLString) },
+                zip: { type: new GraphQLNonNull(GraphQLString) },
+                country: { type: new GraphQLNonNull(GraphQLString) },
+                headOfHousehold: { type: new GraphQLList(GraphQLString) },
+                residents: { type: new GraphQLList(GraphQLString) }
+            },
+            resolve(parent, args) {
+                const household = new Household({
+                    streetAddress: args.streetAddress,
+                    city: args.city,
+                    state: args.state,
+                    zip: args.zip,
+                    country: args.country,
+                    headOfHousehold: args.headOfHousehold,
+                    residents: args.residents
+                });
+                return household.save();
+            }
+        },
+             // Mutation to update a Household
+        updateHousehold: {
+            type: HouseholdType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) },
+                streetAddress: { type: GraphQLString },
+                city: { type: GraphQLString },
+                state: { type: GraphQLString },
+                zip: { type: GraphQLString },
+                country: { type: GraphQLString },
+                headOfHousehold: { type: new GraphQLList(GraphQLString) },
+                residents: { type: new GraphQLList(GraphQLString) }
+            },
+            resolve(parent, args) {
+                // Implement logic to update the household
+                return Household.findByIdAndUpdate(
+                    args.id,
+                    { $set: args },
+                    { new: true }
+                );
+            }
+        },
+        // Mutation to delete a Household
+        deleteHousehold: {
+            type: HouseholdType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) }
+            },
+            resolve(parent, args) {
+                // Implement logic to delete the household
+                return Household.findByIdAndDelete(args.id);
             }
         }
     }
