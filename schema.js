@@ -53,14 +53,15 @@ const RootQuery = new GraphQLObjectType({
             }
         },
 
-        // Query to get an Individual by Name
-        individualByName: {
-            type: IndividualType,
-            args: {
-                firstName: { type: GraphQLString }
-            },
-            resolve(parent, args) {
-                return Individual.findById(args.firstName);
+      // Query to get an Individual by Name
+individualByName: {
+    type: new GraphQLList(IndividualType),
+    args: {
+        firstName: { type: GraphQLString }
+    },
+    resolve(parent, args) {
+        return Individual.find({ firstName: args.firstName });
+           }
         }
     }
 });
