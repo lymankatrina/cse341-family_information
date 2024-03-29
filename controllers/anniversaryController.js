@@ -14,6 +14,18 @@ exports.getAllAnniversaries = async (req, res) => {
   // #swagger.summary = 'Get all Anniversaries'
   // #swagger.description = 'This will list all anniversaries in the database'
   try {
+    const result = await Anniversary.find();
+    res.status(200).json(result); 
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+exports.getFormattedAnniversaries = async (req, res) => {
+  // #swagger.tags = ['Anniversaries']
+  // #swagger.summary = 'Get all Anniversaries formatted with names'
+  // #swagger.description = 'This will list all anniversaries in the database with names and formatted dates'
+  try {
     const anniversaries = await Anniversary.find();
     const result = await Promise.all(anniversaries.map(formatAnniversary));
     res.status(200).json(result);

@@ -1,8 +1,11 @@
-const News = require('../models/newsModel');
+const { News } = require('../models/newsModel');
 const Individual = require('../models/individualModel');
 const { formatNews, handleServerError } = require('../helpers/helpers');
 
 exports.getAllNews = async (req, res) => {
+  // #swagger.tags = ['News']
+  // #swagger.summary = 'Get all News Stories'
+  // #swagger.description = 'This will return all the news stories in the database unformatted'
   try {
     const result = await News.find();
     res.status(200).json(result); 
@@ -13,7 +16,7 @@ exports.getAllNews = async (req, res) => {
 
 exports.getFormattedNews = async (req, res) => {
   // #swagger.tags = ['News']
-  // #swagger.summary = 'Get all News Stories'
+  // #swagger.summary = 'Get all News Stories formatted with author names'
   // #swagger.description = 'This will return all the news stories in the database'
   try {
     const news = await News.find().populate('postedBy');

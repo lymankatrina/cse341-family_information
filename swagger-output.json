@@ -241,6 +241,9 @@
           "200": {
             "description": "OK"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -657,6 +660,23 @@
           "News"
         ],
         "summary": "Get all News Stories",
+        "description": "This will return all the news stories in the database unformatted",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/news/getformatted": {
+      "get": {
+        "tags": [
+          "News"
+        ],
+        "summary": "Get all News Stories",
         "description": "This will return all the news stories in the database",
         "responses": {
           "200": {
@@ -867,6 +887,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }

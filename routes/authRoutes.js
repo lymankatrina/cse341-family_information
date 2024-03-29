@@ -9,7 +9,7 @@ router.get(
 );
 
 router.get(
-  '/landingpage',
+  '/callback',
   authController.callback // '#swagger.ignore = true'
 );
 
