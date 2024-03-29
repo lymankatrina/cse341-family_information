@@ -59,10 +59,8 @@ const RootQuery = new GraphQLObjectType({
             args: {
                 firstName: { type: GraphQLString }
             },
-            resolve(parent, args, context) {
-               ///return Individual.findOne({ firstName: args.firstName });
-               return context.db.collection('individuals').findOne({ firstName: args.firstName });
-            }
+            resolve(parent, args) {
+                return Individual.findById(args.firstName);
         }
     }
 });
