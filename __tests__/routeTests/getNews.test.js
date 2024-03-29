@@ -1,18 +1,9 @@
-// /__tests__/getAllNews.test.js
 const { getAllNews } = require('../../controllers/newsController');
-const { formatNews, handleServerError } = require('../../helpers/helpers');
 const { News } = require('../../models/newsModel');
 
-jest.mock('../../models/newsModel', () => ({
-  News: {
-    find: jest.fn().mockReturnThis(),
-    populate: jest.fn(),
-  },
-}));
+jest.mock('../../models/newsModel');
 
-jest.mock('../../helpers/helpers');
-
-describe('get All News', () => {
+describe('getAllNews', () => {
   let req, res;
 
   beforeEach(() => {
@@ -27,8 +18,8 @@ describe('get All News', () => {
     jest.clearAllMocks();
   });
 
-  test('should return a list of all news items in the database formatted', async () => {
-    const news = [
+  test('should return a list of all news items in the database when successful', async () => {
+    const newsItems = [
       { 
         _id: "65f35c28b182f34a3d33374c",
         newsTitle: "My First News Update",
@@ -48,58 +39,23 @@ describe('get All News', () => {
         picture: "https://fakeimg.pl/600x400?text=porcupine+picture"
       }
     ];
-    const formattedNews = [
-      {
-        newsId: "65f35c28b182f34a3d33374c",
-        postedBy: "Katrina Lyman",
-        dateCreated: "2024-03-14",
-        newsTitle: "My First News Update",
-        newsBody: "This is a practice news post for testing the collection endpoint settings and routes. I am trying to...",
-        status: "public",
-        picture: "https://fakeimg.pl/600x400?text=test+image"
-      },
-      {
-        newsId: "65f368ef9d5d7518becdb4f0",
-        postedBy: "Katrina Lyman",
-        dateCreated: "2024-03-14",
-        newsTitle: "The Porcupine and the Calf",
-        newsBody: "One morning the whole family woke up to the sound of a bellowing calf. My mom was getting ready to g...",
-        status: "private",
-        picture: "https://fakeimg.pl/600x400?text=porcupine+picture"
-      },
-    ]
-
-    News.find.mockResolvedValueOnce(news);
-
-    News.find().populate.mockResolvedValueOnce(news);
-
-    formatNews.mockImplementationOnce(news => ({
-      newsId: news._id,
-      postedBy: news.postedBy,
-      dateCreated: news.dateCreated,
-      newsTitle: news.newsTitle,
-      newsBody: news.newsBody,
-      status: news.status,
-      picture: news.picture
-    }));
     
+    News.find.mockResolvedValue(newsItems);
+
     await getAllNews(req, res);
 
-    expect(News.find).toHaveBeenCalledTimes(1);
-    expect(News.find().populate).toHaveBeenCalledTimes(1);
-    expect(formatNews).toHaveBeenCalledTimes(2);
     expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith(formattedNews);
+    expect(res.json).toHaveBeenCalledWith(newsItems);
   });
 
-  test('should handle server error', async () => {
+  test('should return an error when News.find fails', async () => {
     const errorMessage = 'Internal server error';
 
     News.find.mockRejectedValue(new Error(errorMessage));
     
-    await getAllNews(req, { ...res, handleServerError });
+    await getAllNews(req, res);
 
     expect(res.status).toHaveBeenCalledWith(500);
-    expect(handleServerError).toHaveBeenCalledWith(res, new Error(errorMessage));
+    expect(res.json).toHaveBeenCalledWith({ error: errorMessage });
   });
 });
