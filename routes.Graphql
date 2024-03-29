@@ -1,5 +1,7 @@
 //RENDER DEPLOYMENT
 
+//INDIVIDUALS COLLECTION
+
 ### Query to retrieve all Individuals from the Individuals collection
 https://cse341-family-information-winter-2024.onrender.com/graphQL?query=query%20GetAllIndividuals%20%7B%0Aindividuals%7B%0A%20%20%20%20_id%0A%20%20%20%20firstName%0A%20%20%20%20middleName%0A%20%20%20%20lastName%0A%20%20%20%20birthDate%0A%20%20%20%20parents%0A%20%20%20%20phone%0A%20%20%20%20email%0A%20%20%20%20household%0A%20%20%20%20headOfHousehold%0A%20%20%20%20picture%0A%20%20%7D%0A%7D%0A&operationName=GetAllIndividuals
 
@@ -19,6 +21,41 @@ https://cse341-family-information-winter-2024.onrender.com/graphQL?operationName
 
 ### Query to update an individual information by ID
 https://cse341-family-information-winter-2024.onrender.com/graphQL?operationName=UpdateIndividual&query=%23%20Query%20to%20update%20an%20existing%20individual%20information%0Amutation%20UpdateIndividual%20%7B%0A%20%20updateIndividual(%0A%20%20%09id%3A%20%2265ef74ae7c211814c571e01b%22%2C%0A%20%20%20%20firstName%3A%20%22John%22%2C%0A%20%20%20%20middleName%3A%22Bart%20Etienne%22%2C%0A%20%20%20%20lastName%3A%20%22Doe%22%0A%20%20%20%20birthDate%3A%20%22988-01-01%22%2C%0A%20%20%20%20parents%3A%22%20na%22%2C%0A%20%20%20%20phone%3A%20%22830-345-9833%22%2C%0A%20%20%20%20email%3A%22johnDoe%40byui.edu%22%2C%0A%20%20%20%20household%3A%20%22%22%2C%0A%20%20%20%20headOfHousehold%3A%20true%2C%0A%20%20%20%20picture%3A%22none%22)%0A%20%20%0A%20%20%7B%0A%20%20%09_id%0A%20%20%20%20firstName%0A%20%20%20%20middleName%0A%20%20%20%20lastName%0A%20%20%20%20birthDate%0A%20%20%20%20parents%0A%20%20%20%20phone%0A%20%20%20%20email%0A%20%20%20%20household%0A%20%20%20%20headOfHousehold%0A%20%20%20%20picture%0A%20%20%7D%0A%7D%0A%0A
+
+
+
+### Query to delete an existing individual from the collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20DeleteIndividual%20%7B%0A%20%20deleteIndividual(id%3A%20%2265e39668adcab8306401f891%22)%20%7B%0A%09_id%0A%20%20%20%20firstName%0A%20%20%20%20middleName%0A%20%20%20%20lastName%0A%20%20%20%20birthDate%0A%20%20%20%20parents%0A%20%20%20%20phone%0A%20%20%20%20email%0A%20%20%20%20household%0A%20%20%20%20headOfHousehold%0A%20%20%20%20picture%0A%20%20%7D%0A%7D&operationName=DeleteIndividual
+
+
+
+
+
+
+// HOUSHEHOLDS COLLECTION
+
+### Query to retrieve all households from the household collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=%23%20GraphQL%20Query%20to%20Retrieve%20All%20households%0A%0Aquery%20%7B%0A%20%20households%20%7B%0A%20%20%20%20_id%0A%20%20%20%20streetAddress%0A%20%20%20%20city%0A%20%20%20%20state%0A%20%20%20%20zip%0A%20%20%20%20country%0A%20%20%20%20headOfHousehold%20%0A%20%20%20%20residents%0A%20%20%7D%0A%7D%0A%0A%0A&operationName=DeleteIndividual
+
+
+### Query to retrieve an household by ID
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=%23%20GraphQL%20Query%20to%20Retrieve%20All%20households%0A%0Aquery%20householdById%20%7B%0A%20%20household(id%3A%20%2265f9197e78c0a979ea81a186%22)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20streetAddress%0A%20%20%20%20city%0A%20%20%20%20state%0A%20%20%20%20zip%0A%20%20%20%20country%0A%20%20%20%20headOfHousehold%20%0A%20%20%20%20residents%0A%20%20%7D%0A%7D%0A%0A%0A&operationName=householdById
+
+
+
+### GraphQL Query to create a new household to the collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20%7B%0A%20%20createHousehold(%0A%20%20%20%20streetAddress%3A%20%22123%20Main%20St%22%2C%0A%20%20%20%20city%3A%20%22Anytown%22%2C%0A%20%20%20%20state%3A%20%22CA%22%2C%0A%20%20%20%20zip%3A%20%2212345%22%2C%0A%20%20%20%20country%3A%20%22United%20States%22%2C%0A%20%20%20%20headOfHousehold%3A%20%5B%2265fc9426fc13ae5d6a50fa9d%22%2C%20%2265fc9426fc13ae5d6a50fa9f%22%5D%2C%0A%20%20%20%20residents%3A%20%5B%2265fc9426fc13ae5d6a50fa9d%22%2C%20%2265fc9426fc13ae5d6a50fa9f%22%2C%20%2265fc9426fc13ae5d6a50faa1%22%5D%0A%20%20)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20streetAddress%0A%20%20%20%20city%0A%20%20%20%20state%0A%20%20%20%20zip%0A%20%20%20%20country%0A%20%20%20%20headOfHousehold%0A%20%20%20%20residents%0A%20%20%7D%0A%7D%0A&operationName=DeleteIndividual
+
+
+
+### GraphQL Query to update an existing household
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20UpdateHousehold%20%7B%0A%20%20updateHousehold(%0A%20%20%20%20%20id%3A%20%2265f5f796a5c2c0bc7cd8cbaf%22%2C%0A%20%20%20%20streetAddress%3A%20%22%22%2C%0A%20%20%20%20city%3A%20%22290%20Zion%20Street%22%2C%0A%20%20%20%20state%3A%20%22Salt%20Lake%22%2C%0A%20%20%20%20zip%3A%20%2285090%22%2C%0A%20%20%20%20country%3A%20%22United%20States%22%2C%0A%20%20%20%20headOfHousehold%3A%20%0A%20%20%20%20%20%20%20%5B%0A%20%20%20%20%20%20%20%20%20%20%2265f2162017c8cc6b12754e5e%22%2C%0A%20%20%20%20%20%20%20%20%20%20%2265f2166117c8cc6b12754e5f%22%0A%20%20%20%20%20%20%20%20%5D%2C%0A%20%20%20%20residents%3A%20%20%5B%0A%20%20%20%20%20%20%2265f2162017c8cc6b12754e5e%22%2C%0A%20%20%20%20%20%20%2265f2166117c8cc6b12754e5f%22%2C%0A%20%20%20%20%20%20%2265f59e49db24e761d695d77e%22%0A%20%20%20%20%5D%20%20)%20%7B%0A%20%20%20%20%0A%20%20%20%20_id%0A%20%20%20%20streetAddress%0A%20%20%20%20city%0A%20%20%20%20state%0A%20%20%20%20zip%0A%20%20%20%20country%0A%20%20%20%20headOfHousehold%0A%20%20%20%20residents%0A%20%20%7D%0A%7D%0A%0A%0A%0A&operationName=UpdateHousehold
+
+
+
+### Query to delete an existing household from the collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=%0A%23%23%23%20Query%20to%20delete%20an%20existing%20household%20from%20the%20collection%0A%0Amutation%20%7B%0A%20%20deleteHousehold(id%3A%20%2265fc9426fc13ae5d6a50faa9%22)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20streetAddress%0A%20%20%20%20city%0A%20%20%20%20state%0A%20%20%20%20zip%0A%20%20%20%20country%0A%20%20%20%20headOfHousehold%0A%20%20%20%20residents%0A%20%20%7D%0A%7D&operationName=householdById
+
 
 
 
@@ -176,15 +213,99 @@ query {
     state
     zip
     country
-    headOfHousehold {
-      _id
-      firstName
-      lastName
-    }
-    residents {
-      _id
-      firstName
-      lastName
-    }
+    headOfHousehold 
+    residents
+  }
+}
+
+
+# GraphQL Query to Retrieve an household by Id
+
+query householdById {
+  household(id: "65f9197e78c0a979ea81a186") {
+    _id
+    streetAddress
+    city
+    state
+    zip
+    country
+    headOfHousehold 
+    residents
+  }
+}
+
+
+# GraphQL Query to create a new household to the collection
+
+mutation {
+  createHousehold(
+    streetAddress: "123 Main St",
+    city: "Anytown",
+    state: "CA",
+    zip: "12345",
+    country: "United States",
+    headOfHousehold: ["65fc9426fc13ae5d6a50fa9d", "65fc9426fc13ae5d6a50fa9f"],
+    residents: ["65fc9426fc13ae5d6a50fa9d", "65fc9426fc13ae5d6a50fa9f", "65fc9426fc13ae5d6a50faa1"]
+  ) {
+    _id
+    streetAddress
+    city
+    state
+    zip
+    country
+    headOfHousehold
+    residents
+  }
+}
+
+
+
+# GraphQL Query to update an existing household
+
+mutation UpdateHousehold {
+  updateHousehold(
+     id: "65f5f796a5c2c0bc7cd8cbaf",
+    streetAddress: "",
+    city: "290 Zion Street",
+    state: "Salt Lake",
+    zip: "85090",
+    country: "United States",
+    headOfHousehold: 
+       [
+          "65f2162017c8cc6b12754e5e",
+          "65f2166117c8cc6b12754e5f"
+        ],
+    residents:  [
+      "65f2162017c8cc6b12754e5e",
+      "65f2166117c8cc6b12754e5f",
+      "65f59e49db24e761d695d77e"
+    ]  ) {
+    
+    _id
+    streetAddress
+    city
+    state
+    zip
+    country
+    headOfHousehold
+    residents
+  }
+}
+
+
+
+
+### Query to delete an existing household from the collection
+
+mutation {
+  deleteHousehold(id: "65fc9426fc13ae5d6a50faa9") {
+    _id
+    streetAddress
+    city
+    state
+    zip
+    country
+    headOfHousehold
+    residents
   }
 }
