@@ -5,11 +5,13 @@ const {
     GraphQLSchema,
     GraphQLNonNull,
     GraphQLBoolean,
-    GraphQLID // Add import for GraphQLID
+    GraphQLID
+    
 } = require('graphql');
 
 const { ObjectId } = require('mongoose').Types;
 const Individual = require('./models/individualModel'); // Import Individual model
+
 
 // Define Individual type
 const IndividualType = new GraphQLObjectType({
@@ -50,15 +52,16 @@ const RootQuery = new GraphQLObjectType({
                 return Individual.findById(args.id);
             }
         },
-        // Query to get an Individual by Name
-        individualByName: {
-            type: new GraphQLList(IndividualType),
-            args: {
-                firstName: { type: GraphQLString }
-            },
-            resolve(parent, args) {
-                return Individual.find({ firstName: args.firstName });
-            }
+
+      // Query to get an Individual by Name
+individualByName: {
+    type: new GraphQLList(IndividualType),
+    args: {
+        firstName: { type: GraphQLString }
+    },
+    resolve(parent, args) {
+        return Individual.find({ firstName: args.firstName });
+           }
         }
     }
 });
