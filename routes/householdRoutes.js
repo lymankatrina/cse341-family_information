@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const houseController = require('../controllers/householdController');
+const { validUserEmail, validHeadOfHousehold } = require('../middleware/permissionMiddleware')
 
 // Get all households
 router.get('/getall', houseController.getHouseholds);
 
 // Get household by id
-router.get('/getbyid/:id', houseController.getHouseholdById);
+router.get('/getbyid/:id', validHeadOfHousehold, houseController.getHouseholdById);
 
 // Get household by head of household
 router.get('/getbyhoh/:hoh', houseController.getHouseholdsByHoh);

@@ -36,6 +36,26 @@ const getSingleIndividual = async (req, res) => {
   }
 };
 
+const getAllEmails = async (req, res) => {
+  // #swagger.ignore = true
+  try {
+    const result = await Individual.find({}).select('email');
+    return result
+  } catch (error) {
+    return error.message
+  }
+}
+
+const getUserByEmail = async (userEmail) => {
+  // #swagger.ignore = true
+  try {
+    const result = await Individual.findOne({ email: userEmail });
+    return result
+  } catch (error) {
+    console.log("something went wrong")
+  }
+}
+
 /* POST REQUESTS */
 // Create an Individual
 const createIndividual = async (req, res) => {
@@ -105,6 +125,8 @@ const deleteIndividual = async (req, res) => {
 module.exports = {
   getAllIndividuals,
   getSingleIndividual,
+  getAllEmails,
+  getUserByEmail,
   createIndividual,
   updateIndividual,
   deleteIndividual
