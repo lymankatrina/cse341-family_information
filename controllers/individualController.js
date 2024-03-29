@@ -47,6 +47,7 @@ const getAllEmails = async (req, res) => {
 }
 
 const getUserByEmail = async (userEmail) => {
+  // #swagger.ignore = true
   try {
     const result = await Individual.findOne({ email: userEmail });
     return result
