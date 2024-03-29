@@ -1,0 +1,55 @@
+//RENDER DEPLOYMENT
+
+### Query to retrieve all Individuals from the Individuals collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=query%20GetAllIndividuals%20%7B%0Aindividuals%7B%0A%20%20%20%20_id%0A%20%20%20%20firstName%0A%20%20%20%20middleName%0A%20%20%20%20lastName%0A%20%20%20%20birthDate%0A%20%20%20%20parents%0A%20%20%20%20phone%0A%20%20%20%20email%0A%20%20%20%20household%0A%20%20%20%20headOfHousehold%0A%20%20%20%20picture%0A%20%20%7D%0A%7D%0A&operationName=GetAllIndividuals
+
+
+### Query to retrieve an individual by ID
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=query%20IndividualByID%20%7B%0A%20%20individual(id%3A%20%2265ef74ae7c211814c571e01b%22)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20firstName%0A%20%20%20%20middleName%0A%20%20%20%20lastName%0A%20%20%20%20birthDate%0A%20%20%20%20parents%0A%20%20%20%20phone%0A%20%20%20%20email%0A%20%20%20%20household%0A%20%20%20%20headOfHousehold%0A%20%20%20%20picture%0A%20%20%7D%0A%7D%0A&operationName=IndividualByID
+
+
+### Query to retrieve one individual by name
+
+
+
+# routes.Graphql
+
+# GraphQL Query to Retrieve All Individuals from the Individuals collection
+query GetAllIndividuals {
+individuals{
+    _id
+    firstName
+    middleName
+    lastName
+    birthDate
+    parents
+    phone
+    email
+    household
+    headOfHousehold
+    picture
+  }
+}
+
+### Query to retrieve one individual by name
+
+
+
+### Query to retrieve one individual by ID
+query IndividualByID {
+  individual(id: "65ef74ae7c211814c571e01b") {
+    _id
+    firstName
+    middleName
+    lastName
+    birthDate
+    parents
+    phone
+    email
+    household
+    headOfHousehold
+    picture
+  }
+}
+
+### Mutation to add a new individual to the collection

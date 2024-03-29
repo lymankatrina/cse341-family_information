@@ -1,4 +1,3 @@
-// helpers/helpers.js
 const Individual = require('../models/individualModel.js');
 
 // Helper function to find individuals by id
@@ -37,6 +36,27 @@ async function formatNews(news) {
   };
 }
 
+
+// Helper function to retrieve all individuals
+async function getAllIndividuals() {
+  try {
+    const individuals = await Individual.find();
+    return individuals;
+  } catch (error) {
+    throw new Error('Error retrieving individuals: ' + error.message);
+  }
+}
+
+// Helper function to retrieve an individual by last name
+async function getIndividualByLastName(lastName) {
+  try {
+    const individual = await Individual.findOne({ lastName: lastName });
+    return individual;
+  } catch (error) {
+    throw new Error('Error retrieving individual by last name: ' + error.message);
+  }
+}
+
 function handleServerError(res, error) {
   console.error('Error:', error);
   res.status(500).json({ error: 'Internal server error' });
@@ -44,21 +64,19 @@ function handleServerError(res, error) {
 
 // Helper function to calculate age
 function calculateAge(birthDate) {
-    const today = new Date();
-    const dob = new Date(birthDate); // Convert birthdate to a Date object
-    dob.setUTCHours(0, 0, 0, 0);
-    today.setUTCHours(0, 0, 0, 0);
-  
-    let age = today.getUTCFullYear() - dob.getUTCFullYear();
-    if (
-      today.getUTCMonth() < dob.getUTCMonth() ||
-      (today.getUTCMonth() === dob.getUTCMonth() && today.getUTCDate() < dob.getUTCDate())
-    ) {
-      age--;
-    }
-    return age;
+  const today = new Date();
+  birthDate.setUTCHours(0, 0, 0, 0);
+  today.setUTCHours(0, 0, 0, 0);
+
+  let age = today.getUTCFullYear() - birthDate.getUTCFullYear();
+  if (
+    today.getUTCMonth() < birthDate.getUTCMonth() ||
+    (today.getUTCMonth() === birthDate.getUTCMonth() && today.getUTCDate() < birthDate.getUTCDate())
+  ) {
+    age--;
   }
-  
+  return age;
+}
 
 // Helper function to format birthday data
 function formatBirthdayIndividual(individual) {
@@ -72,35 +90,14 @@ function formatBirthdayIndividual(individual) {
   };
 }
 
-// Helper function to get all individuals
-const getAllIndividuals = async () => {
-  try {
-    const individuals = await Individual.find();
-    return individuals;
-  } catch (error) {
-    throw new Error('Error occurred while retrieving all individuals');
-  }
-};
-
-// Helper function to get individual by last name
-const getIndividualByLastName = async (lastName) => {
-  try {
-    const individuals = await Individual.find({ lastName });
-    return individuals;
-  } catch (error) {
-    throw new Error('Error occurred while retrieving individuals by last name');
-  }
-};
-
 module.exports = {
   formatAnniversary,
   formatFullName,
   formatNews,
   handleServerError,
   findIndividualsByIds,
+  getAllIndividuals,
   calculateAge,
   formatBirthdayIndividual,
-  getAllIndividuals,
   getIndividualByLastName
 };
-
