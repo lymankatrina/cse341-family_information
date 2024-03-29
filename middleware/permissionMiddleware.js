@@ -11,8 +11,16 @@ const getEmails = async () => {
 }
 
 const validUserEmail = async (req, res, next) => {
-    // const email = req.oidc.user.email
-    let email = "jbdoe@gmail.com";
+    // Production email
+    const email = req.oidc.user.email
+
+    // Dev valid email test
+    // let email = "jbdoe@gmail.com";
+
+    // Dev invalid email test
+    // let email = "fjdkslifosa@gmail.com"
+
+
     const validEmails = await getEmails()
 
     if (!email in validEmails) {
@@ -23,10 +31,18 @@ const validUserEmail = async (req, res, next) => {
 }
 
 const validHeadOfHousehold = async (req, res, next) => {
-    // let email = req.oidc.user.email;
-    let email = "jbdoe@gmail.com";
+    // Production email
+    let email = req.oidc.user.email;
+
+    // Dev valid test email
+    // const email = "jbdoe@gmail.com";
+
+    // Dev invalid test email
+    // const email = "jmjingle@gmail.com";
+
     const user = await getUserByEmail(email)
-    if (user.headOfHousehold) {
+    console.log(user.headOfHousehold)
+    if (!user.headOfHousehold) {
         res.status(403).send("Access denied.");
         return;
     }
