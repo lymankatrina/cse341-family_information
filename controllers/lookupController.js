@@ -2,6 +2,30 @@ const Individual = require('../models/individualModel');
 const Household = require('../models/householdModel');
 const { formatBirthdayIndividual, handleServerError, formatFullName } = require('../helpers/helpers');
 
+exports.getParents = async (req, res) => {
+  // #swagger.tags = ['Relationships']
+  // #swagger.summary = 'Get parents'
+  // #swagger.description = 'This will return a list of parents for the individual id provided.'
+  const individualId = req.params.id;
+  try {
+    const individual = await Individual.findById(individualId);
+    if (!individual) {
+      return res.status(404).json({ error: 'Individual not found' });
+    }
+    const parents = await Individual.find({ _id: { $in: individual.parents } });
+    if (parents.length > 0) {
+      const result = parents.map(parent => (
+        `ParentId: ${parent._id}, Name: ${formatFullName(parent)}`
+      ));
+      res.status(200).json(result);
+    } else {
+      res.status(404).json({ error: 'No parents found for that individual Id' });
+    }
+  } catch (error) {
+    handleServerError(res, error);
+  } 
+};
+
 exports.getChildren = async (req, res) => {
   // #swagger.tags = ['Relationships']
   // #swagger.summary = 'Get children'

@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const lookupController = require('../controllers/lookupController');
 
+// Get Parents
+router.get('/parents/:id', lookupController.getParents);
+
 // Get children
 router.get('/children/:parentId', lookupController.getChildren);
 
