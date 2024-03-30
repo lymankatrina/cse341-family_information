@@ -63,6 +63,8 @@ https://cse341-family-information-winter-2024.onrender.com/graphQL?query=%0A%23%
 
 // ANNIVERSARIES COLLECTION
 
+### GraphQL Query to Retrieve All anniversaries
+
 https://cse341-family-information-winter-2024.onrender.com/graphQL?query=query%20%7B%0A%20%20anniversaries%20%7B%0A%20%20%20%20_id%0A%20%20%20%20couple%0A%20%20%20%20anniversaryDate%0A%20%20%7D%0A%7D%0A
 
 
@@ -72,6 +74,18 @@ https://cse341-family-information-winter-2024.onrender.com/graphQL?query=query%2
 https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20%7B%0A%20%20createAnniversary(%0A%20%20%20%20couple%3A%20%5B%2265fc9426fc13ae5d6a50fa9c%22%2C%20%2265fc9d58fc13ae5b6c50fb00%22%5D%2C%0A%20%20%20%20anniversaryDate%3A%20%221997-01-13%22%0A%20%20)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20couple%0A%20%20%20%20anniversaryDate%0A%20%20%7D%0A%7D%0A
 
 
+
+
+### GraphQL Query to UPDATE an exisint anniversary from the anniversaries collection
+
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20%7B%0A%20%20updateAnniversary(%0A%20%20%20%20id%3A%20%2265f1dccaa082e7bd594edca4%22%2C%0A%20%20%20%20couple%3A%20%5B%2265f1dc20a082e7bd594edca2%22%2C%20%2265f601bc4abde303e77e19e4%22%5D%2C%0A%20%20%20%20%20%20anniversaryDate%3A%20%221996-01-14%22%0A%20%20%20%20)%0A%20%20%7B%0A%20%20%20%20_id%0A%20%20%20%20couple%0A%20%20%20%20anniversaryDate%0A%20%20%7D%0A%7D%0A
+
+
+
+
+### GraphQL Query to DELETE an exisint anniversary from the anniversaries collection
+
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20%7B%0A%20deleteAnniversary%20(id%3A%20%2265fc9426fc13ae5d6a50fa9c%22)%0A%20%20%7B%0A%20_id%0Acouple%0AanniversaryDate%0A%7D%0A%7D%0A
 
 
 
@@ -370,7 +384,7 @@ mutation {
   updateAnniversary(
     id: "65f1dccaa082e7bd594edca4",
     couple: ["65f1dc20a082e7bd594edca2", "65f601bc4abde303e77e19e4"],
-      anniversaryDate: "1997-01-14"
+      anniversaryDate: "1996-01-14"
     )
   {
     _id
@@ -383,4 +397,16 @@ mutation {
 
 # GraphQL Query to DELETE an exisint anniversary from the anniversaries collection
 
+mutation {
+ deleteAnniversary (id: "65fc9426fc13ae5d6a50fa9c")
+  {
+ _id
+couple
+anniversaryDate
+}
+}
 
+
+
+
+// NEWS COLLECTION

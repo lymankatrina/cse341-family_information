@@ -12,7 +12,7 @@ const { ObjectId } = require('mongoose').Types;
 const Individual = require('./models/individualModel'); // Import Individual model
 const Household = require('./models/householdModel'); // Import Household model
 const Anniversary = require('./models/anniversaryModel'); // Import Anniversary model
-
+const News = require('./models/newsModel'); // Import News model
 
 // Define Individual type
 const IndividualType = new GraphQLObjectType({
@@ -54,6 +54,20 @@ const AnniversaryType = new GraphQLObjectType({
         _id: { type: GraphQLID },
         couple: { type: new GraphQLList(GraphQLID) },
         anniversaryDate: { type: GraphQLString }
+    })
+});
+
+// Define News type
+const NewsType = new GraphQLObjectType({
+    name: 'News',
+    fields: () => ({
+        _id: { type: GraphQLID },
+        newsTitle: { type: GraphQLString },
+        newsBody: { type: GraphQLString },
+        status: { type: GraphQLString },
+        postedBy: { type: GraphQLID },
+        dateCreated: { type: GraphQLString },
+        picture: { type: GraphQLString }
     })
 });
 
@@ -113,6 +127,14 @@ const RootQuery = new GraphQLObjectType({
             type: new GraphQLList(AnniversaryType),
             resolve(parent, args) {
                 return Anniversary.find();
+            }
+        },
+
+        // Query to get all News
+        news: {
+            type: new GraphQLList(NewsType),
+            resolve(parent, args) {
+                return News.find();
             }
         }
     }
@@ -309,6 +331,50 @@ const Mutation = new GraphQLObjectType({
             resolve(parent, args) {
                 // Logic to delete an Anniversary
                 return Anniversary.findByIdAndDelete(args.id);
+            }
+        },
+
+        // Mutation to create news
+        createNews: {
+            type: NewsType,
+            args: {
+                newsTitle: { type: new GraphQLNonNull(GraphQLString) },
+                newsBody: { type: new GraphQLNonNull(GraphQLString) },
+                status: { type: GraphQLString },
+                postedBy: { type: new GraphQLNonNull(GraphQLID) },
+                dateCreated: { type: GraphQLString },
+                picture: { type: GraphQLString }
+            },
+            resolve(parent, args) {
+                const { newsTitle, newsBody, status, postedBy, dateCreated, picture } = args;
+                const news = new News({
+                    newsTitle,
+                    newsBody,
+                    status,
+                    postedBy,
+                    dateCreated,
+                    picture
+                });
+                return news.save();
+            }
+        },
+
+        // Mutation to find all news
+        findAllNews: {
+            type: new GraphQLList(NewsType),
+            resolve(parent, args) {
+                return News.find();
+            }
+        },
+
+        // Mutation to delete news
+        deleteNews: {
+            type: NewsType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) }
+            },
+            resolve(parent, args) {
+                return News.findByIdAndDelete(args.id);
             }
         }
     }
