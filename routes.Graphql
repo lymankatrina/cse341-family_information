@@ -108,8 +108,8 @@ https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutatio
 
 
 
-# GraphQL Query to UPDATE an exisint news from the news collection
-
+# GraphQL Query to UPDATE an existing news from the news collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20%7B%0A%20%20updateNews(%0A%20%20%20%20id%3A%20%2265fb721269a9ff4f533c80e0%22%0A%20%20%20%20newsTitle%3A%20%22Updated%20News%20Title%22%0A%20%20%20%20newsBody%3A%20%22Updated%20News%20Body%22%0A%20%20%20%20status%3A%20%22private%22%0A%20%20)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20newsTitle%0A%20%20%20%20newsBody%0A%20%20%20%20status%0A%20%20%20%20postedBy%0A%20%20%20%20dateCreated%0A%20%20%20%20picture%0A%20%20%7D%0A%7D
 
 
 # GraphQL Query to DELETE an exisint news from the news collection
@@ -121,7 +121,7 @@ https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutatio
 
 
 
-# routes.Graphql
+# ROUTES.GraphQL
 
 
 // INDIVIDUALS COLLECTION
@@ -493,13 +493,11 @@ mutation {
 }
 
 
-
-# GraphQL Query to UPDATE an exisint news from the news collection
-
+# GraphQL Query to UPDATE an existing news from the news collection
 
 mutation {
   updateNews(
-    id: "65f34f8191f613164d933bb1"
+    id: "65fb721269a9ff4f533c80e0"
     newsTitle: "Updated News Title"
     newsBody: "Updated News Body"
     status: "private"
@@ -513,10 +511,6 @@ mutation {
     picture
   }
 }
-
-
-
-
 
 
 # GraphQL Query to DELETE an exisint news from the news collection
