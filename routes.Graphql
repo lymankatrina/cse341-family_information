@@ -61,7 +61,27 @@ https://cse341-family-information-winter-2024.onrender.com/graphQL?query=%0A%23%
 
 
 
+// ANNIVERSARIES COLLECTION
+
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=query%20%7B%0A%20%20anniversaries%20%7B%0A%20%20%20%20_id%0A%20%20%20%20couple%0A%20%20%20%20anniversaryDate%0A%20%20%7D%0A%7D%0A
+
+
+
+### GraphQL Query to create a new anniversary to the anniversaries collection
+
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20%7B%0A%20%20createAnniversary(%0A%20%20%20%20couple%3A%20%5B%2265fc9426fc13ae5d6a50fa9c%22%2C%20%2265fc9d58fc13ae5b6c50fb00%22%5D%2C%0A%20%20%20%20anniversaryDate%3A%20%221997-01-13%22%0A%20%20)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20couple%0A%20%20%20%20anniversaryDate%0A%20%20%7D%0A%7D%0A
+
+
+
+
+
+
+
+
 # routes.Graphql
+
+
+// INDIVIDUALS COLLECTION
 
 # GraphQL Query to Retrieve All Individuals from the Individuals collection
 
@@ -80,6 +100,7 @@ individuals{
     picture
   }
 }
+
 
 ### Query to retrieve one individual by ID
 
@@ -203,6 +224,9 @@ mutation DeleteIndividual {
 
 
 
+
+// HOUSHEHOLDS COLLECTION
+
 # GraphQL Query to Retrieve All households
 
 query {
@@ -293,8 +317,6 @@ mutation UpdateHousehold {
 }
 
 
-
-
 ### Query to delete an existing household from the collection
 
 mutation {
@@ -309,3 +331,56 @@ mutation {
     residents
   }
 }
+
+
+
+
+// ANNIVERSARIES COLLECTION
+
+
+# GraphQL Query to Retrieve All anniversaries
+
+query {
+  anniversaries {
+    _id
+    couple
+    anniversaryDate
+  }
+}
+
+
+# GraphQL Query to create a new anniversary to the anniversaries collection
+
+mutation {
+  createAnniversary(
+    couple: ["65fc9426fc13ae5d6a50fa9c", "65fc9d58fc13ae5b6c50fb00"],
+    anniversaryDate: "1997-01-13"
+  ) {
+    _id
+    couple
+    anniversaryDate
+  }
+}
+
+
+
+# GraphQL Query to UPDATE an exisint anniversary from the anniversaries collection
+
+mutation {
+  updateAnniversary(
+    id: "65f1dccaa082e7bd594edca4",
+    couple: ["65f1dc20a082e7bd594edca2", "65f601bc4abde303e77e19e4"],
+      anniversaryDate: "1997-01-14"
+    )
+  {
+    _id
+    couple
+    anniversaryDate
+  }
+}
+
+
+
+# GraphQL Query to DELETE an exisint anniversary from the anniversaries collection
+
+

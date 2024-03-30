@@ -298,7 +298,8 @@ const Mutation = new GraphQLObjectType({
         } catch (error) {
             throw new Error(error.message);
             }
-        },
+        }
+    },
 
         // Mutation to delete an Anniversary
         deleteAnniversary: {
