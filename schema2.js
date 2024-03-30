@@ -263,42 +263,44 @@ const Mutation = new GraphQLObjectType({
             }
         },
 
-        // Mutation to update an Anniversary
-        updateAnniversary: {
-            type: AnniversaryType,
-            args: {
-                id: { type: new GraphQLNonNull(GraphQLID) },
-                couple: { type: new GraphQLList(GraphQLID) },
-                anniversaryDate: { type: GraphQLString }
-            },
-            async resolve(parent, args) {
-                try {
-                    // Find the anniversary by ID
-                    const anniversary = await Anniversary.findById(args.id);
 
-                    // Check if the anniversary exists
-                    if (!anniversary) {
-                        throw new Error("Anniversary not found");
-                    }
+       // Mutation to update an Anniversary
+updateAnniversary: {
+    type: AnniversaryType,
+    args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        couple: { type: new GraphQLList(GraphQLID) },
+        anniversaryDate: { type: GraphQLString }
+    },
+    async resolve(parent, args) {
+        try {
+            // Find the anniversary by ID
+            const anniversary = await Anniversary.findById(args.id);
 
-                    // Update the anniversary fields with the provided arguments
-                    if (args.couple) {
-                        anniversary.couple = args.couple;
-                    }
-                    if (args.anniversaryDate) {
-                        anniversary.anniversaryDate = args.anniversaryDate;
-                    }
-
-                    // Save the updated anniversary to the database
-                    const updatedAnniversary = await anniversary.save();
-
-                    // Return the updated anniversary
-                    return updatedAnniversary;
-                } catch (error) {
-                    throw new Error(error.message);
-                }
+            // Check if the anniversary exists
+            if (!anniversary) {
+                throw new Error("Anniversary not found");
             }
-        },
+
+            // Update the anniversary fields with the provided arguments
+            if (args.couple) {
+                anniversary.couple = args.couple;
+            }
+            if (args.anniversaryDate) {
+                anniversary.anniversaryDate = args.anniversaryDate;
+            }
+
+            // Save the updated anniversary to the database
+            const updatedAnniversary = await anniversary.save();
+
+            // Return the updated anniversary
+            return updatedAnniversary;
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    }
+},
+
 
         // Mutation to delete an Anniversary
         deleteAnniversary: {
@@ -309,6 +311,8 @@ const Mutation = new GraphQLObjectType({
             resolve(parent, args) {
                 // Logic to delete an Anniversary
                 return Anniversary.findByIdAndDelete(args.id);
+            
+            }
             }
         }
     }
