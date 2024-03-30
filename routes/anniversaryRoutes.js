@@ -7,7 +7,7 @@ const { anniversaryValidator } = require('../middleware/anniversaryValidator');
 router.get('/getall', anniversaryController.getAllAnniversaries);
 
 // Get a list of all anniversaries formatted
-router.get('/getformatted', anniversaryController.getAllAnniversariesFormatted);
+router.get('/getformatted', anniversaryController.getFormattedAnniversaries);
 
 // Get a single Anniversary by Individual id
 router.get('/getbyid/:id', anniversaryController.getAnniversaryById);

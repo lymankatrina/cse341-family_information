@@ -8,7 +8,7 @@ exports.getAllNews = async (req, res) => {
   // #swagger.description = 'This will return all the news stories in the database unformatted'
   try {
     const result = await News.find();
-    res.status(200).json(result); 
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }

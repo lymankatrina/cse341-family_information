@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Types } = require('mongoose');
 // eslint-disable-next-line no-unused-vars
 const { ObjectId } = Types;
-const Anniversary = require('../models/anniversaryModel.js');
+const { Anniversary } = require('../models/anniversaryModel.js');
 const {
   formatAnniversary,
   handleServerError,
@@ -15,7 +15,7 @@ exports.getAllAnniversaries = async (req, res) => {
   // #swagger.description = 'This will list all anniversaries in the database'
   try {
     const result = await Anniversary.find();
-    res.status(200).json(result); 
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }

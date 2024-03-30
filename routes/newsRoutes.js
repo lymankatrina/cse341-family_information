@@ -4,7 +4,7 @@ const newsController = require('../controllers/newsController');
 const { newsValidator } = require('../middleware/newsValidator');
 
 // get news
-router.get('/getall', newsController.getAllNews)
+router.get('/getall', newsController.getAllNews);
 
 // Get all news
 router.get('/getformatted', newsController.getFormattedNews);

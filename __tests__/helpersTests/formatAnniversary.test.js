@@ -20,10 +20,7 @@ describe('formatAnniversary', () => {
 
     expect(result).toEqual({
       anniversaryId: 'someId',
-      couple: [
-        'John Doe',
-        'Jane Doe'
-      ],
+      couple: ['John Doe', 'Jane Doe'],
       formattedDate: '2022-03-25'
     });
   });

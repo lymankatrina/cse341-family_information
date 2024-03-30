@@ -15,7 +15,7 @@ describe('Format Birthday Individual', () => {
     expect(formattedIndividualJohn.birthMonth).toBe(1);
     expect(formattedIndividualJohn.birthDay).toBe(1);
     expect(formattedIndividualJohn.birthYear).toBe(1990);
-    expect(formattedIndividualJohn.age).toBe(34); 
+    expect(formattedIndividualJohn.age).toBe(34);
 
     const individualJane = {
       firstName: 'Jane',
