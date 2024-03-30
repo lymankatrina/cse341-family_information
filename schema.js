@@ -378,18 +378,7 @@ const Mutation = new GraphQLObjectType({
             }
         },
 
-        // Mutation to delete news
-        deleteNews: {
-            type: NewsType,
-            args: {
-                id: { type: new GraphQLNonNull(GraphQLID) }
-            },
-            resolve(parent, args) {
-                return News.findByIdAndDelete(args.id);
-            }
-        },
-
-                // Mutation to update news
+        // Mutation to update news
         updateNews: {
             type: NewsType,
             args: {
@@ -439,6 +428,18 @@ const Mutation = new GraphQLObjectType({
                 } catch (error) {
                     throw new Error(error.message);
                 }
+            }
+        },
+
+        // Mutation to delete news
+        deleteNews: {
+            type: NewsType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) }
+            },
+            resolve(parent, args) {
+                return News.findByIdAndDelete(args.id);
+            
             }
         }
     }

@@ -498,23 +498,20 @@ mutation {
 
 
 mutation {
-    updateNewsById(
-        id: "NewsIdToUpdate",
-        newsTitle: "Updated News Title",
-        newsBody: "Updated News Body Content",
-        status: "private",
-        postedBy: "65f34f8191f613164d933bb1",
-        dateCreated: "2024-03-30",
-        picture: "https://example.com/updated-image.jpg"
-    ) {
-        _id
-        newsTitle
-        newsBody
-        status
-        postedBy
-        dateCreated
-        picture
-    }
+  updateNews(
+    id: "65f34f8191f613164d933bb1"
+    newsTitle: "Updated News Title"
+    newsBody: "Updated News Body"
+    status: "private"
+  ) {
+    _id
+    newsTitle
+    newsBody
+    status
+    postedBy
+    dateCreated
+    picture
+  }
 }
 
 
