@@ -130,8 +130,8 @@ const RootQuery = new GraphQLObjectType({
             }
         },
 
-        // Query to find all news
-        findAllNews: {
+        // Query to get all News
+        news: {
             type: new GraphQLList(NewsType),
             resolve(parent, args) {
                 return News.find();
@@ -370,7 +370,15 @@ const Mutation = new GraphQLObjectType({
             }
         },
 
-           // Mutation to delete news
+        // Mutation to find all news
+        findAllNews: {
+            type: new GraphQLList(NewsType),
+            resolve(parent, args) {
+                return News.find();
+            }
+        },
+
+        // Mutation to delete news
         deleteNews: {
             type: NewsType,
             args: {
