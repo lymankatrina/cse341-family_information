@@ -387,6 +387,59 @@ const Mutation = new GraphQLObjectType({
             resolve(parent, args) {
                 return News.findByIdAndDelete(args.id);
             }
+        },
+
+                // Mutation to update news
+        updateNews: {
+            type: NewsType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) },
+                newsTitle: { type: GraphQLString },
+                newsBody: { type: GraphQLString },
+                status: { type: GraphQLString },
+                postedBy: { type: GraphQLID },
+                dateCreated: { type: GraphQLString },
+                picture: { type: GraphQLString }
+            },
+            async resolve(parent, args) {
+                try {
+                    // Find the news by ID
+                    const news = await News.findById(args.id);
+
+                    // Check if the news exists
+                    if (!news) {
+                        throw new Error("News not found");
+                    }
+
+                    // Update the news fields with the provided arguments
+                    if (args.newsTitle) {
+                        news.newsTitle = args.newsTitle;
+                    }
+                    if (args.newsBody) {
+                        news.newsBody = args.newsBody;
+                    }
+                    if (args.status) {
+                        news.status = args.status;
+                    }
+                    if (args.postedBy) {
+                        news.postedBy = args.postedBy;
+                    }
+                    if (args.dateCreated) {
+                        news.dateCreated = args.dateCreated;
+                    }
+                    if (args.picture) {
+                        news.picture = args.picture;
+                    }
+
+                    // Save the updated news to the database
+                    const updatedNews = await news.save();
+
+                    // Return the updated news
+                    return updatedNews;
+                } catch (error) {
+                    throw new Error(error.message);
+                }
+            }
         }
     }
 });
