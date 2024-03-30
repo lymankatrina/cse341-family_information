@@ -1,0 +1,517 @@
+[{
+    "_id": {
+      "$oid": "65f5f796a5c2c0bc7cd8cbaf"
+    },
+    "streetAddress": "",
+    "city": "290 Zion Street",
+    "state": "Salt Lake",
+    "zip": "85090",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "65f2162017c8cc6b12754e5e"
+      },
+      {
+        "$oid": "65f2166117c8cc6b12754e5f"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "65f2162017c8cc6b12754e5e"
+      },
+      {
+        "$oid": "65f2166117c8cc6b12754e5f"
+      },
+      {
+        "$oid": "65f59e49db24e761d695d77e"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "65f9197e78c0a979ea81a186"
+    },
+    "streetAddress": "123 Anywhere Street",
+    "city": "Minneapolis",
+    "state": "MN",
+    "zip": "43821",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "65ef74ae7c211814c571e01b"
+      },
+      {
+        "$oid": "65ef767a878cf056c7d1d30f"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "65ef74ae7c211814c571e01b"
+      },
+      {
+        "$oid": "65ef767a878cf056c7d1d30f"
+      },
+      {
+        "$oid": "65f1dc20a082e7bd594edca2"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "65fc7fe625f76a69c9016216"
+    },
+    "streetAddress": "753 E 420 N",
+    "city": "American Fork",
+    "state": "UT",
+    "zip": "84003",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "65fa5e5f15cb7d3de3ff079c"
+      },
+      {
+        "$oid": "65fa5e1215cb7d3de3ff079a"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "65fa5e5f15cb7d3de3ff079c"
+      },
+      {
+        "$oid": "65fa5e1215cb7d3de3ff079a"
+      },
+      {
+        "$oid": "65fa5e88d4297f3775186d06"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "65fc9426fc13ae5d6a50fa9f"
+    },
+    "streetAddress": "2454 Mountainland Ave",
+    "city": "Eagle Mountain",
+    "state": "UT",
+    "zip": "84005",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50fa9e"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb01"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50fa9e"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb01"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faa3"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faa4"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faa5"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "65fc9426fc13ae5d6a50fa9d"
+    },
+    "streetAddress": "123 Desert View Drive",
+    "city": "Blanding",
+    "state": "UT",
+    "zip": "84511",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50fa9c"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb00"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50fa9c"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb00"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fa9c"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fa9d"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fa9f"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faa0"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faa1"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faa2"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "65fc9426fc13ae5d6a50faa7"
+    },
+    "streetAddress": "4422 Cherry Blossom Lane",
+    "city": "Broadlands",
+    "state": "VA",
+    "zip": "20148",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50faa6"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb05"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50faa6"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb05"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fab2"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fab3"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fab4"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fab5"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "65fc9426fc13ae5d6a50faa5"
+    },
+    "streetAddress": "123 North Pine Ridge Dr",
+    "city": "Lyman",
+    "state": "WY",
+    "zip": "82937",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50faa4"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb04"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50faa4"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb04"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faae"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faaf"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fab0"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fab1"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "65fc9426fc13ae5d6a50faad"
+    },
+    "streetAddress": "64 Beehive Court",
+    "city": "North Las Vegas",
+    "state": "NV",
+    "zip": "89084",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50faac"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb08"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50faac"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb08"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fac1"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fac2"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fac3"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fac4"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "65fc9426fc13ae5d6a50faaf"
+    },
+    "streetAddress": "1650 N Spanish Mission Dr",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "83440",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50faae"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb09"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50faae"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb09"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fac5"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fac6"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fac7"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fac8"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fac9"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "65fc9426fc13ae5d6a50faa1"
+    },
+    "streetAddress": "5610 Lakeview Drive",
+    "city": "Fayette",
+    "state": "UT",
+    "zip": "84630",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50faa0"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb02"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50faa0"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb02"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faa7"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faa8"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faa9"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "65fc9426fc13ae5d6a50faab"
+    },
+    "streetAddress": "10204 Country Club Dr",
+    "city": "Highland",
+    "state": "UT",
+    "zip": "84003",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50faaa"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb07"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50faaa"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb07"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fabd"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fabe"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fabf"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fac0"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "65fc9426fc13ae5d6a50faa3"
+    },
+    "streetAddress": "2464 Elkview Road",
+    "city": "Hyrum",
+    "state": "UT",
+    "zip": "84319",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50faa2"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb03"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50faa2"
+      },
+      {
+        "$oid": "65fc9d58fc13ae5b6c50fb03"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faaa"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faab"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faac"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faad"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "65fcdc1225f76a69c9016232"
+    },
+    "streetAddress": "123 Cactus Lane",
+    "city": "St George",
+    "state": "UT",
+    "zip": "84555",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "65fcb4a2fc13ae711c50faa6"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faca"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "65fcb4a2fc13ae711c50faa6"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50faca"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50facb"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "660197a325f76a69c9016246"
+    },
+    "streetAddress": "123 Fishermans Way",
+    "city": "Clearfield",
+    "state": "UT",
+    "zip": "84054",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "660196af03f86200a4747151"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fa9e"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "660196af03f86200a4747151"
+      },
+      {
+        "$oid": "65fcb4a2fc13ae711c50fa9e"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "66074623dd2221a9cf840885"
+    },
+    "streetAddress": "123 Main St",
+    "city": "Anytown",
+    "state": "CA",
+    "zip": "12345",
+    "country": "United States",
+    "headOfHousehold": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50fa9d"
+      },
+      {
+        "$oid": "65fc9426fc13ae5d6a50fa9f"
+      }
+    ],
+    "residents": [
+      {
+        "$oid": "65fc9426fc13ae5d6a50fa9d"
+      },
+      {
+        "$oid": "65fc9426fc13ae5d6a50fa9f"
+      },
+      {
+        "$oid": "65fc9426fc13ae5d6a50faa1"
+      }
+    ],
+    "__v": 0
+  }]
