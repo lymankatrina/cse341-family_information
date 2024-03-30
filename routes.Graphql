@@ -75,17 +75,38 @@ https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutatio
 
 
 
-
 ### GraphQL Query to UPDATE an exisint anniversary from the anniversaries collection
 
 https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20%7B%0A%20%20updateAnniversary(%0A%20%20%20%20id%3A%20%2265f1dccaa082e7bd594edca4%22%2C%0A%20%20%20%20couple%3A%20%5B%2265f1dc20a082e7bd594edca2%22%2C%20%2265f601bc4abde303e77e19e4%22%5D%2C%0A%20%20%20%20%20%20anniversaryDate%3A%20%221996-01-14%22%0A%20%20%20%20)%0A%20%20%7B%0A%20%20%20%20_id%0A%20%20%20%20couple%0A%20%20%20%20anniversaryDate%0A%20%20%7D%0A%7D%0A
 
 
 
-
 ### GraphQL Query to DELETE an exisint anniversary from the anniversaries collection
 
 https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20%7B%0A%20deleteAnniversary%20(id%3A%20%2265fc9426fc13ae5d6a50fa9c%22)%0A%20%20%7B%0A%20_id%0Acouple%0AanniversaryDate%0A%7D%0A%7D%0A
+
+
+
+
+
+// NEWS COLLECTION
+
+# GraphQL Query to retrieve all news from the news collection
+
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=query%20%7B%0A%20%20%20%20news%20%7B%0A%20%20%20%20%20%20%20%20_id%0A%20%20%20%20%20%20%20%20newsTitle%0A%20%20%20%20%20%20%20%20newsBody%0A%20%20%20%20%20%20%20%20status%0A%20%20%20%20%20%20%20%20postedBy%0A%20%20%20%20%20%20%20%20dateCreated%0A%20%20%20%20%20%20%20%20picture%0A%20%20%20%20%7D%0A%7D%0A
+
+
+# GraphQL Query to create news to the news collection
+
+
+
+# GraphQL Query to UPDATE an exisint news from the news collection
+
+
+
+# GraphQL Query to DELETE an exisint news from the news collection
+
+
 
 
 
@@ -410,3 +431,88 @@ anniversaryDate
 
 
 // NEWS COLLECTION
+
+
+
+# GraphQL Query to retrieve all news from the news collection
+
+
+query {
+    news {
+        _id
+        newsTitle
+        newsBody
+        status
+        postedBy
+        dateCreated
+        picture
+    }
+}
+
+
+
+# GraphQL Query to create news to the news collection
+
+
+mutation {
+    createNews(
+        newsTitle: "New News Title",
+        newsBody: "New News Body Content",
+        status: "public",
+        postedBy: "IndividualId",
+        dateCreated: "2024-03-30",
+        picture: "https://example.com/image.jpg"
+    ) {
+        _id
+        newsTitle
+        newsBody
+        status
+        postedBy
+        dateCreated
+        picture
+    }
+}
+
+
+
+# GraphQL Query to UPDATE an exisint news from the news collection
+
+
+mutation {
+    updateNewsById(
+        id: "NewsIdToUpdate",
+        newsTitle: "Updated News Title",
+        newsBody: "Updated News Body Content",
+        status: "private",
+        postedBy: "UpdatedIndividualId",
+        dateCreated: "2024-03-30",
+        picture: "https://example.com/updated-image.jpg"
+    ) {
+        _id
+        newsTitle
+        newsBody
+        status
+        postedBy
+        dateCreated
+        picture
+    }
+}
+
+
+
+
+
+
+# GraphQL Query to DELETE an exisint news from the news collection
+
+mutation {
+    deleteNews(id: "NewsIdToDelete") {
+        _id
+        newsTitle
+        newsBody
+        status
+        postedBy
+        dateCreated
+        picture
+    }
+}
