@@ -11,6 +11,8 @@ const {
 const { ObjectId } = require('mongoose').Types;
 const Individual = require('./models/individualModel'); // Import Individual model
 const Household = require('./models/householdModel'); // Import Household model
+const Anniversary = require('./models/anniversaryModel'); // Import Anniversary model
+
 
 // Define Individual type
 const IndividualType = new GraphQLObjectType({
@@ -45,6 +47,16 @@ const HouseholdType = new GraphQLObjectType({
     })
 });
 
+// Define Anniversary type
+const AnniversaryType = new GraphQLObjectType({
+    name: 'Anniversary',
+    fields: () => ({
+        _id: { type: GraphQLID },
+        couple: { type: new GraphQLList(GraphQLID) },
+        anniversaryDate: { type: GraphQLString }
+    })
+});
+
 // Define Root Query
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
@@ -66,8 +78,8 @@ const RootQuery = new GraphQLObjectType({
                 return Individual.findById(args.id);
             }
         },
-           // Query to get an Individual by Name
-           individualByName: {
+        // Query to get an Individual by Name
+        individualByName: {
             type: new GraphQLList(IndividualType),
             args: {
                 firstName: { type: GraphQLString }
@@ -93,6 +105,14 @@ const RootQuery = new GraphQLObjectType({
             },
             resolve(parent, args) {
                 return Household.findById(args.id);
+            }
+        },
+
+        // Query to get all Anniversaries
+        anniversaries: {
+            type: new GraphQLList(AnniversaryType),
+            resolve(parent, args) {
+                return Anniversary.find();
             }
         }
     }
@@ -167,6 +187,7 @@ const Mutation = new GraphQLObjectType({
                 return Individual.findByIdAndDelete(args.id);
             }
         },
+
         // Mutation to create a Household
         createHousehold: {
             type: HouseholdType,
@@ -192,7 +213,7 @@ const Mutation = new GraphQLObjectType({
                 return household.save();
             }
         },
-             // Mutation to update a Household
+        // Mutation to update a Household
         updateHousehold: {
             type: HouseholdType,
             args: {
@@ -223,6 +244,72 @@ const Mutation = new GraphQLObjectType({
             resolve(parent, args) {
                 // Implement logic to delete the household
                 return Household.findByIdAndDelete(args.id);
+            }
+        },
+
+        // Mutation for Anniversaries
+        createAnniversary: {
+            type: AnniversaryType,
+            args: {
+                couple: { type: new GraphQLList(GraphQLID) },
+                anniversaryDate: { type: GraphQLString }
+            },
+            resolve(parent, args) {
+                const newAnniversary = new Anniversary({
+                    couple: args.couple,
+                    anniversaryDate: args.anniversaryDate
+                });
+                return newAnniversary.save();
+            }
+        },
+
+
+        // Mutation to update an Anniversary
+        updateAnniversary: {
+            type: AnniversaryType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) },
+                couple: { type: new GraphQLList(GraphQLID) },
+                anniversaryDate: { type: GraphQLString }
+            },
+            async resolve(parent, args) {
+        try {
+            // Find the anniversary by ID
+            const anniversary = await Anniversary.findById(args.id);
+
+            // Check if the anniversary exists
+            if (!anniversary) {
+                throw new Error("Anniversary not found");
+            }
+
+            // Update the anniversary fields with the provided arguments
+            if (args.couple) {
+                anniversary.couple = args.couple;
+            }
+            if (args.anniversaryDate) {
+                anniversary.anniversaryDate = args.anniversaryDate;
+            }
+
+            // Save the updated anniversary to the database
+            const updatedAnniversary = await anniversary.save();
+
+            // Return the updated anniversary
+            return updatedAnniversary;
+        } catch (error) {
+            throw new Error(error.message);
+            }
+        },
+
+        // Mutation to delete an Anniversary
+        deleteAnniversary: {
+            type: AnniversaryType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) }
+            },
+            resolve(parent, args) {
+                // Logic to delete an Anniversary
+                return Anniversary.findByIdAndDelete(args.id);
+                }
             }
         }
     }
