@@ -8,7 +8,7 @@ describe('Handle Server Error', () => {
     consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
     res = {
       status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
+      json: jest.fn()
     };
   });
 

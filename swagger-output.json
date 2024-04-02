@@ -241,6 +241,9 @@
           "200": {
             "description": "OK"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -488,6 +491,23 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/anniversaries/getformatted": {
+      "get": {
+        "tags": [
+          "Anniversaries"
+        ],
+        "summary": "Get all Anniversaries formatted with names",
+        "description": "This will list all anniversaries in the database with names and formatted dates",
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -657,6 +677,23 @@
           "News"
         ],
         "summary": "Get all News Stories",
+        "description": "This will return all the news stories in the database unformatted",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/news/getformatted": {
+      "get": {
+        "tags": [
+          "News"
+        ],
+        "summary": "Get all News Stories formatted with author names",
         "description": "This will return all the news stories in the database",
         "responses": {
           "200": {
@@ -867,6 +904,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -926,6 +966,23 @@
       }
     },
     "/lookup/birthdays": {
+      "get": {
+        "tags": [
+          "Birthdays"
+        ],
+        "summary": "Get all birthdays",
+        "description": "This will return the names of all individuals in the database with their birth date",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/lookup/birthdaysFormatted": {
       "get": {
         "tags": [
           "Birthdays"
