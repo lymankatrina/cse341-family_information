@@ -37,7 +37,7 @@ exports.getIndividualById = async (req, res) => {
   }
 };
 
-exports.getAllEmails = async (req, res) => {
+exports.getAllEmails = async () => {
   // #swagger.ignore = true
   try {
     const result = await Individual.find({}).select('email');

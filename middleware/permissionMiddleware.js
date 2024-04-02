@@ -1,10 +1,9 @@
-const express = require('express');
 const { getAllEmails, getUserByEmail } = require('../controllers/individualController');
 
 const getEmails = async () => {
   let individuals = await getAllEmails();
   let emails = [];
-  for (individual of individuals) {
+  for (const individual of individuals) {
     emails.push(individual.email);
   }
   return emails;

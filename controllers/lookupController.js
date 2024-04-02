@@ -37,10 +37,11 @@ exports.getChildren = async (req, res) => {
   const parentId = req.params.parentId;
   try {
     const children = await Individual.find({ parents: { $in: [parentId] } }).select(
-      'firstName middleName lastName birthDate'
+      '_id firstName middleName lastName birthDate'
     );
     if (children.length > 0) {
       const formattedChildren = children.map((child) => ({
+        individualId: child._id,
         fullName: formatFullName(child),
         birthDate: child.birthDate.toISOString().split('T')[0]
       }));
@@ -75,6 +76,7 @@ exports.getGrandchildren = async (req, res) => {
 
     if (grandchildren.length > 0) {
       const formattedGrandchildren = grandchildren.map((grandchild) => ({
+        individualId: grandchild._id,
         fullName: formatFullName(grandchild),
         birthDate: grandchild.birthDate.toISOString().split('T')[0]
       }));

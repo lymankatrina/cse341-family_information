@@ -1,4 +1,3 @@
-const db = require('../db/connect');
 const Household = require('../models/householdModel');
 const {
   isValidObjectId,
@@ -87,11 +86,9 @@ exports.getHouseholdsByAddress = async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
 
   if (!isValidAddress(address)) {
-    res
-      .status(422)
-      .json({
-        error: "Address is invalid, make sure to follow this format '/street/city/state/zip/'"
-      });
+    res.status(422).json({
+      error: "Address is invalid, make sure to follow this format '/street/city/state/zip/'"
+    });
   } else {
     try {
       const result = await Household.findOne({

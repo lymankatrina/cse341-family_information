@@ -13,9 +13,21 @@ router.get('/getAllIndividuals', validUserEmail, individualController.getAllIndi
 
 router.get('/getIndividualById/:id', validUserEmail, individualController.getIndividualById);
 
-router.post('/', validUserEmail, validHeadOfHousehold, individualController.createIndividual);
+router.post(
+  '/',
+  validUserEmail,
+  validHeadOfHousehold,
+  individualValidator,
+  individualController.createIndividual
+);
 
-router.put('/:id', validUserEmail, validHeadOfHousehold, individualController.updateIndividual);
+router.put(
+  '/:id',
+  validUserEmail,
+  validHeadOfHousehold,
+  individualValidator,
+  individualController.updateIndividual
+);
 
 router.delete('/:id', validUserEmail, validHeadOfHousehold, individualController.deleteIndividual);
 

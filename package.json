@@ -32,8 +32,8 @@
     "graphql": "^15.8.0",
     "mongodb": "^6.5.0",
     "mongoose": "^8.2.4",
-    "swagger": "^0.7.5",
     "supertest": "^6.3.4",
+    "swagger": "^0.0.1",
     "swagger-ui-express": "^5.0.0",
     "validatorjs": "^3.22.1"
   },

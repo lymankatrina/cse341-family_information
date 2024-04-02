@@ -148,10 +148,9 @@ exports.updateAnniversary = async (req, res) => {
     content: {
       "application/json": {
         example: {
-          couple: [
+          couple: 
             "individualId1",
-            "individualId2"
-          ],
+            "individualId2",
           anniversaryDate: "2020-06-30"
         }
       }
@@ -159,7 +158,7 @@ exports.updateAnniversary = async (req, res) => {
   }
   */
   try {
-    const anniversaryId = new ObjectId(req.params.id);
+    const anniversaryId = mongoose.Types.ObjectId(req.params.id);
     const couple = req.body.couple;
     const anniversaryDate = new Date(req.body.anniversaryDate);
     const updatedAnniversary = await Anniversary.findOneAndUpdate(
