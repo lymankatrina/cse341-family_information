@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { initDb } = require('./db/connect');
-const authMiddleware = require('./middleware/authMiddleware');
+const authMiddleware = require('./middleware/authMiddleware').authMiddleware;
 
 const routes = require('./routes');
 
@@ -12,7 +12,7 @@ app
   .use(cors())
   .use(express.json())
   .use(express.urlencoded({ extended: true }))
-  .use(authMiddleware.authMiddleware)
+  .use(authMiddleware)
   .use('/', routes);
 
 initDb((err) => {
@@ -24,3 +24,5 @@ initDb((err) => {
     });
   }
 });
+
+module.exports = app;

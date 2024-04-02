@@ -8,7 +8,6 @@ describe('Calculate Age', () => {
   ];
   testCases.forEach(({ birthDate, expectedAge }) => {
     test('It should calculate age correctly for the given birthdate', () => {
-      console.log('Birth Date:', birthDate);
       expect(calculateAge(birthDate)).toEqual(expectedAge);
     });
   });
