@@ -15,9 +15,7 @@ const formatAnniversary = async (anniversary) => {
 };
 
 // Helper function to format individual name
-const formatFullName = (individual) => (
-  `${individual.firstName} ${individual.lastName}`
-);
+const formatFullName = (individual) => `${individual.firstName} ${individual.lastName}`;
 
 // Helper function to format news stories
 async function formatNews(news) {
@@ -35,7 +33,6 @@ async function formatNews(news) {
     picture: news.picture
   };
 }
-
 
 // Helper function to retrieve all individuals
 async function getAllIndividuals() {

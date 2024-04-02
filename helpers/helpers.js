@@ -42,21 +42,20 @@ function handleServerError(res, error) {
 
 // Helper function to calculate age
 function calculateAge(birthDate) {
-    const today = new Date();
-    const dob = new Date(birthDate); // Convert birthdate to a Date object
-    dob.setUTCHours(0, 0, 0, 0);
-    today.setUTCHours(0, 0, 0, 0);
-  
-    let age = today.getUTCFullYear() - dob.getUTCFullYear();
-    if (
-      today.getUTCMonth() < dob.getUTCMonth() ||
-      (today.getUTCMonth() === dob.getUTCMonth() && today.getUTCDate() < dob.getUTCDate())
-    ) {
-      age--;
-    }
-    return age;
+  const today = new Date();
+  const dob = new Date(birthDate); // Convert birthdate to a Date object
+  dob.setUTCHours(0, 0, 0, 0);
+  today.setUTCHours(0, 0, 0, 0);
+
+  let age = today.getUTCFullYear() - dob.getUTCFullYear();
+  if (
+    today.getUTCMonth() < dob.getUTCMonth() ||
+    (today.getUTCMonth() === dob.getUTCMonth() && today.getUTCDate() < dob.getUTCDate())
+  ) {
+    age--;
   }
-  
+  return age;
+}
 
 // Helper function to format birthday data
 function formatBirthdayIndividual(individual) {
@@ -101,4 +100,3 @@ module.exports = {
   getAllIndividuals,
   getIndividualByLastName
 };
-

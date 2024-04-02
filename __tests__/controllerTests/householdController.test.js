@@ -1,6 +1,6 @@
 const { getHouseholds } = require('../../controllers/householdController');
 const { Household } = require('../../models/householdModel');
-const { expectedResults } = require('./householdExpectedOutcome.json')
+const { expectedResults } = require('./householdExpectedOutcome.json');
 
 jest.mock('../../models/householdModel');
 
@@ -20,7 +20,6 @@ describe('getHouseholds', () => {
   });
 
   test('returns all households', async () => {
-
     Household.find.mockResolvedValue(expectedResults);
 
     await getHouseholds(req, res);

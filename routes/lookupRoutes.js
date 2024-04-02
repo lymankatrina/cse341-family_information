@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const lookupController = require('../controllers/lookupController');
-const { validUserEmail } = require('../middleware/permissionMiddleware')
-
+const { validUserEmail } = require('../middleware/permissionMiddleware');
 
 // Get Parents
 router.get('/parents/:id', validUserEmail, lookupController.getParents);
@@ -14,10 +13,10 @@ router.get('/children/:parentId', validUserEmail, lookupController.getChildren);
 router.get('/grandchildren/:grandparentId', validUserEmail, lookupController.getGrandchildren);
 
 // Get all birthdays
-router.get('/birthdays', validUserEmail, lookupController.getBirthdays);
+router.get('/birthdays', lookupController.getBirthdays);
 
 // Get birthdays formatted
-router.get('/birthdaysFormatted', lookupController.getBirthdayFormatted);
+router.get('/birthdaysFormatted', validUserEmail, lookupController.getBirthdayFormatted);
 
 // Get birthdays by month
 router.get('/birthdays/:month', validUserEmail, lookupController.getBirthdaysByMonth);
