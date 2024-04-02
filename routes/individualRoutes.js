@@ -4,13 +4,12 @@ const { validUserEmail, validHeadOfHousehold } = require('../middleware/permissi
 //const security = require('../middleware/authorize.js');
 
 const individualController = require('../controllers/individualController');
-//const validation = require('../middleware/validate');
+const { individualValidator } = require('../middleware/individualValidator');
 
 // Get a list of all Individuals
 router.get('/getAllIndividuals', validUserEmail, individualController.getAllIndividuals);
 
 // Get a single Individual by id
-
 router.get('/getSingleIndividual/:id', validUserEmail, individualController.getSingleIndividual);
 
 router.post('/', validUserEmail, validHeadOfHousehold, individualController.createIndividual);
@@ -18,5 +17,6 @@ router.post('/', validUserEmail, validHeadOfHousehold, individualController.crea
 router.put('/:id', validUserEmail, validHeadOfHousehold, individualController.updateIndividual);
 
 router.delete('/:id', validUserEmail, validHeadOfHousehold, individualController.deleteIndividual);
+
 
 module.exports = router;

@@ -5,8 +5,11 @@ const { newsValidator } = require('../middleware/newsValidator');
 const { validUserEmail, validHeadOfHousehold } = require('../middleware/permissionMiddleware')
 
 
-// Get all news
+// get news
 router.get('/getall', newsController.getAllNews);
+
+// Get all news
+router.get('/getformatted', newsController.getFormattedNews);
 
 // Get single news story
 router.get('/:id', newsController.getNewsById);

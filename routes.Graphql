@@ -1,0 +1,528 @@
+//RENDER DEPLOYMENT
+
+//INDIVIDUALS COLLECTION
+
+### Query to retrieve all Individuals from the Individuals collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=query%20GetAllIndividuals%20%7B%0Aindividuals%7B%0A%20%20%20%20_id%0A%20%20%20%20firstName%0A%20%20%20%20middleName%0A%20%20%20%20lastName%0A%20%20%20%20birthDate%0A%20%20%20%20parents%0A%20%20%20%20phone%0A%20%20%20%20email%0A%20%20%20%20household%0A%20%20%20%20headOfHousehold%0A%20%20%20%20picture%0A%20%20%7D%0A%7D%0A&operationName=GetAllIndividuals
+
+
+### Query to retrieve an individual by ID
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=query%20IndividualByID%20%7B%0A%20%20individual(id%3A%20%2265ef74ae7c211814c571e01b%22)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20firstName%0A%20%20%20%20middleName%0A%20%20%20%20lastName%0A%20%20%20%20birthDate%0A%20%20%20%20parents%0A%20%20%20%20phone%0A%20%20%20%20email%0A%20%20%20%20household%0A%20%20%20%20headOfHousehold%0A%20%20%20%20picture%0A%20%20%7D%0A%7D%0A&operationName=IndividualByID
+
+
+### Query to retrieve one individual by name
+https://cse341-family-information-winter-2024.onrender.com/graphQL?operationName=IndividualByName&query=query%20IndividualByName%20%7B%0A%20%20individualByName(firstName%3A%20%22Rhianon%22)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20firstName%0A%20%20%20%20middleName%0A%20%20%20%20lastName%0A%20%20%20%20birthDate%0A%20%20%20%20parents%0A%20%20%20%20phone%0A%20%20%20%20email%0A%20%20%20%20household%0A%20%20%20%20headOfHousehold%0A%20%20%20%20picture%0A%20%20%7D%0A%7D%0A
+
+
+### Query to create a new Individual to the individuals collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?operationName=a&query=%0A%23%20Query%20to%20Add%20a%20new%20author%20to%20the%20collection%0Amutation%20%20%7B%0A%20%20createIndividual(%0A%20%20%20%20firstName%3A%20%22Elie%22%2C%0A%20%20%20%20middleName%3A%20%22Silvere%22%2C%20%0A%20%20%20%20lastName%3A%20%22Mambou%22%2C%0A%20%20%20%20birthDate%3A%20%222000-01-01%22%2C%0A%20%20%20%20parents%3A%22na%22%2C%0A%20%20%20%20phone%3A%20%22123-342-1234%22%2C%0A%20%20%20%20email%3A%20%22chearleader%40gmail.com%22%2C%0A%20%20%20%20household%3A%20%22%22%2C%0A%20%20%20%20headOfHousehold%3A%20true%2C%0A%20%20%20%20picture%3A%20%22none%22%0A%20%20%20%20)%0A%20%20%7B%0A%20%20%20%20firstName%0A%20%20%20%20middleName%0A%20%20%20%20lastName%0A%20%20%20%20birthDate%0A%20%20%20%20parents%0A%20%20%20%20phone%0A%20%20%20%20email%0A%20%20%20%20household%0A%20%20%20%20headOfHousehold%0A%20%20%20%20picture%0A%20%20%7D%0A%7D%0A
+
+
+
+### Query to update an individual information by ID
+https://cse341-family-information-winter-2024.onrender.com/graphQL?operationName=UpdateIndividual&query=%23%20Query%20to%20update%20an%20existing%20individual%20information%0Amutation%20UpdateIndividual%20%7B%0A%20%20updateIndividual(%0A%20%20%09id%3A%20%2265ef74ae7c211814c571e01b%22%2C%0A%20%20%20%20firstName%3A%20%22John%22%2C%0A%20%20%20%20middleName%3A%22Bart%20Etienne%22%2C%0A%20%20%20%20lastName%3A%20%22Doe%22%0A%20%20%20%20birthDate%3A%20%22988-01-01%22%2C%0A%20%20%20%20parents%3A%22%20na%22%2C%0A%20%20%20%20phone%3A%20%22830-345-9833%22%2C%0A%20%20%20%20email%3A%22johnDoe%40byui.edu%22%2C%0A%20%20%20%20household%3A%20%22%22%2C%0A%20%20%20%20headOfHousehold%3A%20true%2C%0A%20%20%20%20picture%3A%22none%22)%0A%20%20%0A%20%20%7B%0A%20%20%09_id%0A%20%20%20%20firstName%0A%20%20%20%20middleName%0A%20%20%20%20lastName%0A%20%20%20%20birthDate%0A%20%20%20%20parents%0A%20%20%20%20phone%0A%20%20%20%20email%0A%20%20%20%20household%0A%20%20%20%20headOfHousehold%0A%20%20%20%20picture%0A%20%20%7D%0A%7D%0A%0A
+
+
+
+### Query to delete an existing individual from the collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20DeleteIndividual%20%7B%0A%20%20deleteIndividual(id%3A%20%2265e39668adcab8306401f891%22)%20%7B%0A%09_id%0A%20%20%20%20firstName%0A%20%20%20%20middleName%0A%20%20%20%20lastName%0A%20%20%20%20birthDate%0A%20%20%20%20parents%0A%20%20%20%20phone%0A%20%20%20%20email%0A%20%20%20%20household%0A%20%20%20%20headOfHousehold%0A%20%20%20%20picture%0A%20%20%7D%0A%7D&operationName=DeleteIndividual
+
+
+
+
+
+
+// HOUSHEHOLDS COLLECTION
+
+### Query to retrieve all households from the household collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=%23%20GraphQL%20Query%20to%20Retrieve%20All%20households%0A%0Aquery%20%7B%0A%20%20households%20%7B%0A%20%20%20%20_id%0A%20%20%20%20streetAddress%0A%20%20%20%20city%0A%20%20%20%20state%0A%20%20%20%20zip%0A%20%20%20%20country%0A%20%20%20%20headOfHousehold%20%0A%20%20%20%20residents%0A%20%20%7D%0A%7D%0A%0A%0A&operationName=DeleteIndividual
+
+
+### Query to retrieve an household by ID
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=%23%20GraphQL%20Query%20to%20Retrieve%20All%20households%0A%0Aquery%20householdById%20%7B%0A%20%20household(id%3A%20%2265f9197e78c0a979ea81a186%22)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20streetAddress%0A%20%20%20%20city%0A%20%20%20%20state%0A%20%20%20%20zip%0A%20%20%20%20country%0A%20%20%20%20headOfHousehold%20%0A%20%20%20%20residents%0A%20%20%7D%0A%7D%0A%0A%0A&operationName=householdById
+
+
+
+### GraphQL Query to create a new household to the collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20%7B%0A%20%20createHousehold(%0A%20%20%20%20streetAddress%3A%20%22123%20Main%20St%22%2C%0A%20%20%20%20city%3A%20%22Anytown%22%2C%0A%20%20%20%20state%3A%20%22CA%22%2C%0A%20%20%20%20zip%3A%20%2212345%22%2C%0A%20%20%20%20country%3A%20%22United%20States%22%2C%0A%20%20%20%20headOfHousehold%3A%20%5B%2265fc9426fc13ae5d6a50fa9d%22%2C%20%2265fc9426fc13ae5d6a50fa9f%22%5D%2C%0A%20%20%20%20residents%3A%20%5B%2265fc9426fc13ae5d6a50fa9d%22%2C%20%2265fc9426fc13ae5d6a50fa9f%22%2C%20%2265fc9426fc13ae5d6a50faa1%22%5D%0A%20%20)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20streetAddress%0A%20%20%20%20city%0A%20%20%20%20state%0A%20%20%20%20zip%0A%20%20%20%20country%0A%20%20%20%20headOfHousehold%0A%20%20%20%20residents%0A%20%20%7D%0A%7D%0A&operationName=DeleteIndividual
+
+
+
+### GraphQL Query to update an existing household
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20UpdateHousehold%20%7B%0A%20%20updateHousehold(%0A%20%20%20%20%20id%3A%20%2265f5f796a5c2c0bc7cd8cbaf%22%2C%0A%20%20%20%20streetAddress%3A%20%22%22%2C%0A%20%20%20%20city%3A%20%22290%20Zion%20Street%22%2C%0A%20%20%20%20state%3A%20%22Salt%20Lake%22%2C%0A%20%20%20%20zip%3A%20%2285090%22%2C%0A%20%20%20%20country%3A%20%22United%20States%22%2C%0A%20%20%20%20headOfHousehold%3A%20%0A%20%20%20%20%20%20%20%5B%0A%20%20%20%20%20%20%20%20%20%20%2265f2162017c8cc6b12754e5e%22%2C%0A%20%20%20%20%20%20%20%20%20%20%2265f2166117c8cc6b12754e5f%22%0A%20%20%20%20%20%20%20%20%5D%2C%0A%20%20%20%20residents%3A%20%20%5B%0A%20%20%20%20%20%20%2265f2162017c8cc6b12754e5e%22%2C%0A%20%20%20%20%20%20%2265f2166117c8cc6b12754e5f%22%2C%0A%20%20%20%20%20%20%2265f59e49db24e761d695d77e%22%0A%20%20%20%20%5D%20%20)%20%7B%0A%20%20%20%20%0A%20%20%20%20_id%0A%20%20%20%20streetAddress%0A%20%20%20%20city%0A%20%20%20%20state%0A%20%20%20%20zip%0A%20%20%20%20country%0A%20%20%20%20headOfHousehold%0A%20%20%20%20residents%0A%20%20%7D%0A%7D%0A%0A%0A%0A&operationName=UpdateHousehold
+
+
+
+### Query to delete an existing household from the collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=%0A%23%23%23%20Query%20to%20delete%20an%20existing%20household%20from%20the%20collection%0A%0Amutation%20%7B%0A%20%20deleteHousehold(id%3A%20%2265fc9426fc13ae5d6a50faa9%22)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20streetAddress%0A%20%20%20%20city%0A%20%20%20%20state%0A%20%20%20%20zip%0A%20%20%20%20country%0A%20%20%20%20headOfHousehold%0A%20%20%20%20residents%0A%20%20%7D%0A%7D&operationName=householdById
+
+
+
+
+
+
+// ANNIVERSARIES COLLECTION
+
+### GraphQL Query to Retrieve All anniversaries
+
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=query%20%7B%0A%20%20anniversaries%20%7B%0A%20%20%20%20_id%0A%20%20%20%20couple%0A%20%20%20%20anniversaryDate%0A%20%20%7D%0A%7D%0A
+
+
+
+### GraphQL Query to create a new anniversary to the anniversaries collection
+
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20%7B%0A%20%20createAnniversary(%0A%20%20%20%20couple%3A%20%5B%2265fc9426fc13ae5d6a50fa9c%22%2C%20%2265fc9d58fc13ae5b6c50fb00%22%5D%2C%0A%20%20%20%20anniversaryDate%3A%20%221997-01-13%22%0A%20%20)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20couple%0A%20%20%20%20anniversaryDate%0A%20%20%7D%0A%7D%0A
+
+
+
+### GraphQL Query to UPDATE an exisint anniversary from the anniversaries collection
+
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20%7B%0A%20%20updateAnniversary(%0A%20%20%20%20id%3A%20%2265f1dccaa082e7bd594edca4%22%2C%0A%20%20%20%20couple%3A%20%5B%2265f1dc20a082e7bd594edca2%22%2C%20%2265f601bc4abde303e77e19e4%22%5D%2C%0A%20%20%20%20%20%20anniversaryDate%3A%20%221996-01-14%22%0A%20%20%20%20)%0A%20%20%7B%0A%20%20%20%20_id%0A%20%20%20%20couple%0A%20%20%20%20anniversaryDate%0A%20%20%7D%0A%7D%0A
+
+
+
+### GraphQL Query to DELETE an exisint anniversary from the anniversaries collection
+
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20%7B%0A%20deleteAnniversary%20(id%3A%20%2265fc9426fc13ae5d6a50fa9c%22)%0A%20%20%7B%0A%20_id%0Acouple%0AanniversaryDate%0A%7D%0A%7D%0A
+
+
+
+
+
+// NEWS COLLECTION
+
+### GraphQL Query to retrieve all news from the news collection
+
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=query%20%7B%0A%20%20%20%20news%20%7B%0A%20%20%20%20%20%20%20%20_id%0A%20%20%20%20%20%20%20%20newsTitle%0A%20%20%20%20%20%20%20%20newsBody%0A%20%20%20%20%20%20%20%20status%0A%20%20%20%20%20%20%20%20postedBy%0A%20%20%20%20%20%20%20%20dateCreated%0A%20%20%20%20%20%20%20%20picture%0A%20%20%20%20%7D%0A%7D%0A
+
+
+
+### GraphQL Query to find news by id from the news collection
+
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=%0Aquery%20%7B%0A%20%20newsById(id%3A%20%2265f35c28b182f34a3d33374c%22)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20newsTitle%0A%20%20%20%20newsBody%0A%20%20%20%20status%0A%20%20%20%20postedBy%0A%20%20%20%20dateCreated%0A%20%20%20%20picture%0A%20%20%7D%0A%7D%0A
+
+
+
+### GraphQL Query to create news to the news collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20%7B%0A%20%20%20%20createNews(%0A%20%20%20%20%20%20%20%20newsTitle%3A%20%22New%20News%20Title%22%2C%0A%20%20%20%20%20%20%20%20newsBody%3A%20%22New%20News%20Body%20Content%22%2C%0A%20%20%20%20%20%20%20%20status%3A%20%22public%22%2C%0A%20%20%20%20%20%20%20%20postedBy%3A%20%2265f34f8191f613164d933bb1%22%2C%20%0A%20%20%20%20%20%20%20%20dateCreated%3A%20%222024-03-30%22%2C%0A%20%20%20%20%20%20%20%20picture%3A%20%22https%3A%2F%2Fexample.com%2Fimage.jpg%22%0A%20%20%20%20)%20%7B%0A%20%20%20%20%20%20%20%20_id%0A%20%20%20%20%20%20%20%20newsTitle%0A%20%20%20%20%20%20%20%20newsBody%0A%20%20%20%20%20%20%20%20status%0A%20%20%20%20%20%20%20%20postedBy%0A%20%20%20%20%20%20%20%20dateCreated%0A%20%20%20%20%20%20%20%20picture%0A%20%20%20%20%7D%0A%7D
+
+
+
+# GraphQL Query to UPDATE an existing news from the news collection
+https://cse341-family-information-winter-2024.onrender.com/graphQL?query=mutation%20%7B%0A%20%20updateNews(%0A%20%20%20%20id%3A%20%2265fb721269a9ff4f533c80e0%22%0A%20%20%20%20newsTitle%3A%20%22Updated%20News%20Title%22%0A%20%20%20%20newsBody%3A%20%22Updated%20News%20Body%22%0A%20%20%20%20status%3A%20%22private%22%0A%20%20)%20%7B%0A%20%20%20%20_id%0A%20%20%20%20newsTitle%0A%20%20%20%20newsBody%0A%20%20%20%20status%0A%20%20%20%20postedBy%0A%20%20%20%20dateCreated%0A%20%20%20%20picture%0A%20%20%7D%0A%7D
+
+
+# GraphQL Query to DELETE an exisint news from the news collection
+
+
+
+
+
+
+
+
+# ROUTES.GraphQL
+
+
+// INDIVIDUALS COLLECTION
+
+# GraphQL Query to Retrieve All Individuals from the Individuals collection
+
+query GetAllIndividuals {
+individuals{
+    _id
+    firstName
+    middleName
+    lastName
+    birthDate
+    parents
+    phone
+    email
+    household
+    headOfHousehold
+    picture
+  }
+}
+
+
+### Query to retrieve one individual by ID
+
+query IndividualByID {
+  individual(id: "65ef74ae7c211814c571e01b") {
+    _id
+    firstName
+    middleName
+    lastName
+    birthDate
+    parents
+    phone
+    email
+    household
+    headOfHousehold
+    picture
+  }
+}
+
+
+### Query to retrieve one individual by name
+
+query IndividualByName {
+  individualByName(firstName: "Rhianon") {
+    _id
+    firstName
+    middleName
+    lastName
+    birthDate
+    parents
+    phone
+    email
+    household
+    headOfHousehold
+    picture
+  }
+}
+
+
+### Mutation to add a new individual to the collection
+
+# Query to Add a new author to the collection
+
+mutation  {
+  createIndividual(
+    firstName: "Elie",
+    middleName: "Silvere", 
+    lastName: "Mambou",
+    birthDate: "2000-01-01",
+    parents:"na",
+    phone: "123-342-1234",
+    email: "chearleader@gmail.com",
+    household: "",
+    headOfHousehold: true,
+    picture: "none"
+    )
+  {
+    firstName
+    middleName
+    lastName
+    birthDate
+    parents
+    phone
+    email
+    household
+    headOfHousehold
+    picture
+  }
+}
+
+
+# Query to update an existing individual information
+
+mutation UpdateIndividual {
+  updateIndividual(
+  	id: "65ef74ae7c211814c571e01b",
+    firstName: "John",
+    middleName:"Bart Etienne",
+    lastName: "Doe"
+    birthDate: "988-01-01",
+    parents:" na",
+    phone: "830-345-9833",
+    email:"johnDoe@byui.edu",
+    household: "",
+    headOfHousehold: true,
+    picture:"none")
+  
+  {
+  	_id
+    firstName
+    middleName
+    lastName
+    birthDate
+    parents
+    phone
+    email
+    household
+    headOfHousehold
+    picture
+  }
+}
+
+
+# Query to delete an existing individual from the collection
+
+mutation DeleteIndividual {
+  deleteIndividual(id: "65e39668adcab8306401f891") {
+	_id
+    firstName
+    middleName
+    lastName
+    birthDate
+    parents
+    phone
+    email
+    household
+    headOfHousehold
+    picture
+  }
+}
+
+
+
+
+// HOUSHEHOLDS COLLECTION
+
+# GraphQL Query to Retrieve All households
+
+query {
+  households {
+    _id
+    streetAddress
+    city
+    state
+    zip
+    country
+    headOfHousehold 
+    residents
+  }
+}
+
+
+# GraphQL Query to Retrieve an household by Id
+
+query householdById {
+  household(id: "65f9197e78c0a979ea81a186") {
+    _id
+    streetAddress
+    city
+    state
+    zip
+    country
+    headOfHousehold 
+    residents
+  }
+}
+
+
+# GraphQL Query to create a new household to the collection
+
+mutation {
+  createHousehold(
+    streetAddress: "123 Main St",
+    city: "Anytown",
+    state: "CA",
+    zip: "12345",
+    country: "United States",
+    headOfHousehold: ["65fc9426fc13ae5d6a50fa9d", "65fc9426fc13ae5d6a50fa9f"],
+    residents: ["65fc9426fc13ae5d6a50fa9d", "65fc9426fc13ae5d6a50fa9f", "65fc9426fc13ae5d6a50faa1"]
+  ) {
+    _id
+    streetAddress
+    city
+    state
+    zip
+    country
+    headOfHousehold
+    residents
+  }
+}
+
+
+
+# GraphQL Query to update an existing household
+
+mutation UpdateHousehold {
+  updateHousehold(
+     id: "65f5f796a5c2c0bc7cd8cbaf",
+    streetAddress: "",
+    city: "290 Zion Street",
+    state: "Salt Lake",
+    zip: "85090",
+    country: "United States",
+    headOfHousehold: 
+       [
+          "65f2162017c8cc6b12754e5e",
+          "65f2166117c8cc6b12754e5f"
+        ],
+    residents:  [
+      "65f2162017c8cc6b12754e5e",
+      "65f2166117c8cc6b12754e5f",
+      "65f59e49db24e761d695d77e"
+    ]  ) {
+    
+    _id
+    streetAddress
+    city
+    state
+    zip
+    country
+    headOfHousehold
+    residents
+  }
+}
+
+
+### Query to delete an existing household from the collection
+
+mutation {
+  deleteHousehold(id: "65fc9426fc13ae5d6a50faa9") {
+    _id
+    streetAddress
+    city
+    state
+    zip
+    country
+    headOfHousehold
+    residents
+  }
+}
+
+
+
+
+// ANNIVERSARIES COLLECTION
+
+
+# GraphQL Query to Retrieve All anniversaries
+
+query {
+  anniversaries {
+    _id
+    couple
+    anniversaryDate
+  }
+}
+
+
+# GraphQL Query to create a new anniversary to the anniversaries collection
+
+mutation {
+  createAnniversary(
+    couple: ["65fc9426fc13ae5d6a50fa9c", "65fc9d58fc13ae5b6c50fb00"],
+    anniversaryDate: "1997-01-13"
+  ) {
+    _id
+    couple
+    anniversaryDate
+  }
+}
+
+
+
+# GraphQL Query to UPDATE an exisint anniversary from the anniversaries collection
+
+mutation {
+  updateAnniversary(
+    id: "65f1dccaa082e7bd594edca4",
+    couple: ["65f1dc20a082e7bd594edca2", "65f601bc4abde303e77e19e4"],
+      anniversaryDate: "1996-01-14"
+    )
+  {
+    _id
+    couple
+    anniversaryDate
+  }
+}
+
+
+
+# GraphQL Query to DELETE an exisint anniversary from the anniversaries collection
+
+mutation {
+ deleteAnniversary (id: "65fc9426fc13ae5d6a50fa9c")
+  {
+ _id
+couple
+anniversaryDate
+}
+}
+
+
+
+
+// NEWS COLLECTION
+
+# GraphQL Query to retrieve all news from the news collection
+
+query {
+    news {
+        _id
+        newsTitle
+        newsBody
+        status
+        postedBy
+        dateCreated
+        picture
+    }
+}
+
+
+
+# GraphQL Query to find news by id from the news collection
+
+query {
+  newsById(id: "65f35c28b182f34a3d33374c") {
+    _id
+    newsTitle
+    newsBody
+    status
+    postedBy
+    dateCreated
+    picture
+  }
+}
+
+
+# GraphQL Query to create news to the news collection
+
+mutation {
+    createNews(
+        newsTitle: "New News Title",
+        newsBody: "New News Body Content",
+        status: "public",
+        postedBy: "65f34f8191f613164d933bb1", 
+        dateCreated: "2024-03-30",
+        picture: "https://example.com/image.jpg"
+    ) {
+        _id
+        newsTitle
+        newsBody
+        status
+        postedBy
+        dateCreated
+        picture
+    }
+}
+
+
+# GraphQL Query to UPDATE an existing news from the news collection
+
+mutation {
+  updateNews(
+    id: "65fb721269a9ff4f533c80e0"
+    newsTitle: "Updated News Title"
+    newsBody: "Updated News Body"
+    status: "private"
+  ) {
+    _id
+    newsTitle
+    newsBody
+    status
+    postedBy
+    dateCreated
+    picture
+  }
+}
+
+
+# GraphQL Query to DELETE an exisint news from the news collection
+
+mutation {
+    deleteNews(id: "66085524f062cf983755bd8e") {
+        _id
+        newsTitle
+        newsBody
+        status
+        postedBy
+        dateCreated
+        picture
+    }
+}

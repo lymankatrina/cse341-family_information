@@ -1,6 +1,10 @@
 const Individual = require('../models/individualModel');
 const Household = require('../models/householdModel');
-const { formatBirthdayIndividual, handleServerError, formatFullName } = require('../helpers/helpers');
+const {
+  formatBirthdayIndividual,
+  handleServerError,
+  formatFullName
+} = require('../helpers/helpers');
 
 exports.getParents = async (req, res) => {
   // #swagger.tags = ['Relationships']
@@ -14,16 +18,16 @@ exports.getParents = async (req, res) => {
     }
     const parents = await Individual.find({ _id: { $in: individual.parents } });
     if (parents.length > 0) {
-      const result = parents.map(parent => (
-        `ParentId: ${parent._id}, Name: ${formatFullName(parent)}`
-      ));
+      const result = parents.map(
+        (parent) => `ParentId: ${parent._id}, Name: ${formatFullName(parent)}`
+      );
       res.status(200).json(result);
     } else {
       res.status(404).json({ error: 'No parents found for that individual Id' });
     }
   } catch (error) {
     handleServerError(res, error);
-  } 
+  }
 };
 
 exports.getChildren = async (req, res) => {
@@ -32,9 +36,11 @@ exports.getChildren = async (req, res) => {
   // #swagger.description = 'This will return a list of individuals with the provided parentId listed in the parents array.'
   const parentId = req.params.parentId;
   try {
-    const children = await Individual.find({ parents: { $in: [parentId] } }).select('firstName middleName lastName birthDate');
+    const children = await Individual.find({ parents: { $in: [parentId] } }).select(
+      'firstName middleName lastName birthDate'
+    );
     if (children.length > 0) {
-      const formattedChildren = children.map(child => ({
+      const formattedChildren = children.map((child) => ({
         fullName: formatFullName(child),
         birthDate: child.birthDate.toISOString().split('T')[0]
       }));
@@ -68,7 +74,7 @@ exports.getGrandchildren = async (req, res) => {
     }
 
     if (grandchildren.length > 0) {
-      const formattedGrandchildren = grandchildren.map(grandchild => ({
+      const formattedGrandchildren = grandchildren.map((grandchild) => ({
         fullName: formatFullName(grandchild),
         birthDate: grandchild.birthDate.toISOString().split('T')[0]
       }));
@@ -83,6 +89,18 @@ exports.getGrandchildren = async (req, res) => {
 };
 
 exports.getBirthdays = async (req, res) => {
+  // #swagger.tags = ['Birthdays']
+  // #swagger.summary = 'Get all birthdays'
+  // #swagger.description = 'This will return the names of all individuals in the database with their birth date'
+  try {
+    const birthdays = await Individual.find({}).select('_id firstName lastName birthDate');
+    res.status(200).json(birthdays);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+exports.getBirthdayFormatted = async (req, res) => {
   // #swagger.tags = ['Birthdays']
   // #swagger.summary = 'Get all birthdays'
   // #swagger.description = 'This will return the full names of all individuals in the database sorted by birth month and date along with their date of birth and the age of the individual as of today's date.'

@@ -4,7 +4,7 @@ const authController = require('../controllers/authController');
 const { requiresAuth } = require('express-openid-connect');
 
 router.get(
-  '/', 
+  '/',
   authController.checkAuth // '#swagger.ignore = true'
 );
 
@@ -14,6 +14,5 @@ router.get(
 );
 
 router.get('/profile', requiresAuth(), authController.getProfile);
-
 
 module.exports = router;
