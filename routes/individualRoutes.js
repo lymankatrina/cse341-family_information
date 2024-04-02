@@ -10,7 +10,7 @@ const { individualValidator } = require('../middleware/individualValidator');
 router.get('/getAllIndividuals', validUserEmail, individualController.getAllIndividuals);
 
 // Get a single Individual by id
-router.get('/getSingleIndividual/:id', validUserEmail, individualController.getSingleIndividual);
+router.get('/getSingleIndividual/:id', validUserEmail, individualController.getIndividualById);
 
 router.post('/', validUserEmail, validHeadOfHousehold, individualController.createIndividual);
 
