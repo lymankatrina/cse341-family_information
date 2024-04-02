@@ -1,6 +1,6 @@
 const validator = require('../helpers/validate');
 
-const saveIndividual = (req, res, next) => {
+const individualValidator = (req, res, next) => {
   const validationRule = {
     firstName: 'required|string',
     middleName: 'required|string',
@@ -24,6 +24,4 @@ const saveIndividual = (req, res, next) => {
   });
 };
 
-module.exports = {
-  saveIndividual // Corrected function name
-};
+module.exports = {individualValidator};
