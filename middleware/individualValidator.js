@@ -24,4 +24,4 @@ const individualValidator = (req, res, next) => {
   });
 };
 
-module.exports = {individualValidator};
+module.exports = { individualValidator };

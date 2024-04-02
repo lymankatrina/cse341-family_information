@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const lookupController = require('../controllers/lookupController');
-const { validUserEmail } = require('../middleware/permissionMiddleware')
-
+const { validUserEmail } = require('../middleware/permissionMiddleware');
 
 // Get Parents
 router.get('/parents/:id', validUserEmail, lookupController.getParents);
