@@ -14,6 +14,9 @@ router.get('/grandchildren/:grandparentId', lookupController.getGrandchildren);
 // Get all birthdays
 router.get('/birthdays', lookupController.getBirthdays);
 
+// Get birthdays formatted
+router.get('/birthdaysFormatted', lookupController.getBirthdayFormatted);
+
 // Get birthdays by month
 router.get('/birthdays/:month', lookupController.getBirthdaysByMonth);
 

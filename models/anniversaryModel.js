@@ -15,4 +15,4 @@ const anniversarySchema = new mongoose.Schema({
 
 const Anniversary = mongoose.model('Anniversary', anniversarySchema);
 
-module.exports = Anniversary;
+module.exports = { Anniversary };

@@ -9,4 +9,6 @@ const config = {
   issuerBaseURL: process.env.issuerBaseURL
 };
 
-module.exports = { authMiddleware: auth(config) };
+const authMiddleware = auth(config);
+
+module.exports = { authMiddleware };

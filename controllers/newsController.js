@@ -1,10 +1,22 @@
-const News = require('../models/newsModel');
+const { News } = require('../models/newsModel');
 const Individual = require('../models/individualModel');
 const { formatNews, handleServerError } = require('../helpers/helpers');
 
 exports.getAllNews = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Get all News Stories'
+  // #swagger.description = 'This will return all the news stories in the database unformatted'
+  try {
+    const result = await News.find();
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+exports.getFormattedNews = async (req, res) => {
+  // #swagger.tags = ['News']
+  // #swagger.summary = 'Get all News Stories formatted with author names'
   // #swagger.description = 'This will return all the news stories in the database'
   try {
     const news = await News.find().populate('postedBy');

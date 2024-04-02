@@ -3,8 +3,11 @@ const router = express.Router();
 const newsController = require('../controllers/newsController');
 const { newsValidator } = require('../middleware/newsValidator');
 
-// Get all news
+// get news
 router.get('/getall', newsController.getAllNews);
+
+// Get all news
+router.get('/getformatted', newsController.getFormattedNews);
 
 // Get single news story
 router.get('/:id', newsController.getNewsById);
