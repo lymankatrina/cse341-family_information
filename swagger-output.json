@@ -56,7 +56,11 @@
     },
     "/individuals/getSingleIndividual/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Individuals"
+        ],
+        "summary": "Get an individual by Id",
+        "description": "This will return an individual by Id",
         "parameters": [
           {
             "name": "id",
@@ -68,8 +72,17 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
           "403": {
             "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
