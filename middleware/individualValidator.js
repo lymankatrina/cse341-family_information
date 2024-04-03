@@ -6,9 +6,9 @@ const individualValidator = (req, res, next) => {
     middleName: 'required|string',
     lastName: 'required|string',
     birthDate: 'required|string',
-    parents: 'required|string',
+    parents: 'string',
     email: 'required|string',
-    household: 'required|Number', // Removed space before Number
+    household: 'string', // Removed space before Number
     headOfHousehold: 'required|string'
   };
   validator(req.body, validationRule, {}, (err, status) => {
