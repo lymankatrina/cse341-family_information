@@ -1,6 +1,6 @@
 const request = require('supertest');
 const express = require('express');
-const router = require('../routes/anniversaryRoutes');
+const router = require('../../routes/anniversaryRoutes');
 
 const app = express();
 app.use('/anniversaries', router);

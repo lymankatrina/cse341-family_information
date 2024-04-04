@@ -1,6 +1,6 @@
 const request = require('supertest');
 const express = require('express');
-const router = require('../routes/individualRoutes');
+const router = require('../../routes/individualRoutes');
 
 const app = express();
 app.use('/individuals', router);
