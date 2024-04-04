@@ -1,4 +1,5 @@
 const { getAllEmails, getUserByEmail } = require('../controllers/individualController');
+const { News } = require('../models/newsModel');
 
 const getEmails = async () => {
   let individuals = await getAllEmails();
@@ -47,4 +48,25 @@ const validHeadOfHousehold = async (req, res, next) => {
   next();
 };
 
-module.exports = { validUserEmail, validHeadOfHousehold };
+const newsAccessMiddleware = async (req, res, next) => {
+  try {
+    const userEmail = req.oidc.user.email;
+
+    const news = await News.find();
+
+    const filteredNews = news.filter((newsItem) => {
+      return newsItem.status === 'private' && newsItem.postedBy === userEmail;
+    });
+
+    req.filteredNews = filteredNews;
+    next();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({
+      success: false,
+      message: 'Internal server error'
+    });
+  }
+};
+
+module.exports = { validUserEmail, validHeadOfHousehold, newsAccessMiddleware };

@@ -22,9 +22,7 @@
   "paths": {
     "/profile": {
       "get": {
-        "tags": [
-          "Authentication"
-        ],
+        "tags": ["Authentication"],
         "summary": "Get Profile",
         "description": "This will return the user profile information for the current authenticated user.",
         "responses": {
@@ -36,9 +34,7 @@
     },
     "/individuals/getAllIndividuals": {
       "get": {
-        "tags": [
-          "Individuals"
-        ],
+        "tags": ["Individuals"],
         "summary": "Get all individuals",
         "description": "This will return all the individuals in the database",
         "responses": {
@@ -56,9 +52,7 @@
     },
     "/individuals/getIndividualById/{id}": {
       "get": {
-        "tags": [
-          "Individuals"
-        ],
+        "tags": ["Individuals"],
         "summary": "Get an individual by Id",
         "description": "This will return an individual by Id",
         "parameters": [
@@ -89,9 +83,7 @@
     },
     "/individuals/": {
       "post": {
-        "tags": [
-          "Individuals"
-        ],
+        "tags": ["Individuals"],
         "summary": "Create a new Individual to the collection",
         "description": "Create an Individual by providing all required information.",
         "responses": {
@@ -153,9 +145,7 @@
     },
     "/individuals/{id}": {
       "put": {
-        "tags": [
-          "Individuals"
-        ],
+        "tags": ["Individuals"],
         "summary": "Update an existing Individual by Id",
         "description": "Update an existing individual by providing all required information.",
         "parameters": [
@@ -225,9 +215,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Individuals"
-        ],
+        "tags": ["Individuals"],
         "summary": "Delete an Individual by Id",
         "description": "This will delete a single individual from the database by Id. This action is permanent.",
         "parameters": [
@@ -255,9 +243,7 @@
     },
     "/household/getall": {
       "get": {
-        "tags": [
-          "Households"
-        ],
+        "tags": ["Households"],
         "summary": "Get all Households",
         "description": "This will list all households in the database",
         "responses": {
@@ -278,9 +264,7 @@
     },
     "/household/getbyid/{id}": {
       "get": {
-        "tags": [
-          "Households"
-        ],
+        "tags": ["Households"],
         "summary": "Get a single household by its ID",
         "description": "Returns a single household by its id",
         "parameters": [
@@ -314,9 +298,7 @@
     },
     "/household/getbyhoh/{hoh}": {
       "get": {
-        "tags": [
-          "Households"
-        ],
+        "tags": ["Households"],
         "summary": "Get a single household by its head of household",
         "description": "Returns a single household by the head of the household",
         "parameters": [
@@ -350,9 +332,7 @@
     },
     "/household/getbyaddress/{street}/{city}/{state}/{zip}": {
       "get": {
-        "tags": [
-          "Households"
-        ],
+        "tags": ["Households"],
         "summary": "Get a single household by its address",
         "description": "Returns a single household by its address",
         "parameters": [
@@ -410,9 +390,7 @@
     },
     "/household/createhousehold": {
       "post": {
-        "tags": [
-          "Households"
-        ],
+        "tags": ["Households"],
         "summary": "Create a Household",
         "description": "Create a Household by providing all required information.",
         "responses": {
@@ -442,10 +420,7 @@
                 "state": "ID",
                 "zip": "83440",
                 "country": "United States",
-                "headOfHousehold": [
-                  "65f2162017c8cc6b12754e5e",
-                  "65f2166117c8cc6b12754e5f"
-                ],
+                "headOfHousehold": ["65f2162017c8cc6b12754e5e", "65f2166117c8cc6b12754e5f"],
                 "residents": [
                   "65f2162017c8cc6b12754e5e",
                   "65f2166117c8cc6b12754e5f",
@@ -459,9 +434,7 @@
     },
     "/household/updatehousehold/{id}": {
       "put": {
-        "tags": [
-          "Households"
-        ],
+        "tags": ["Households"],
         "summary": "Update a Household by its ID",
         "description": "Update an existing household by providing all required information.",
         "parameters": [
@@ -501,10 +474,7 @@
                 "state": "ID",
                 "zip": "83440",
                 "country": "United States",
-                "headOfHousehold": [
-                  "65f2162017c8cc6b12754e5e",
-                  "65f2166117c8cc6b12754e5f"
-                ],
+                "headOfHousehold": ["65f2162017c8cc6b12754e5e", "65f2166117c8cc6b12754e5f"],
                 "residents": [
                   "65f2162017c8cc6b12754e5e",
                   "65f2166117c8cc6b12754e5f",
@@ -518,9 +488,7 @@
     },
     "/household/deletehousehold/{id}": {
       "delete": {
-        "tags": [
-          "Households"
-        ],
+        "tags": ["Households"],
         "summary": "Delete a household by its ID",
         "description": "Permanently delete a household by its ID",
         "parameters": [
@@ -554,9 +522,7 @@
     },
     "/anniversaries/getall": {
       "get": {
-        "tags": [
-          "Anniversaries"
-        ],
+        "tags": ["Anniversaries"],
         "summary": "Get all Anniversaries",
         "description": "This will list all anniversaries in the database",
         "responses": {
@@ -566,10 +532,7 @@
               "application/json": {
                 "example": {
                   "_id": "uniqueId",
-                  "couple": [
-                    "IndividualId1",
-                    "IndividualId2"
-                  ],
+                  "couple": ["IndividualId1", "IndividualId2"],
                   "anniversaryDate": "1996-01-14T00:00:00.000Z"
                 }
               }
@@ -586,9 +549,7 @@
     },
     "/anniversaries/getformatted": {
       "get": {
-        "tags": [
-          "Anniversaries"
-        ],
+        "tags": ["Anniversaries"],
         "summary": "Get all Anniversaries formatted with names",
         "description": "This will list all anniversaries in the database with names and formatted dates",
         "responses": {
@@ -598,10 +559,7 @@
               "application/json": {
                 "example": {
                   "anniversaryId": "uniqueId",
-                  "couple": [
-                    "John Doe",
-                    "Jane Doe"
-                  ],
+                  "couple": ["John Doe", "Jane Doe"],
                   "formattedDate": "1996-01-14"
                 }
               }
@@ -615,9 +573,7 @@
     },
     "/anniversaries/getbyid/{id}": {
       "get": {
-        "tags": [
-          "Anniversaries"
-        ],
+        "tags": ["Anniversaries"],
         "summary": "Get a single anniversary by anniversary Id",
         "description": "This will return a single anniversary in the database by anniversary Id with individual names and formatted anniversary date",
         "parameters": [
@@ -637,10 +593,7 @@
               "application/json": {
                 "example": {
                   "anniversaryId": "uniqueId",
-                  "couple": [
-                    "John Doe",
-                    "Jane Doe"
-                  ],
+                  "couple": ["John Doe", "Jane Doe"],
                   "anniversaryDate": "1996-01-14"
                 }
               }
@@ -660,9 +613,7 @@
     },
     "/anniversaries/getbymonth/{month}": {
       "get": {
-        "tags": [
-          "Anniversaries"
-        ],
+        "tags": ["Anniversaries"],
         "summary": "Get anniversaries by month",
         "description": "This will return a list of anniversaries that occur in the specified month.Month should be entered as an integer.",
         "parameters": [
@@ -682,10 +633,7 @@
               "application/json": {
                 "example": {
                   "anniversaryId": "65f67b2343deac10f85b3df6",
-                  "couple": [
-                    "John Doe",
-                    "Jane Doe"
-                  ],
+                  "couple": ["John Doe", "Jane Doe"],
                   "formattedDate": "2020-06-30"
                 }
               }
@@ -705,9 +653,7 @@
     },
     "/anniversaries/createanniversary": {
       "post": {
-        "tags": [
-          "Anniversaries"
-        ],
+        "tags": ["Anniversaries"],
         "summary": "Create an Anniversary",
         "description": "Create an Anniversary by providing all required information. Individual Ids must be valid and actually exist in the individuals collection. The anniversary date must be formatted as YYYY-MM-DD. All fields are required.",
         "responses": {
@@ -729,10 +675,7 @@
           "content": {
             "application/json": {
               "example": {
-                "couple": [
-                  "individualId1",
-                  "individualId2"
-                ],
+                "couple": ["individualId1", "individualId2"],
                 "anniversaryDate": "2020-06-30"
               }
             }
@@ -742,9 +685,7 @@
     },
     "/anniversaries/updateanniversary/{id}": {
       "put": {
-        "tags": [
-          "Anniversaries"
-        ],
+        "tags": ["Anniversaries"],
         "summary": "Update an Anniversary by Id",
         "description": "Update an existing anniversary by providing the anniversaryId and the updated information. Individual Ids must be valid and actually exist in the individuals collection. The anniversary date must be formatted as YYYY-MM-DD. All fields are required.",
         "parameters": [
@@ -779,10 +720,7 @@
           "content": {
             "application/json": {
               "example": {
-                "couple": [
-                  "individualId1",
-                  "individualId2"
-                ],
+                "couple": ["individualId1", "individualId2"],
                 "anniversaryDate": "2020-06-30"
               }
             }
@@ -792,9 +730,7 @@
     },
     "/anniversaries/deleteanniversary/{id}": {
       "delete": {
-        "tags": [
-          "Anniversaries"
-        ],
+        "tags": ["Anniversaries"],
         "summary": "Delete an Anniversary by Id",
         "description": "This will delete a single anniversary from the database by Id. This action is permanent.",
         "parameters": [
@@ -825,42 +761,65 @@
     },
     "/news/getall": {
       "get": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Get all News Stories",
-        "description": "This will return all the news stories in the database unformatted",
+        "description": "This will return all the news stories in the database unformatted.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "newsTitle": "News Example",
+                  "newsBody": "This is an example of a news story.",
+                  "status": "public",
+                  "postedBy": "individualId",
+                  "dateCreated": "2024-03-14T00:00:00.000Z",
+                  "picture": "https://fakeimg.pl/600x400?text=example+image"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         }
       }
     },
     "/news/getformatted": {
       "get": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Get all News Stories formatted with author names",
-        "description": "This will return all the news stories in the database",
+        "description": "This will return all the news stories in the database with a status of public, and any news items posted by the current user.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "newsId": "uniqueId",
+                  "postedBy": "John Doe",
+                  "dateCreated": "2024-03-14",
+                  "newsTitle": "News Example",
+                  "newsBody": "This is an example of a news story.",
+                  "status": "public",
+                  "picture": "https://fakeimg.pl/600x400?text=example+image"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
     },
     "/news/{id}": {
       "get": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Get Single News Story by newsId",
-        "description": "This will return a single news story by news Id",
+        "description": "This will return a single news story by news Id for any news item with a public status. If the status of the story is private, it will only be returned if it was created by the current user.",
         "parameters": [
           {
             "name": "id",
@@ -873,21 +832,35 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "newsId": "uniqueId",
+                  "postedBy": "John Doe",
+                  "dateCreated": "2024-03-14",
+                  "newsTitle": "News Example",
+                  "newsBody": "This is an example of a news story.",
+                  "status": "public",
+                  "picture": "https://fakeimg.pl/600x400?text=example+image"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
     },
     "/news/author/{postedBy}": {
       "get": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Get News by Author",
-        "description": "This will return all news stories with postedBy matching the provided individualId",
+        "description": "This will return all public news stories with postedBy matching the provided individualId. If the news stories have a status of private, they will only be returned if the author is the current user.",
         "parameters": [
           {
             "name": "postedBy",
@@ -900,21 +873,35 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "newsId": "uniqueId",
+                  "postedBy": "John Doe",
+                  "dateCreated": "2024-03-14",
+                  "newsTitle": "News Example",
+                  "newsBody": "This is an example of a news story.",
+                  "status": "public",
+                  "picture": "https://fakeimg.pl/600x400?text=example+image"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
     },
     "/news/status/{status}": {
       "get": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Get News by Status",
-        "description": "This will return all news stories with status matching the requested status of ",
+        "description": "This will return all news stories with status matching the requested status of public or private. News stories with a status of private are only returned if they were posted by the current user.",
         "parameters": [
           {
             "name": "status",
@@ -927,21 +914,35 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "newsId": "uniqueId",
+                  "postedBy": "John Doe",
+                  "dateCreated": "2024-03-14",
+                  "newsTitle": "News Example",
+                  "newsBody": "This is an example of a news story.",
+                  "status": "public",
+                  "picture": "https://fakeimg.pl/600x400?text=example+image"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
     },
     "/news/createnews": {
       "post": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Create a News Story",
-        "description": "Create a news story by providing all required information.",
+        "description": "Create a news story by providing all required information. News stories can only be created by valid users who are the head of a household. The postedBy Id must match the individualId of the current user.",
         "responses": {
           "201": {
             "description": "Created"
@@ -975,11 +976,9 @@
     },
     "/news/updatenews/{id}": {
       "put": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Update a News Story by Id",
-        "description": "Update an existing news story by providing all required information.",
+        "description": "Update an existing news story by providing all required information. News stories can only be updated by valid users who are the head of a household. The postedBy Id must match the individualId of the current user.",
         "parameters": [
           {
             "name": "id",
@@ -1020,11 +1019,9 @@
     },
     "/news/deletenews/{id}": {
       "delete": {
-        "tags": [
-          "News"
-        ],
+        "tags": ["News"],
         "summary": "Delete a News Story by Id",
-        "description": "This will delete a single news story from the database by Id. This action is permanent.",
+        "description": "This will delete a single news story from the database by Id. News stories can only be deleted by valid users who are the head of a household. The postedBy Id must match the individualId of the current user. This action is permanent.",
         "parameters": [
           {
             "name": "id",
@@ -1047,9 +1044,7 @@
     },
     "/lookup/parents/{id}": {
       "get": {
-        "tags": [
-          "Relationships"
-        ],
+        "tags": ["Relationships"],
         "summary": "Get parents",
         "description": "This will return a list of parents for the individual id provided.",
         "parameters": [
@@ -1077,9 +1072,7 @@
     },
     "/lookup/children/{parentId}": {
       "get": {
-        "tags": [
-          "Relationships"
-        ],
+        "tags": ["Relationships"],
         "summary": "Get children",
         "description": "This will return a list of individuals with the provided parentId listed in the parents array.",
         "parameters": [
@@ -1107,9 +1100,7 @@
     },
     "/lookup/grandchildren/{grandparentId}": {
       "get": {
-        "tags": [
-          "Relationships"
-        ],
+        "tags": ["Relationships"],
         "summary": "Get grandchildren",
         "description": "This will return a list of individuals who are grandchildren of the provided grandparentId.",
         "parameters": [
@@ -1137,9 +1128,7 @@
     },
     "/lookup/birthdays": {
       "get": {
-        "tags": [
-          "Birthdays"
-        ],
+        "tags": ["Birthdays"],
         "summary": "Get all birthdays",
         "description": "This will return the names of all individuals in the database with their birth date",
         "responses": {
@@ -1154,9 +1143,7 @@
     },
     "/lookup/birthdaysFormatted": {
       "get": {
-        "tags": [
-          "Birthdays"
-        ],
+        "tags": ["Birthdays"],
         "summary": "Get all birthdays",
         "description": "This will return the full names of all individuals in the database sorted by birth month and date along with their date of birth and the age of the individual as of today",
         "responses": {
@@ -1174,9 +1161,7 @@
     },
     "/lookup/birthdays/{month}": {
       "get": {
-        "tags": [
-          "Birthdays"
-        ],
+        "tags": ["Birthdays"],
         "summary": "Get birthdays by month",
         "description": "This will return the full names of all individuals in the database born in the specified month along with their date of birth and the age of the individual as of today",
         "parameters": [
@@ -1198,9 +1183,7 @@
     },
     "/lookup/mailingLabels": {
       "get": {
-        "tags": [
-          "Mailing Labels"
-        ],
+        "tags": ["Mailing Labels"],
         "summary": "Get Mailing Labels",
         "description": "This will return the full names of all individuals in the database with their mailing address.",
         "responses": {

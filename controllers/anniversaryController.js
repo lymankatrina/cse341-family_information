@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 const { Anniversary } = require('../models/anniversaryModel.js');
-const {
-  formatAnniversary,
-  handleServerError,
-} = require('../helpers/helpers.js');
+const { formatAnniversary, handleServerError } = require('../helpers/helpers.js');
 
 exports.getAllAnniversaries = async (req, res) => {
   // #swagger.tags = ['Anniversaries']
@@ -190,9 +187,10 @@ exports.createAnniversary = async (req, res) => {
   #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {
-    const newAnniversary = new Anniversary({ 
+    const newAnniversary = new Anniversary({
       couple: req.body.couple,
-      anniversaryDate: req.body.anniversaryDate });
+      anniversaryDate: req.body.anniversaryDate
+    });
     await newAnniversary.save();
     res.status(201).json(newAnniversary);
   } catch (error) {
@@ -223,17 +221,13 @@ exports.updateAnniversary = async (req, res) => {
   */
   try {
     const anniversaryId = req.params.id;
-    const updatedAnniversary = await Anniversary.findByIdAndUpdate(
-      anniversaryId,
-      req.body, 
-      {
-        new: true
-      }
-    );
+    const updatedAnniversary = await Anniversary.findByIdAndUpdate(anniversaryId, req.body, {
+      new: true
+    });
     if (!updatedAnniversary) {
       return res.status(404).json({ error: 'Anniversary not found' });
     } else {
-    res.status(200).json(updatedAnniversary);
+      res.status(200).json(updatedAnniversary);
     }
   } catch (error) {
     handleServerError(res, error);
