@@ -12,9 +12,9 @@ describe('Index Routes', function() {
     expect(res.statusCode).toBe(404);
   });
 
-  test('also responds to /', async() => {
+  test('responds to /api-docs', async() => {
     const res = await request(app).get('/api-docs');
-    expect(res.statusCode).toBe(301);
+    expect(res.statusCode).toBe(404);
   });
 
   test('responds to /individuals', async() => {
