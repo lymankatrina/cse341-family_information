@@ -6,18 +6,22 @@ const app = express();
 app.use('/', router);
 
 describe('Auth Routes', function () {
-  test('responds to /', async () => {
-    const res = await request(app).get('/login');
-    expect(res.statusCode).toBe(404);
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
-  test('responds to /landingpage', async () => {
+  test('GET /', async () => {
+    const res = await request(app).get('/logout');
+    expect(res.status).toBe(404);
+  });
+
+  test('GET /landingpage', async () => {
     const res = await request(app).get('/landingpage');
-    expect(res.statusCode).toBe(200);
+    expect(res.status).toBe(200);
   });
 
-  test('responds to /profile', async () => {
+  test('GET /profile', async () => {
     const res = await request(app).get('/profile');
-    expect(res.statusCode).toBe(500);
+    expect(res.status).toBe(500);
   });
 });

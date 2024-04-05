@@ -8,7 +8,7 @@ const { validUserEmail, validHeadOfHousehold } = require('../middleware/permissi
 router.get('/getall', validUserEmail, anniversaryController.getAllAnniversaries);
 
 // Get a list of all anniversaries formatted
-router.get('/getformatted', anniversaryController.getFormattedAnniversaries);
+router.get('/getformatted', validUserEmail, anniversaryController.getFormattedAnniversaries);
 
 // Get a single Anniversary by Individual id
 router.get('/getbyid/:id', validUserEmail, anniversaryController.getAnniversaryById);
