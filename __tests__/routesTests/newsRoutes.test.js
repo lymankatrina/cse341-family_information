@@ -5,44 +5,28 @@ const router = require('../../routes/newsRoutes');
 const app = express();
 app.use('/news', router);
 
+jest.mock('../../models/newsModel');
+jest.mock('../../middleware/permissionMiddleware', () => ({
+  validUserEmail: jest.fn().mockImplementation((req, res, next) => {
+    next();
+  }),
+  validHeadOfHousehold: jest.fn().mockImplementation((req, res, next) => {
+    next();
+  }),
+  newsAccessMiddleware: jest.fn().mockImplementation((req, res, next) => {
+    next();
+  })
+}));
+
 describe('News Routes', function () {
-  test('responds to /getall', async () => {
-    const res = await request(app).get('/getall');
-    expect(res.status).toBe(404);
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
-  test('responds to /getformatted', async () => {
-    const res = await request(app).get('/getformatted');
-    expect(res.statusCode).toBe(404);
+  test('GET /news/getall should respond with status 200', async () => {
+    const res = await request(app).get('/news/getall');
+    expect(res.status).toBe(200);
   });
 
-  test('responds to /:id', async () => {
-    const res = await request(app).get('/:id');
-    expect(res.statusCode).toBe(404);
-  });
-
-  test('responds to /author/:postedBy', async () => {
-    const res = await request(app).get('/author/:postedBy');
-    expect(res.statusCode).toBe(404);
-  });
-
-  test('responds to /status/:status', async () => {
-    const res = await request(app).get('/status/:status');
-    expect(res.statusCode).toBe(404);
-  });
-
-  test('responds to /createnews', async () => {
-    const res = await request(app).post('/createnews');
-    expect(res.statusCode).toBe(404);
-  });
-
-  test('responds to /updatenews/:id', async () => {
-    const res = await request(app).put('/updatenews/:id');
-    expect(res.statusCode).toBe(404);
-  });
-
-  test('responds to /deletenews/:id', async () => {
-    const res = await request(app).delete('/deletenews/:id');
-    expect(res.statusCode).toBe(404);
-  });
+ // validators and helper functions for other endpoints in this route file are tested seperately. Other endpoints in this file use mongoose terminology that is not supported by jest.
 });

@@ -3,11 +3,12 @@ const express = require('express');
 const router = require('../../routes/swaggerRoutes');
 
 const app = express();
-app.use('/api-docs', router);
+app.use('/', router);
 
 describe('Swagger Routes', function () {
-  test('responds to /', async () => {
-    const res = await request(app).get('/');
-    expect(res.statusCode).toBe(404);
+
+  test('responds to /api-docs', async () => {
+    const res = await request(app).get('/api-docs');
+    expect(res.statusCode).toBe(301);
   });
 });

@@ -10,19 +10,15 @@ const getEmails = async () => {
   return emails;
 };
 
-const validUserEmail = async (req, res, next) => {
-  // Production email
+const validEmail = async (req, res, next) => {
   const email = req.oidc.user.email;
-
-  // Dev valid email test
-  // let email = "jbdoe@gmail.com";
-
-  // Dev invalid email test
-  // let email = "fjdkslifosa@gmail.com"
-
   const validEmails = await getEmails();
+  return validEmails.includes(email);
+};
 
-  if ((!email) in validEmails) {
+const validUserEmail = async (req, res, next) => {
+  const isValidUser = await validEmail(req, res, next);
+  if(!isValidUser) {
     res.status(403).send('Access denied.');
     return;
   }
@@ -69,4 +65,4 @@ const newsAccessMiddleware = async (req, res, next) => {
   }
 };
 
-module.exports = { validUserEmail, validHeadOfHousehold, newsAccessMiddleware };
+module.exports = { validEmail, validUserEmail, validHeadOfHousehold, newsAccessMiddleware };

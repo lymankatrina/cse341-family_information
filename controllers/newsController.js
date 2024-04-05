@@ -225,7 +225,7 @@ exports.createNewsStory = async (req, res) => {
 exports.updateNewsById = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Update a News Story by Id'
-  // #swagger.description = 'Update an existing news story by providing all required information. News stories can only be updated by valid users who are the head of a household. The postedBy Id must match the individualId of the current user.'
+  // #swagger.description = 'Update an existing news story by providing all required information. News stories can only be updated by valid users who are the head of a household. The postedBy Id must match the individual Id of the current user.'
   /*
   #swagger.requestBody = {
     required: true,
@@ -264,7 +264,7 @@ exports.updateNewsById = async (req, res) => {
 exports.deleteNewsById = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Delete a News Story by Id'
-  // #swagger.description = 'This will delete a single news story from the database by Id. News stories can only be deleted by valid users who are the head of a household. The postedBy Id must match the individualId of the current user. This action is permanent.'
+  // #swagger.description = 'This will delete a single news story from the database by Id. News stories can only be deleted by valid users who are the head of a household. The postedBy Id must match the individualId of the current user.'This action is permanent.'
   const newsId = req.params.id;
   try {
     await News.findByIdAndDelete(newsId);
