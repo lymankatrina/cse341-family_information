@@ -8,10 +8,10 @@ const {
 } = require('../middleware/permissionMiddleware');
 const { newsValidator } = require('../middleware/newsValidator');
 
-// get news
-router.get('/getall', validUserEmail, newsController.getAllNews);
+// get all news
+router.get('/getall', newsController.getAllNews);
 
-// Get all news
+// Get formatted news
 router.get('/getformatted', validUserEmail, newsAccessMiddleware, newsController.getFormattedNews);
 
 // Get single news story
