@@ -17,7 +17,11 @@ jest.mock('../../middleware/permissionMiddleware', () => ({
     next();
   })
 }));
-
+jest.mock('../../middleware/newsValidator', () => ({
+  newsValidator: jest.fn().mockImplementation((req, res, next) => {
+    next();
+  })
+}));
 describe('News Routes', function () {
   afterEach(() => {
     jest.clearAllMocks();

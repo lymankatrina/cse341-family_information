@@ -13,7 +13,7 @@ router.get('/children/:parentId', validUserEmail, lookupController.getChildren);
 router.get('/grandchildren/:grandparentId', validUserEmail, lookupController.getGrandchildren);
 
 // Get all birthdays
-router.get('/birthdays', lookupController.getBirthdays);
+router.get('/birthdays', validUserEmail, lookupController.getBirthdays);
 
 // Get birthdays formatted
 router.get('/birthdaysFormatted', validUserEmail, lookupController.getBirthdayFormatted);
