@@ -1,4 +1,4 @@
-//const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const { ObjectId } = require('mongoose').Types;
 const Individual = require('../models/individualModel');
 
@@ -129,9 +129,9 @@ exports.deleteIndividual = async (req, res) => {
   // #swagger.tags = ['Individuals']
   // #swagger.summary = 'Delete an Individual by Id'
   // #swagger.description = 'This will delete a single individual from the database by Id. This action is permanent.'
-  const id = req.params.id;
+  const individualId = mongoose.Types.ObjectId(req.params.id);
   try {
-    const result = await Individual.findByIdAndDelete(id);
+    const result = await Individual.findByIdAndDelete({_id: individualId});
     if (!result) {
       res.status(404).json({ error: 'Individual not found' });
     } else {
