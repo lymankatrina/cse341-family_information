@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { ObjectId } = require('mongoose').Types;
 const Individual = require('../models/individualModel');
-
+const { handleServerError } = require('../helpers/helpers');
 
 /* GET REQUESTS */
 // Get a list of all Individuals
@@ -40,17 +40,10 @@ exports.getIndividualById = async (req, res) => {
 exports.getAllEmails = async (req, res) => {
   // #swagger.ignore = true
   try {
-    const result = await Individual.find();
-    res.setHeader('Content-Type', 'application/json');
-
-    if (!result) {
-      res.status(404).json({ error: 'No individuals were found' });
-    } else {
-      const individuals = result.map((individual) => individual.toObject());
-      res.status(200).json(individuals);
-    }
-  } catch (e) {
-    res.status(500).json({ error: 'Server error' });
+    const result = await Individual.find({}).select('email');
+    return result;
+  } catch (error) {
+    return error.message;
   }
 };
 
@@ -108,7 +101,7 @@ exports.updateIndividual = async (req, res) => {
     household: req.body.household,
     headOfHousehold: req.body.headOfHousehold,
     picture: req.body.picture
-  }; 
+  }; // Closing brace added here
   try {
     const result = await Individual.findByIdAndUpdate(id, req.body, { new: true });
     if (!result) {
@@ -131,13 +124,13 @@ exports.deleteIndividual = async (req, res) => {
   // #swagger.description = 'This will delete a single individual from the database by Id. This action is permanent.'
   const individualId = mongoose.Types.ObjectId(req.params.id);
   try {
-    const result = await Individual.findByIdAndDelete({_id: individualId});
-    if (!result) {
-      res.status(404).json({ error: 'Individual not found' });
+    const response = await Individual.deleteOne({ _id: individualId });
+    if (response.deletedCount > 0) {
+      res.status(200).send();
     } else {
-      res.status(200).json(result);
+      res.status(404).json({ error: 'Individual not found' });
     }
   } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+    handleServerError(res, error);
   }
 };
