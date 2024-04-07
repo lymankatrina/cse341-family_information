@@ -108,17 +108,13 @@ exports.updateIndividual = async (req, res) => {
 /* DELETE REQUESTS */
 // Delete an individual by id
 exports.deleteIndividual = async (req, res) => {
-  // #swagger.tags = ['Individuals']
-  // #swagger.summary = 'Delete an Individual by Id'
-  // #swagger.description = 'This will delete a single individual from the database by Id. This action is permanent.'
-  const individualId = mongoose.Types.ObjectId(req.params.id);
+  const id = req.params.id;
   try {
-    const response = await Individual.deleteOne({ _id: individualId });
-    if (response.deletedCount > 0) {
-      res.status(200).send();
-    } else {
-      res.status(404).json({ error: 'Individual not found' });
+    const result = await Individual.findByIdAndDelete(id);
+    if (!result) {
+      return res.status(404).json({ error: 'Individual not found' });
     }
+    res.status(200).json(result);
   } catch (error) {
     handleServerError(res, error);
   }
