@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
 const { ObjectId } = require('mongoose').Types;
 const Individual = require('../models/individualModel');
-const { handleServerError } = require('../helpers/helpers');
+
 
 /* GET REQUESTS */
 // Get a list of all Individuals
@@ -40,10 +40,17 @@ exports.getIndividualById = async (req, res) => {
 exports.getAllEmails = async (req, res) => {
   // #swagger.ignore = true
   try {
-    const result = await Individual.find({}).select('email');
-    return result;
-  } catch (error) {
-    return error.message;
+    const result = await Individual.find();
+    res.setHeader('Content-Type', 'application/json');
+
+    if (!result) {
+      res.status(404).json({ error: 'No individuals were found' });
+    } else {
+      const individuals = result.map((individual) => individual.toObject());
+      res.status(200).json(individuals);
+    }
+  } catch (e) {
+    res.status(500).json({ error: 'Server error' });
   }
 };
 
@@ -89,45 +96,32 @@ exports.updateIndividual = async (req, res) => {
   // #swagger.tags = ['Individuals']
   // #swagger.summary = 'Update an existing Individual by Id'
   // #swagger.description = 'Update an existing individual by providing all required information.'
+  const id = req.params.id;
+  const Individual = {
+    firstName: req.body.firstName,
+    middleName: req.body.middleName,
+    lastName: req.body.lastName,
+    birthDate: req.body.birthDate,
+    parents: req.body.parents,
+    phone: req.body.phone,
+    email: req.body.email,
+    household: req.body.household,
+    headOfHousehold: req.body.headOfHousehold,
+    picture: req.body.picture
+  }; 
   try {
-    const individualId = mongoose.Types.ObjectId(req.params.id);
-    const {
-      firstName,
-      middleName,
-      lastName,
-      birthDate,
-      parents,
-      phone,
-      email,
-      household,
-      headOfHousehold,
-      picture
-    } = req.body;
-    const updatedIndividual = await Individual.findByIdAndUpdate(
-      individualId,
-      {
-        firstName,
-        middleName,
-        lastName,
-        birthDate,
-        parents,
-        phone,
-        email,
-        household,
-        headOfHousehold,
-        picture
-      },
-      { new: true } // Return the updated document
-    );
-    if (updatedIndividual) {
-      res.status(200).json(updatedIndividual);
-    } else {
+    const result = await Individual.findByIdAndUpdate(id, req.body, { new: true });
+    if (!result) {
       res.status(404).json({ error: 'Individual not found' });
+    } else {
+      const updatedIndividual = result.toObject(); // Renamed variable to avoid declaration again.
+      res.status(200).json(updatedIndividual);
     }
   } catch (error) {
-    handleServerError(res, error);
+    res.status(500).json({ error: 'Server error' });
   }
 };
+
 
 /* DELETE REQUESTS */
 // Delete an individual by id
@@ -135,15 +129,15 @@ exports.deleteIndividual = async (req, res) => {
   // #swagger.tags = ['Individuals']
   // #swagger.summary = 'Delete an Individual by Id'
   // #swagger.description = 'This will delete a single individual from the database by Id. This action is permanent.'
-  const individualId = mongoose.Types.ObjectId(req.params.id);
+  const id = req.params.id;
   try {
-    const response = await Individual.deleteOne({ _id: individualId });
-    if (response.deletedCount > 0) {
-      res.status(200).send();
-    } else {
+    const result = await Individual.findByIdAndDelete(id);
+    if (!result) {
       res.status(404).json({ error: 'Individual not found' });
+    } else {
+      res.status(200).json(result);
     }
   } catch (error) {
-    handleServerError(res, error);
+    res.status(500).json({ error: 'Server error' });
   }
 };
