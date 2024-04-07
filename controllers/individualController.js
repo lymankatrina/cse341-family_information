@@ -90,18 +90,6 @@ exports.updateIndividual = async (req, res) => {
   // #swagger.summary = 'Update an existing Individual by Id'
   // #swagger.description = 'Update an existing individual by providing all required information.'
   const id = req.params.id;
-  const Individual = {
-    firstName: req.body.firstName,
-    middleName: req.body.middleName,
-    lastName: req.body.lastName,
-    birthDate: req.body.birthDate,
-    parents: req.body.parents,
-    phone: req.body.phone,
-    email: req.body.email,
-    household: req.body.household,
-    headOfHousehold: req.body.headOfHousehold,
-    picture: req.body.picture
-  }; // Closing brace added here
   try {
     const result = await Individual.findByIdAndUpdate(id, req.body, { new: true });
     if (!result) {
@@ -114,6 +102,7 @@ exports.updateIndividual = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
 
 
 /* DELETE REQUESTS */
