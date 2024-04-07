@@ -185,7 +185,7 @@ query IndividualByName {
 
 ### Mutation to add a new individual to the collection
 
-# Query to Add a new author to the collection
+# Query to Add a new individual to the collection
 
 mutation  {
   createIndividual(
@@ -390,6 +390,18 @@ query {
     anniversaryDate
   }
 }
+
+
+# Query to get anniversary by Id
+
+query {
+  anniversaryById(id: "65f1dccaa082e7bd594edca4") {
+    _id
+    couple
+    anniversaryDate
+  }
+}
+
 
 
 # GraphQL Query to create a new anniversary to the anniversaries collection
