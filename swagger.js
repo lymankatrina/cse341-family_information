@@ -14,7 +14,7 @@ const doc = {
       'This is a family information app created by team d for the CSE341 team project assignment',
     contact: {
       name: 'CSE 341 Team D',
-      url: 'https://github.com/ajrobbins04/cse341-family_information'
+      url: 'https://github.com/elmambou/cse341-family_information'
     }
   },
   servers: [

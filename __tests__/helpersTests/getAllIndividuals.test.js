@@ -18,7 +18,8 @@ describe('getAllIndividuals', () => {
     const mockError = new Error('Database error');
     Individual.find.mockRejectedValue(mockError);
 
-    await expect(getAllIndividuals()).rejects.toThrow('Error occurred while retrieving all individuals');
+    await expect(getAllIndividuals()).rejects.toThrow(
+      'Error occurred while retrieving all individuals'
+    );
   });
 });
-

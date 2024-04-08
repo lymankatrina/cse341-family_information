@@ -1,6 +1,10 @@
 const db = require('../db/connect');
-const Household = require('../models/householdModel')
-const { isValidObjectId, isValidAddress, isValidHousehold } = require('../middleware/householdValidator')
+const Household = require('../models/householdModel');
+const {
+  isValidObjectId,
+  isValidAddress,
+  isValidHousehold
+} = require('../middleware/householdValidator');
 
 exports.getHouseholds = async (req, res) => {
   // #swagger.tags = ['Households']
@@ -41,13 +45,13 @@ exports.getHouseholds = async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     if (!result) {
-      res.status(404).json({ error: "No households were found"})
+      res.status(404).json({ error: 'No households were found' });
     } else {
-      const households = result.map((household)=> household.toObject())
-      res.status(200).json(households)
+      const households = result.map((household) => household.toObject());
+      res.status(200).json(households);
     }
   } catch (e) {
-    res.status(500).json({ error: "Server error" })
+    res.status(500).json({ error: 'Server error' });
   }
 };
 
@@ -89,19 +93,19 @@ exports.getHouseholdById = async (req, res) => {
   const id = req.params.id;
   res.setHeader('Content-Type', 'application/json');
 
-  if (!isValidObjectId(id)){
-    res.status(422).json({ error: "Id is invalid"})
+  if (!isValidObjectId(id)) {
+    res.status(422).json({ error: 'Id is invalid' });
   } else {
     try {
       const result = await Household.findById({ _id: id });
       if (!result) {
-        res.status(404).json({ error: "Household not found"})
+        res.status(404).json({ error: 'Household not found' });
       } else {
-        const household = result.toObject()
-        res.status(200).json(household)
+        const household = result.toObject();
+        res.status(200).json(household);
       }
     } catch (e) {
-      res.status(500).json({ error: "Server error" })
+      res.status(500).json({ error: 'Server error' });
     }
   }
 };
@@ -144,19 +148,19 @@ exports.getHouseholdsByHoh = async (req, res) => {
   const hoh = req.params.hoh;
   res.setHeader('Content-Type', 'application/json');
 
-  if (!isValidObjectId(hoh)){
-    res.status(422).json({ error: "Head of household id is invalid"})
+  if (!isValidObjectId(hoh)) {
+    res.status(422).json({ error: 'Head of household id is invalid' });
   } else {
     try {
       const result = await Household.findOne({ headOfHousehold: hoh });
       if (!result) {
-        res.status(404).json({ error: "This individual is not the head of a household"})
+        res.status(404).json({ error: 'This individual is not the head of a household' });
       } else {
-        const household = result.toObject()
-        res.status(200).json(household)
+        const household = result.toObject();
+        res.status(200).json(household);
       }
     } catch (e) {
-      res.status(500).json({ error: "Server error" })
+      res.status(500).json({ error: 'Server error' });
     }
   }
 };
@@ -201,23 +205,32 @@ exports.getHouseholdsByAddress = async (req, res) => {
     city: req.params.city,
     state: req.params.state,
     zip: req.params.zip
-  }
-  
+  };
+
   res.setHeader('Content-Type', 'application/json');
 
-  if (!isValidAddress(address)){
-    res.status(422).json({ error: "Address is invalid, make sure to follow this format '/street/city/state/zip/'"})
+  if (!isValidAddress(address)) {
+    res
+      .status(422)
+      .json({
+        error: "Address is invalid, make sure to follow this format '/street/city/state/zip/'"
+      });
   } else {
     try {
-      const result = await Household.findOne({ streetAddress: address.street, city: address.city, state: address.state, zip: address.zip });
+      const result = await Household.findOne({
+        streetAddress: address.street,
+        city: address.city,
+        state: address.state,
+        zip: address.zip
+      });
       if (!result) {
-        res.status(404).json({ error: "A household with this address could not be found"})
+        res.status(404).json({ error: 'A household with this address could not be found' });
       } else {
-        const household = result.toObject()
-        res.status(200).json(household)
+        const household = result.toObject();
+        res.status(200).json(household);
       }
     } catch (e) {
-      res.status(500).json({ error: "Server error" })
+      res.status(500).json({ error: 'Server error' });
     }
   }
 };
@@ -283,20 +296,20 @@ exports.createHousehold = async (req, res) => {
   };
   res.setHeader('Content-Type', 'application/json');
 
-  if (!isValidHousehold(household)){
-    res.status(422).json({ error: "Household's information is invalid"})
+  if (!isValidHousehold(household)) {
+    res.status(422).json({ error: "Household's information is invalid" });
   } else {
     try {
-      const newHousehold = new Household(household)
+      const newHousehold = new Household(household);
       const result = await newHousehold.save();
       if (!result) {
-        res.status(404).json({ error: "Household could not be saved"})
+        res.status(404).json({ error: 'Household could not be saved' });
       } else {
-        const household = result.toObject()
-        res.status(200).json(household)
+        const household = result.toObject();
+        res.status(200).json(household);
       }
     } catch (e) {
-      res.status(500).json({ error: "Server error" })
+      res.status(500).json({ error: 'Server error' });
     }
   }
 };
@@ -365,21 +378,22 @@ exports.updateHousehold = async (req, res) => {
 
   res.setHeader('Content-Type', 'application/json');
 
-  if (!isValidHousehold(household)){
-    res.status(422).json({ error: "Household is invalid"})
+  if (!isValidHousehold(household)) {
+    res.status(422).json({ error: 'Household is invalid' });
   } else if (!isValidObjectId) {
-    res.status(422).json({ error: "Household id is invalid"})
-  }else {
+    res.status(422).json({ error: 'Household id is invalid' });
+  } else {
     try {
       const result = await Household.findByIdAndUpdate(id, req.body, {new: true})
+
       if (!result) {
-        res.status(404).json({ error: "Household was not found"})
+        res.status(404).json({ error: 'Household was not found' });
       } else {
-        const household = result.toObject()
-        res.status(200).json(household)
+        const household = result.toObject();
+        res.status(200).json(household);
       }
     } catch (e) {
-      res.status(500).json({ error: e.message })
+      res.status(500).json({ error: e.message });
     }
   }
 };
@@ -395,19 +409,19 @@ exports.deleteHousehold = async (req, res) => {
   const id = req.params.id;
   res.setHeader('Content-Type', 'application/json');
 
-  if (!isValidObjectId(id)){
-    res.status(422).json({ error: "Id is invalid"})
+  if (!isValidObjectId(id)) {
+    res.status(422).json({ error: 'Id is invalid' });
   } else {
     try {
       const result = await Household.findByIdAndDelete(id);
       if (!result) {
-        res.status(404).json({ error: "Household was not deleted"})
+        res.status(404).json({ error: 'Household was not deleted' });
       } else {
-        const household = result.toObject()
-        res.status(200).json(household)
+        const household = result.toObject();
+        res.status(200).json(household);
       }
     } catch (e) {
-      res.status(500).json({ error: "Server error" })
+      res.status(500).json({ error: 'Server error' });
     }
   }
 };

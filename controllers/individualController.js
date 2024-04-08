@@ -93,26 +93,25 @@ exports.getIndividualById = async (req, res) => {
   }
 };
 
-
 exports.getAllEmails = async (req, res) => {
   // #swagger.ignore = true
   try {
     const result = await Individual.find({}).select('email');
-    return result
+    return result;
   } catch (error) {
-    return error.message
+    return error.message;
   }
-}
+};
 
 exports.getUserByEmail = async (userEmail) => {
   // #swagger.ignore = true
   try {
     const result = await Individual.findOne({ email: userEmail });
-    return result
+    return result;
   } catch (error) {
-    console.log("something went wrong")
+    console.log('something went wrong');
   }
-}
+};
 
 /* POST REQUESTS */
 // Create an Individual
@@ -250,10 +249,32 @@ exports.updateIndividual = async (req, res) => {
   */
   try {
     const individualId = mongoose.Types.ObjectId(req.params.id);
-    const { firstName, middleName, lastName, birthDate, parents, phone, email, household, headOfHousehold, picture } = req.body;
+    const {
+      firstName,
+      middleName,
+      lastName,
+      birthDate,
+      parents,
+      phone,
+      email,
+      household,
+      headOfHousehold,
+      picture
+    } = req.body;
     const updatedIndividual = await Individual.findByIdAndUpdate(
       individualId,
-      { firstName, middleName, lastName, birthDate, parents, phone, email, household, headOfHousehold, picture },
+      {
+        firstName,
+        middleName,
+        lastName,
+        birthDate,
+        parents,
+        phone,
+        email,
+        household,
+        headOfHousehold,
+        picture
+      },
       { new: true } // Return the updated document
     );
     if (updatedIndividual) {
@@ -265,7 +286,6 @@ exports.updateIndividual = async (req, res) => {
     handleServerError(res, error);
   }
 };
-
 
 /* DELETE REQUESTS */
 // Delete an individual by id

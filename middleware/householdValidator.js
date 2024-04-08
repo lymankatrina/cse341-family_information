@@ -1,13 +1,12 @@
 const ObjectId = require('mongoose').Types.ObjectId;
 const validator = require('../helpers/validate');
 
-function isValidObjectId(id){
-    if(ObjectId.isValid(id)){
-        if((String)(new ObjectId(id)) === id)
-            return true;
-        return false;
-    }
+function isValidObjectId(id) {
+  if (ObjectId.isValid(id)) {
+    if (String(new ObjectId(id)) === id) return true;
     return false;
+  }
+  return false;
 }
 
 const householdValidator = (req, res, next) => {
