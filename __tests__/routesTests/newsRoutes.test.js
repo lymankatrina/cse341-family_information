@@ -1,7 +1,11 @@
 const request = require('supertest');
 const express = require('express');
 const router = require('../../routes/newsRoutes');
-const { validUserEmail, validHeadOfHousehold, newsAccessMiddleware } = require('../../middleware/permissionMiddleware');
+const {
+  validUserEmail,
+  validHeadOfHousehold,
+  newsAccessMiddleware
+} = require('../../middleware/permissionMiddleware');
 const newsController = require('../../controllers/newsController');
 const { newsValidator } = require('../../middleware/newsValidator');
 
@@ -51,7 +55,7 @@ jest.mock('../../controllers/newsController', () => ({
   }),
   deleteNewsById: jest.fn().mockImplementation((req, res) => {
     res.status(200).end();
-  }),
+  })
 }));
 
 describe('News Routes', function () {
@@ -97,7 +101,7 @@ describe('News Routes', function () {
     expect(res.status).toBe(200);
   });
 
-  test('POST /news/createnews should respond with status 200', async() => {
+  test('POST /news/createnews should respond with status 200', async () => {
     const res = await request(app).post('/news/createnews');
     expect(validUserEmail).toHaveBeenCalled();
     expect(validHeadOfHousehold).toHaveBeenCalled();
@@ -106,7 +110,7 @@ describe('News Routes', function () {
     expect(res.status).toBe(200);
   });
 
-  test('PUT /news/updatenews/:id should respond with status 200', async() => {
+  test('PUT /news/updatenews/:id should respond with status 200', async () => {
     const res = await request(app).put('/news/updatenews/1');
     expect(validUserEmail).toHaveBeenCalled();
     expect(validHeadOfHousehold).toHaveBeenCalled();
@@ -115,7 +119,7 @@ describe('News Routes', function () {
     expect(res.status).toBe(200);
   });
 
-  test('DELETE /news/deletenews/:id should respond with status 200', async() => {
+  test('DELETE /news/deletenews/:id should respond with status 200', async () => {
     const res = await request(app).delete('/news/deletenews/1');
     expect(validUserEmail).toHaveBeenCalled();
     expect(validHeadOfHousehold).toHaveBeenCalled();

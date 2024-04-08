@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const houseController = require('../controllers/householdController');
 const { householdValidator } = require('../middleware/householdValidator');
-const { validUserEmail, validHeadOfHousehold } = require('../middleware/permissionMiddleware')
-
+const { validUserEmail, validHeadOfHousehold } = require('../middleware/permissionMiddleware');
 
 // Get all households
 router.get('/getall', validUserEmail, houseController.getHouseholds);
@@ -36,7 +35,6 @@ router.put(
   validHeadOfHousehold,
   houseController.updateHousehold
 );
-
 
 // Delete household by id
 router.delete(

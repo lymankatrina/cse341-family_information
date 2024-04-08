@@ -17,7 +17,7 @@ const householdValidator = (req, res, next) => {
     zip: 'required|string',
     country: 'required|string',
     headOfHousehold: 'required|array',
-    residents: 'required|array',
+    residents: 'required|array'
   };
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {

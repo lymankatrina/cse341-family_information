@@ -9,8 +9,8 @@ const individualSchema = new mongoose.Schema(
     birthDate: Date,
     parents: [
       {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Individual'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Individual'
       }
     ], // Define parents as an array of individualId's
     phone: String,

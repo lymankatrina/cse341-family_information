@@ -1,16 +1,18 @@
 const { validEmail } = require('../../middleware/permissionMiddleware');
 
 const mockRequest = (email) => ({
-  oidc: { user: { email } },
+  oidc: { user: { email } }
 });
 
 // Mock the getAllEmails function
 jest.mock('../../controllers/individualController', () => ({
-  getAllEmails: jest.fn().mockResolvedValue([
-    { email: 'test1@example.com' },
-    { email: 'test2@example.com' },
-    { email: 'invaid@example.com' }
-  ])
+  getAllEmails: jest
+    .fn()
+    .mockResolvedValue([
+      { email: 'test1@example.com' },
+      { email: 'test2@example.com' },
+      { email: 'invaid@example.com' }
+    ])
 }));
 
 describe('validEmail middleware', () => {

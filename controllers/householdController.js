@@ -381,7 +381,7 @@ exports.updateHousehold = async (req, res) => {
     res.status(422).json({ error: 'Household id is invalid' });
   } else {
     try {
-      const result = await Household.findByIdAndUpdate(id, req.body, {new: true})
+      const result = await Household.findByIdAndUpdate(id, req.body, { new: true });
 
       if (!result) {
         res.status(404).json({ error: 'Household was not found' });

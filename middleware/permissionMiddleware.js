@@ -16,13 +16,13 @@ const validUserEmail = async (req, res, next) => {
   const email = req.oidc.user.email;
   const validEmails = await getEmails();
   return validEmails.includes(email);
-};
+}
     if (!email in validEmails) {
         res.status(403).send("Access denied");
         return;
     }
     next();
-}
+};
 
 const validHeadOfHousehold = async (req, res, next) => {
   let email = req.oidc.user.email;

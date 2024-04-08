@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const { ObjectId } = require('mongoose').Types;
 const Individual = require('../models/individualModel');
 const { handleServerError } = require('../helpers/helpers');
@@ -261,7 +260,6 @@ exports.updateIndividual = async (req, res) => {
   }
 };
 
-
 /* DELETE REQUESTS */
 // Delete an individual by id
 exports.deleteIndividual = async (req, res) => {
@@ -272,7 +270,6 @@ exports.deleteIndividual = async (req, res) => {
   // #swagger.responses[403] = { description: 'Access denied' }
   // #swagger.responses[404] = { description: 'Individual not found' }
   // #swagger.responses[500] = { description: 'Internal server error' }
-  const individualId = mongoose.Types.ObjectId(req.params.id);
   const id = req.params.id;
   try {
     const result = await Individual.findByIdAndDelete(id);

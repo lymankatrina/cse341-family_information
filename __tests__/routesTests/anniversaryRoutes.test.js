@@ -48,7 +48,6 @@ jest.mock('../../controllers/anniversaryController', () => ({
   })
 }));
 
-
 describe('Anniversary Routes', function () {
   test('GET /anniversaries/getall', async () => {
     const res = await request(app).get('/anniversaries/getall');
@@ -103,4 +102,4 @@ describe('Anniversary Routes', function () {
     expect(anniversaryController.deleteAnniversary).toHaveBeenCalled();
     expect(res.statusCode).toBe(200);
   });
-})
+});

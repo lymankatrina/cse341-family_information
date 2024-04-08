@@ -6,7 +6,7 @@ const newsValidator = async (req, res, next) => {
   // const userEmail = req.oidc.user.email;
   // const userId = new ObjectId(req.body.postedBy);
   // const result = await individual.findById(userId);
-  
+
   // if (result.email !== userEmail) {
   //   return res.status(403).send({
   //     success: false,
@@ -22,19 +22,19 @@ const newsValidator = async (req, res, next) => {
   //   dateCreated: 'required|date',
   //   picture: 'url'
   // };
-next();
+  next();
 
-//   await validator(req.body, validationRule, {}, (err, status) => {
-//     if (!status) {
-//       res.status(412).send({
-//         success: false,
-//         message: 'Validation failed',
-//         data: err
-//       });
-//     } else {
-//       next();
-//     }
-//   });
+  //   await validator(req.body, validationRule, {}, (err, status) => {
+  //     if (!status) {
+  //       res.status(412).send({
+  //         success: false,
+  //         message: 'Validation failed',
+  //         data: err
+  //       });
+  //     } else {
+  //       next();
+  //     }
+  //   });
 };
 
 module.exports = { newsValidator };

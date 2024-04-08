@@ -16,7 +16,7 @@ describe('News Routes', function () {
     expect(res.statusCode).toBe(404);
   });
 
-    test('responds to /', async () => {
+  test('responds to /', async () => {
     const res = await request(app).post('/');
     expect(res.statusCode).toBe(404);
   });

@@ -19,22 +19,22 @@ jest.mock('../../controllers/lookupController', () => ({
   getParents: jest.fn().mockImplementation((req, res) => {
     res.status(200).end();
   }),
-  getChildren: jest.fn().mockImplementation((req,res) => {
+  getChildren: jest.fn().mockImplementation((req, res) => {
     res.status(200).end();
   }),
-  getGrandchildren: jest.fn().mockImplementation((req,res) => {
+  getGrandchildren: jest.fn().mockImplementation((req, res) => {
     res.status(200).end();
   }),
-  getBirthdays: jest.fn().mockImplementation((req,res) => {
+  getBirthdays: jest.fn().mockImplementation((req, res) => {
     res.status(200).end();
   }),
   getBirthdayFormatted: jest.fn().mockImplementation((req, res) => {
     res.status(200).end();
   }),
-  getBirthdaysByMonth: jest.fn().mockImplementation((req,res) => {
+  getBirthdaysByMonth: jest.fn().mockImplementation((req, res) => {
     res.status(200).end();
   }),
-  getMailingLabels: jest.fn().mockImplementation((req,res) => {
+  getMailingLabels: jest.fn().mockImplementation((req, res) => {
     res.status(200).end();
   })
 }));

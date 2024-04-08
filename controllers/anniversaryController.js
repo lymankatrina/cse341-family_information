@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const ObjectId = mongoose.Types.ObjectId;
 const { Anniversary } = require('../models/anniversaryModel.js');
 const { formatAnniversary, handleServerError } = require('../helpers/helpers.js');
 
