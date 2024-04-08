@@ -1,29 +1,32 @@
 const express = require('express');
 const router = express.Router();
 const newsController = require('../controllers/newsController');
+const {
+  validUserEmail,
+  validHeadOfHousehold,
+  newsAccessMiddleware
+} = require('../middleware/permissionMiddleware');
 const { newsValidator } = require('../middleware/newsValidator');
-const { validUserEmail, validHeadOfHousehold } = require('../middleware/permissionMiddleware');
 
-// get news
+// get all news
 router.get('/getall', newsController.getAllNews);
 
-// Get all news
-router.get('/getformatted', newsController.getFormattedNews);
+// Get formatted news
+router.get('/getformatted', validUserEmail, newsAccessMiddleware, newsController.getFormattedNews);
 
 // Get single news story
-router.get('/:id', newsController.getNewsById);
+router.get('/:id', validUserEmail, newsAccessMiddleware, newsController.getNewsById);
 
 // Get news by author
-router.get('/author/:postedBy', newsController.getNewsByAuthor);
+router.get('/author/:postedBy', validUserEmail, newsAccessMiddleware, newsController.getNewsByAuthor);
 
 // Get news by status
-router.get('/status/:status', newsController.getNewsByStatus);
+router.get('/status/:status', validUserEmail, newsAccessMiddleware, newsController.getNewsByStatus);
 
 // Create a news story
 router.post(
   '/createnews',
   validUserEmail,
-  validHeadOfHousehold,
   newsValidator,
   newsController.createNewsStory
 );
@@ -34,6 +37,7 @@ router.put(
   validUserEmail,
   validHeadOfHousehold,
   newsValidator,
+  newsAccessMiddleware,
   newsController.updateNewsById
 );
 
@@ -42,6 +46,7 @@ router.delete(
   '/deletenews/:id',
   validUserEmail,
   validHeadOfHousehold,
+  newsAccessMiddleware,
   newsController.deleteNewsById
 );
 

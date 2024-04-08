@@ -45,13 +45,13 @@ exports.getFormattedNews = async (req, res) => {
     content: {
       "application/json": {
         example: {
-          "_id": "uniqueId",
-          "newsTitle": "Important Announcement",
-          "newsBody": "I am bringing jello salad to the family reunion!",
+          "newsId": "uniqueId",
+          "postedBy": "John Doe",
+          "dateCreated": "2024-03-14",
+          "newsTitle": "News Example",
+          "newsBody": "This is an example of a news story.",
           "status": "public",
-          "postedBy": "individual1",
-          "dateCreated": "2024-03-14T00:00:00.000+00:00",
-          "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+          "picture": "https://fakeimg.pl/600x400?text=example+image"
         }
       }
     }
@@ -72,20 +72,20 @@ exports.getFormattedNews = async (req, res) => {
 exports.getNewsById = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Get Single News Story by newsId'
-  // #swagger.description = 'This will return a single news story by news Id'
+  // #swagger.description = 'This will return a single news story by news Id for any news item with a public status. If the status of the story is private, it will only be returned if it was created by the current user.'
   /*
   #swagger.responses[200] = {
     description: 'Successful operation',
     content: {
       "application/json": {
         example: {
-          "_id": "uniqueId",
-          "newsTitle": "Important Announcement",
-          "newsBody": "I am bringing jello salad to the family reunion!",
+          "newsId": "uniqueId",
+          "postedBy": "John Doe",
+          "dateCreated": "2024-03-14",
+          "newsTitle": "News Example",
+          "newsBody": "This is an example of a news story.",
           "status": "public",
-          "postedBy": "individual1",
-          "dateCreated": "2024-03-14T00:00:00.000+00:00",
-          "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+          "picture": "https://fakeimg.pl/600x400?text=example+image"
         }
       }
     }
@@ -110,20 +110,20 @@ exports.getNewsById = async (req, res) => {
 exports.getNewsByAuthor = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Get News by Author'
-  // #swagger.description = 'This will return all news stories with postedBy matching the provided individualId'
+  // #swagger.description = 'This will return all public news stories with postedBy matching the provided individualId. If the news stories have a status of private, they will only be returned if the author is the current user.'
   /*
   #swagger.responses[200] = {
     description: 'Successful operation',
     content: {
       "application/json": {
         example: {
-          "_id": "uniqueId",
-          "newsTitle": "Important Announcement",
-          "newsBody": "I am bringing jello salad to the family reunion!",
+          "newsId": "uniqueId",
+          "postedBy": "John Doe",
+          "dateCreated": "2024-03-14",
+          "newsTitle": "News Example",
+          "newsBody": "This is an example of a news story.",
           "status": "public",
-          "postedBy": "individual1",
-          "dateCreated": "2024-03-14T00:00:00.000+00:00",
-          "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+          "picture": "https://fakeimg.pl/600x400?text=example+image"
         }
       }
     }
@@ -153,20 +153,20 @@ exports.getNewsByAuthor = async (req, res) => {
 exports.getNewsByStatus = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Get News by Status'
-  // #swagger.description = 'This will return all news stories with status matching the requested status of 'public' or 'private''
+  // #swagger.description = 'This will return all news stories with status matching the requested status of public or private. News stories with a status of private are only returned if they were posted by the current user.'
   /*
   #swagger.responses[200] = {
     description: 'Successful operation',
     content: {
       "application/json": {
         example: {
-          "_id": "uniqueId",
-          "newsTitle": "Important Announcement",
-          "newsBody": "I am bringing jello salad to the family reunion!",
+          "newsId": "uniqueId",
+          "postedBy": "John Doe",
+          "dateCreated": "2024-03-14",
+          "newsTitle": "News Example",
+          "newsBody": "This is an example of a news story.",
           "status": "public",
-          "postedBy": "individual1",
-          "dateCreated": "2024-03-14T00:00:00.000+00:00",
-          "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+          "picture": "https://fakeimg.pl/600x400?text=example+image"
         }
       }
     }
@@ -193,7 +193,7 @@ exports.getNewsByStatus = async (req, res) => {
 exports.createNewsStory = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Create a News Story'
-  // #swagger.description = 'Create a news story by providing all required information.'
+  // #swagger.description = 'Create a news story by providing all required information. News stories can only be created by valid users who are the head of a household. The postedBy Id must match the individualId of the current user.'
   /*
   #swagger.requestBody = {
     required: true,
@@ -254,7 +254,7 @@ exports.createNewsStory = async (req, res) => {
 exports.updateNewsById = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Update a News Story by Id'
-  // #swagger.description = 'Update an existing news story by providing all required information.'
+  // #swagger.description = 'Update an existing news story by providing all required information. News stories can only be updated by valid users who are the head of a household. The postedBy Id must match the individual Id of the current user.'
   /*
   #swagger.requestBody = {
     required: true,
@@ -312,7 +312,7 @@ exports.updateNewsById = async (req, res) => {
 exports.deleteNewsById = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Delete a News Story by Id'
-  // #swagger.description = 'This will delete a single news story from the database by Id. This action is permanent.'
+  // #swagger.description = 'This will delete a single news story from the database by Id. News stories can only be deleted by valid users who are the head of a household. The postedBy Id must match the individualId of the current user.'This action is permanent.'
   // #swagger.responses[200] = { description: 'Successful operation' }
   // #swagger.responses[403] = { description: 'Access denied' }
   // #swagger.responses[404] = { description: 'News not found' }

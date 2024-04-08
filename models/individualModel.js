@@ -7,7 +7,12 @@ const individualSchema = new mongoose.Schema(
     middleName: String,
     lastName: String,
     birthDate: Date,
-    parents: [String], // Define parents as an array of strings
+    parents: [
+      {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Individual'
+      }
+    ], // Define parents as an array of individualId's
     phone: String,
     email: String,
     household: String,

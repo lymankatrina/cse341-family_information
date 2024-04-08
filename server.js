@@ -7,7 +7,7 @@ const routes = require('./routes');
 
 //graphQL
 const { graphqlHTTP } = require('express-graphql');
-const { ObjectId } = require('mongodb'); //Import ObjectId
+
 const schema = require('./schema');
 
 const app = express();

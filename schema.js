@@ -8,7 +8,6 @@ const {
   GraphQLID
 } = require('graphql');
 
-const { ObjectId } = require('mongoose').Types;
 const Individual = require('./models/individualModel'); // Import Individual model
 const Household = require('./models/householdModel'); // Import Household model
 const Anniversary = require('./models/anniversaryModel'); // Import Anniversary model

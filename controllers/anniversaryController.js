@@ -1,13 +1,7 @@
 const mongoose = require('mongoose');
-const { Types } = require('mongoose');
-// eslint-disable-next-line no-unused-vars
-const { ObjectId } = Types;
+const ObjectId = mongoose.Types.ObjectId;
 const { Anniversary } = require('../models/anniversaryModel.js');
-const {
-  formatAnniversary,
-  handleServerError,
-  findIndividualsByIds
-} = require('../helpers/helpers.js');
+const { formatAnniversary, handleServerError } = require('../helpers/helpers.js');
 
 exports.getAllAnniversaries = async (req, res) => {
   // #swagger.tags = ['Anniversaries']
@@ -61,6 +55,7 @@ exports.getFormattedAnniversaries = async (req, res) => {
     }
   }
   #swagger.responses[403] = { description: 'Access denied' }
+
   #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {
@@ -213,18 +208,11 @@ exports.createAnniversary = async (req, res) => {
   #swagger.responses[412] = { description: 'Validation failed' }
   #swagger.responses[500] = { description: 'Internal server error' }
   */
-  const { couple, anniversaryDate } = req.body;
-  const coupleIds = couple.map((id) => mongoose.Types.ObjectId(id));
   try {
-    const individuals = await findIndividualsByIds(coupleIds);
-    if (individuals.length !== 2) {
-      return res.status(422).json({
-        errors: {
-          couple: ['Both individuals must exist in the individuals collection']
-        }
-      });
-    }
-    const newAnniversary = new Anniversary({ couple, anniversaryDate });
+    const newAnniversary = new Anniversary({
+      couple: req.body.couple,
+      anniversaryDate: req.body.anniversaryDate
+    });
     await newAnniversary.save();
     res.status(201).json(newAnniversary);
   } catch (error) {
@@ -271,18 +259,14 @@ exports.updateAnniversary = async (req, res) => {
   #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {
-    const anniversaryId = new ObjectId(req.params.id);
-    const couple = req.body.couple;
-    const anniversaryDate = new Date(req.body.anniversaryDate);
-    const updatedAnniversary = await Anniversary.findOneAndUpdate(
-      { _id: anniversaryId },
-      { $set: { couple, anniversaryDate } },
-      { returnDocument: 'after' }
-    );
-    if (updatedAnniversary) {
-      res.status(200).json(updatedAnniversary);
+    const anniversaryId = req.params.id;
+    const updatedAnniversary = await Anniversary.findByIdAndUpdate(anniversaryId, req.body, {
+      new: true
+    });
+    if (!updatedAnniversary) {
+      return res.status(404).json({ error: 'Anniversary not found' });
     } else {
-      res.status(404).json({ error: 'Anniversary not found' });
+      res.status(200).json(updatedAnniversary);
     }
   } catch (error) {
     handleServerError(res, error);
@@ -298,6 +282,7 @@ exports.deleteAnniversary = async (req, res) => {
   // #swagger.responses[404] = { description: 'Anniversary not found' }
   // #swagger.responses[500] = { description: 'Internal server error' }
   const anniversaryId = mongoose.Types.ObjectId(req.params.id);
+
   try {
     const response = await Anniversary.deleteOne({ _id: anniversaryId });
     if (response.deletedCount > 0) {
