@@ -32,4 +32,14 @@ const householdValidator = (req, res, next) => {
   });
 };
 
-module.exports = { isValidObjectId, householdValidator };
+// WIP
+function isValidAddress(address) {
+  return true;
+}
+
+// WIP
+function isValidHousehold(household) {
+  return true;
+}
+
+module.exports = { isValidObjectId, isValidAddress, isValidHousehold };
