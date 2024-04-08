@@ -10,8 +10,8 @@ const {
 
 const Individual = require('./models/individualModel'); // Import Individual model
 const Household = require('./models/householdModel'); // Import Household model
-const Anniversary = require('./models/anniversaryModel'); // Import Anniversary model
-const News = require('./models/newsModel'); // Import News model
+const {Anniversary} = require('./models/anniversaryModel'); // Import Anniversary model
+const {News} = require('./models/newsModel'); // Import News model
 
 // Define Individual type
 const IndividualType = new GraphQLObjectType({
