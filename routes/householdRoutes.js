@@ -25,6 +25,7 @@ router.post(
   '/createhousehold',
   validUserEmail,
   validHeadOfHousehold,
+  householdValidator,
   houseController.createHousehold
 );
 
@@ -33,6 +34,7 @@ router.put(
   '/updatehousehold/:id',
   validUserEmail,
   validHeadOfHousehold,
+  householdValidator,
   houseController.updateHousehold
 );
 
