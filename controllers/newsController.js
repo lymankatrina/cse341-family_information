@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const { News } = require('../models/newsModel');
 const Individual = require('../models/individualModel');
 const { formatNews, handleServerError } = require('../helpers/helpers');
@@ -317,7 +318,7 @@ exports.deleteNewsById = async (req, res) => {
   // #swagger.responses[403] = { description: 'Access denied' }
   // #swagger.responses[404] = { description: 'News not found' }
   // #swagger.responses[500] = { description: 'Internal server error' }
-  const newsId = req.params.id;
+  const newsId = new mongoose.Types.ObjectId(req.params.id);
   try {
     await News.findByIdAndDelete(newsId);
     res.status(200).send();
