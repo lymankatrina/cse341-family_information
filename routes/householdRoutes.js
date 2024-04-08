@@ -33,7 +33,6 @@ router.put(
   '/updatehousehold/:id',
   validUserEmail,
   validHeadOfHousehold,
-  householdValidator,
   houseController.updateHousehold
 );
 
