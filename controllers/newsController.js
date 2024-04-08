@@ -314,6 +314,7 @@ exports.deleteNewsById = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Delete a News Story by Id'
   // #swagger.description = 'This will delete a single news story from the database by Id. News stories can only be deleted by valid users who are the head of a household. The postedBy Id must match the individualId of the current user.'This action is permanent.'
+  // #swagger.requestBody = false;
   // #swagger.responses[200] = { description: 'Successful operation' }
   // #swagger.responses[403] = { description: 'Access denied' }
   // #swagger.responses[404] = { description: 'News not found' }

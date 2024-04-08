@@ -1410,18 +1410,7 @@
           }
         },
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "postedBy": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
+          "description": "Successful operation"
         }
       }
     },
