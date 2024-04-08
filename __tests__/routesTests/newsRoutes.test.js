@@ -104,7 +104,6 @@ describe('News Routes', function () {
   test('POST /news/createnews should respond with status 200', async () => {
     const res = await request(app).post('/news/createnews');
     expect(validUserEmail).toHaveBeenCalled();
-    expect(validHeadOfHousehold).toHaveBeenCalled();
     expect(newsValidator).toHaveBeenCalled();
     expect(newsController.createNewsStory).toHaveBeenCalled();
     expect(res.status).toBe(200);

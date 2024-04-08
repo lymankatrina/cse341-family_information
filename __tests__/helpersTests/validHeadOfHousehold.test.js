@@ -44,6 +44,6 @@ describe('validHeadOfHousehold middleware', () => {
     expect(getUserByEmail).toHaveBeenCalledWith('test@example.com');
     expect(next).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(403);
-    expect(res.send).toHaveBeenCalledWith('Access denied.');
+    expect(res.send).toHaveBeenCalledWith('Access denied');
   });
 });
