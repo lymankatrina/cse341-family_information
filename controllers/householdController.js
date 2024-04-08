@@ -1,8 +1,8 @@
 const Household = require('../models/householdModel');
 const {
   isValidObjectId,
-//  isValidAddress,
-//  isValidHousehold
+  isValidAddress,
+  isValidHousehold
 } = require('../middleware/householdValidator');
 
 exports.getHouseholds = async (req, res) => {
