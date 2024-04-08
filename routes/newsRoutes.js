@@ -27,7 +27,6 @@ router.get('/status/:status', validUserEmail, newsAccessMiddleware, newsControll
 router.post(
   '/createnews',
   validUserEmail,
-  validHeadOfHousehold,
   newsValidator,
   newsController.createNewsStory
 );

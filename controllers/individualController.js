@@ -90,7 +90,7 @@ exports.updateIndividual = async (req, res) => {
   // #swagger.summary = 'Update an existing Individual by Id'
   // #swagger.description = 'Update an existing individual by providing all required information.'
   try {
-    const individualId = mongoose.Types.ObjectId(req.params.id);
+    const individualId = new mongoose.Types.ObjectId(req.params.id);
     const {
       firstName,
       middleName,
@@ -102,7 +102,7 @@ exports.updateIndividual = async (req, res) => {
       household,
       headOfHousehold,
       picture
-    } = req.body;
+    } = (req.body, { new: true });
     const updatedIndividual = await Individual.findByIdAndUpdate(
       individualId,
       {
