@@ -11,7 +11,7 @@ function isValidObjectId(id) {
 
 const householdValidator = (req, res, next) => {
   const validationRule = {
-    streetAddres: 'required|string',
+    streetAddress: 'required|string',
     city: 'required|string',
     state: 'required|string',
     zip: 'required|string',
