@@ -5,7 +5,28 @@ const { formatNews, handleServerError } = require('../helpers/helpers');
 exports.getAllNews = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Get all News Stories'
-  // #swagger.description = 'This will return all the news stories in the database unformatted'
+  // #swagger.description = 'This will list all news stories in the database'
+  /*
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "newsTitle": "Important Announcement",
+          "newsBody": "I am bringing jello salad to the family reunion!",
+          "status": "public",
+          "postedBy": "individual1",
+          "dateCreated": "2024-03-14T00:00:00.000+00:00",
+          "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[404] = { description: 'News not found' }
+  #swagger.responses[500] = { description: 'Internal server error' }
+  */
   try {
     const result = await News.find();
     res.status(200).json(result);
@@ -18,6 +39,27 @@ exports.getFormattedNews = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Get all News Stories formatted with author names'
   // #swagger.description = 'This will return all the news stories in the database'
+  /*
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "newsTitle": "Important Announcement",
+          "newsBody": "I am bringing jello salad to the family reunion!",
+          "status": "public",
+          "postedBy": "individual1",
+          "dateCreated": "2024-03-14T00:00:00.000+00:00",
+          "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[404] = { description: 'News not found' }
+  #swagger.responses[500] = { description: 'Internal server error' }
+  */
   try {
     const news = await News.find().populate('postedBy');
     const result = await Promise.all(news.map(formatNews));
@@ -31,6 +73,27 @@ exports.getNewsById = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Get Single News Story by newsId'
   // #swagger.description = 'This will return a single news story by news Id'
+  /*
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "newsTitle": "Important Announcement",
+          "newsBody": "I am bringing jello salad to the family reunion!",
+          "status": "public",
+          "postedBy": "individual1",
+          "dateCreated": "2024-03-14T00:00:00.000+00:00",
+          "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[404] = { description: 'News not found' }
+  #swagger.responses[500] = { description: 'Internal server error' }
+  */
   const newsId = req.params.id;
   try {
     const news = await News.findById(newsId);
@@ -48,6 +111,27 @@ exports.getNewsByAuthor = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Get News by Author'
   // #swagger.description = 'This will return all news stories with postedBy matching the provided individualId'
+  /*
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "newsTitle": "Important Announcement",
+          "newsBody": "I am bringing jello salad to the family reunion!",
+          "status": "public",
+          "postedBy": "individual1",
+          "dateCreated": "2024-03-14T00:00:00.000+00:00",
+          "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[404] = { description: 'News not found' }
+  #swagger.responses[500] = { description: 'Internal server error' }
+  */
   const postedBy = req.params.postedBy;
   try {
     const news = await News.find({ postedBy: postedBy });
@@ -70,6 +154,27 @@ exports.getNewsByStatus = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Get News by Status'
   // #swagger.description = 'This will return all news stories with status matching the requested status of 'public' or 'private''
+  /*
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "newsTitle": "Important Announcement",
+          "newsBody": "I am bringing jello salad to the family reunion!",
+          "status": "public",
+          "postedBy": "individual1",
+          "dateCreated": "2024-03-14T00:00:00.000+00:00",
+          "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[404] = { description: 'News not found' }
+  #swagger.responses[500] = { description: 'Internal server error' }
+  */
   const status = req.params.status;
   try {
     const news = await News.find({ status: status });
@@ -105,6 +210,25 @@ exports.createNewsStory = async (req, res) => {
       }
     }
   }
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "newsTitle": "Important Announcement",
+          "newsBody": "I am bringing jello salad to the family reunion!",
+          "status": "public",
+          "postedBy": "individual1",
+          "dateCreated": "2024-03-14T00:00:00.000+00:00",
+          "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[412] = { description: 'Validation failed' }
+  #swagger.responses[500] = { description: 'Internal server error' }
   */
   const dateCreated = new Date(req.body.dateCreated);
   const existingIndividual = await Individual.findById(req.body.postedBy);
@@ -147,6 +271,25 @@ exports.updateNewsById = async (req, res) => {
       }
     }
   }
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "newsTitle": "Important Announcement",
+          "newsBody": "I am bringing jello salad to the family reunion!",
+          "status": "public",
+          "postedBy": "individual1",
+          "dateCreated": "2024-03-14T00:00:00.000+00:00",
+          "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[412] = { description: 'Validation failed' }
+  #swagger.responses[500] = { description: 'Internal server error' }
   */
   const dateCreated = new Date(req.body.dateCreated);
   const newsId = req.params.id;
@@ -170,6 +313,10 @@ exports.deleteNewsById = async (req, res) => {
   // #swagger.tags = ['News']
   // #swagger.summary = 'Delete a News Story by Id'
   // #swagger.description = 'This will delete a single news story from the database by Id. This action is permanent.'
+  // #swagger.responses[200] = { description: 'Successful operation' }
+  // #swagger.responses[403] = { description: 'Access denied' }
+  // #swagger.responses[404] = { description: 'News not found' }
+  // #swagger.responses[500] = { description: 'Internal server error' }
   const newsId = req.params.id;
   try {
     await News.findByIdAndDelete(newsId);
