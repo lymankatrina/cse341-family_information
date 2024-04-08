@@ -25,7 +25,6 @@ router.post(
   '/createhousehold',
   validUserEmail,
   validHeadOfHousehold,
-  householdValidator,
   houseController.createHousehold
 );
 
