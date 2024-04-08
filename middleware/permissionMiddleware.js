@@ -24,7 +24,7 @@ const validUserEmail = async (req, res, next) => {
     const validEmails = await getEmails()
 
     if (!email in validEmails) {
-        res.status(403).send("Access denied.");
+        res.status(403).send("Access denied");
         return;
     }
     next();
@@ -43,7 +43,7 @@ const validHeadOfHousehold = async (req, res, next) => {
     const user = await getUserByEmail(email)
     console.log(user.headOfHousehold)
     if (!user.headOfHousehold) {
-        res.status(403).send("Access denied.");
+        res.status(403).send("Access denied");
         return;
     }
     next();
