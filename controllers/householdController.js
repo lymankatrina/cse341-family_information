@@ -209,9 +209,11 @@ exports.getHouseholdsByAddress = async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
 
   if (!isValidAddress(address)) {
-    res.status(422).json({
-      error: "Address is invalid, make sure to follow this format '/street/city/state/zip/'"
-    });
+    res
+      .status(422)
+      .json({
+        error: "Address is invalid, make sure to follow this format '/street/city/state/zip/'"
+      });
   } else {
     try {
       const result = await Household.findOne({
@@ -381,7 +383,7 @@ exports.updateHousehold = async (req, res) => {
     res.status(422).json({ error: 'Household id is invalid' });
   } else {
     try {
-      const result = await Household.findByIdAndUpdate(id, req.body, { new: true });
+      const result = await Household.findByIdAndUpdate(id, req.body, {new: true})
 
       if (!result) {
         res.status(404).json({ error: 'Household was not found' });
