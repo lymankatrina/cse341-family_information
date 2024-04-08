@@ -185,7 +185,7 @@ query IndividualByName {
 
 ### Mutation to add a new individual to the collection
 
-# Query to Add a new author to the collection
+# Query to Add a new individual to the collection
 
 mutation  {
   createIndividual(
@@ -219,8 +219,8 @@ mutation  {
 
 mutation UpdateIndividual {
   updateIndividual(
-  	id: "65ef74ae7c211814c571e01b",
-    firstName: "John",
+  	id: "65f1dc20a082e7bd594edca2",
+    firstName: "Pierre",
     middleName:"Bart Etienne",
     lastName: "Doe"
     birthDate: "988-01-01",
@@ -250,7 +250,7 @@ mutation UpdateIndividual {
 # Query to delete an existing individual from the collection
 
 mutation DeleteIndividual {
-  deleteIndividual(id: "65e39668adcab8306401f891") {
+  deleteIndividual(id: "65f1dc20a082e7bd594edca2") {
 	_id
     firstName
     middleName
@@ -331,7 +331,7 @@ mutation {
 
 mutation UpdateHousehold {
   updateHousehold(
-     id: "65f5f796a5c2c0bc7cd8cbaf",
+     id: "65f9197e78c0a979ea81a186",
     streetAddress: "",
     city: "290 Zion Street",
     state: "Salt Lake",
@@ -363,7 +363,7 @@ mutation UpdateHousehold {
 ### Query to delete an existing household from the collection
 
 mutation {
-  deleteHousehold(id: "65fc9426fc13ae5d6a50faa9") {
+  deleteHousehold(id: "65f9197e78c0a979ea81a186") {
     _id
     streetAddress
     city
@@ -392,6 +392,18 @@ query {
 }
 
 
+# Query to get anniversary by Id
+
+query {
+  anniversaryById(id: "65f1dccaa082e7bd594edca4") {
+    _id
+    couple
+    anniversaryDate
+  }
+}
+
+
+
 # GraphQL Query to create a new anniversary to the anniversaries collection
 
 mutation {
@@ -411,9 +423,9 @@ mutation {
 
 mutation {
   updateAnniversary(
-    id: "65f1dccaa082e7bd594edca4",
+    id: "65f2334c919a40f06146bac0",
     couple: ["65f1dc20a082e7bd594edca2", "65f601bc4abde303e77e19e4"],
-      anniversaryDate: "1996-01-14"
+      anniversaryDate: "1999-01-01"
     )
   {
     _id
@@ -427,7 +439,7 @@ mutation {
 # GraphQL Query to DELETE an exisint anniversary from the anniversaries collection
 
 mutation {
- deleteAnniversary (id: "65fc9426fc13ae5d6a50fa9c")
+ deleteAnniversary (id: "65f2334c919a40f06146bac0")
   {
  _id
 couple
@@ -497,10 +509,10 @@ mutation {
 
 mutation {
   updateNews(
-    id: "65fb721269a9ff4f533c80e0"
+    id: "65f368ef9d5d7518becdb4f0"
     newsTitle: "Updated News Title"
-    newsBody: "Updated News Body"
-    status: "private"
+    newsBody: "This is the most exciting news around"
+    status: "public"
   ) {
     _id
     newsTitle
@@ -516,7 +528,7 @@ mutation {
 # GraphQL Query to DELETE an exisint news from the news collection
 
 mutation {
-    deleteNews(id: "66085524f062cf983755bd8e") {
+    deleteNews(id: "65f368ef9d5d7518becdb4f0") {
         _id
         newsTitle
         newsBody

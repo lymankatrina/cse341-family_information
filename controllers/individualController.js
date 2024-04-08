@@ -247,45 +247,20 @@ exports.updateIndividual = async (req, res) => {
   #swagger.responses[404] = { description: 'Individual not found' }
   #swagger.responses[500] = { description: 'Internal server error' }
   */
+  const id = req.params.id;
   try {
-    const individualId = mongoose.Types.ObjectId(req.params.id);
-    const {
-      firstName,
-      middleName,
-      lastName,
-      birthDate,
-      parents,
-      phone,
-      email,
-      household,
-      headOfHousehold,
-      picture
-    } = req.body;
-    const updatedIndividual = await Individual.findByIdAndUpdate(
-      individualId,
-      {
-        firstName,
-        middleName,
-        lastName,
-        birthDate,
-        parents,
-        phone,
-        email,
-        household,
-        headOfHousehold,
-        picture
-      },
-      { new: true } // Return the updated document
-    );
-    if (updatedIndividual) {
-      res.status(200).json(updatedIndividual);
-    } else {
+    const result = await Individual.findByIdAndUpdate(id, req.body, { new: true });
+    if (!result) {
       res.status(404).json({ error: 'Individual not found' });
+    } else {
+      const updatedIndividual = result.toObject(); // Renamed variable to avoid declaration again.
+      res.status(200).json(updatedIndividual);
     }
   } catch (error) {
-    handleServerError(res, error);
+    res.status(500).json({ error: 'Server error' });
   }
 };
+
 
 /* DELETE REQUESTS */
 // Delete an individual by id
@@ -298,13 +273,13 @@ exports.deleteIndividual = async (req, res) => {
   // #swagger.responses[404] = { description: 'Individual not found' }
   // #swagger.responses[500] = { description: 'Internal server error' }
   const individualId = mongoose.Types.ObjectId(req.params.id);
+  const id = req.params.id;
   try {
-    const response = await Individual.deleteOne({ _id: individualId });
-    if (response.deletedCount > 0) {
-      res.status(200).send();
-    } else {
-      res.status(404).json({ error: 'Individual not found' });
+    const result = await Individual.findByIdAndDelete(id);
+    if (!result) {
+      return res.status(404).json({ error: 'Individual not found' });
     }
+    res.status(200).json(result);
   } catch (error) {
     handleServerError(res, error);
   }
