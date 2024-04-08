@@ -9,6 +9,36 @@ exports.getHouseholds = async (req, res) => {
   // #swagger.tags = ['Households']
   // #swagger.summary = 'Get all Households'
   // #swagger.description = 'This will list all households in the database'
+  /*
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "streetAddress": "123 Real Street",
+          "city": "Salem",
+          "state": "UT",
+          "zip": "84653",
+          "country": "United States",
+          headOfHousehold: [
+            "individual1",
+            "individual2"
+          ],
+          residents: [
+            "individual1",
+            "individual2",
+            "individual3",
+            "individial4"
+          ]
+        }
+      }
+    }
+  } 
+  #swagger.responses[404] = { description: 'Households not found' }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[500] = { description: 'Internal server error' }
+  */
   try {
     const result = await Household.find();
     res.setHeader('Content-Type', 'application/json');
@@ -26,8 +56,39 @@ exports.getHouseholds = async (req, res) => {
 
 exports.getHouseholdById = async (req, res) => {
   // #swagger.tags = ['Households']
-  // #swagger.summary = 'Get a single household by its ID'
-  // #swagger.description = 'Returns a single household by its id'
+  // #swagger.summary = 'Get a single household by household id'
+  // #swagger.description = 'This will return a single household in the database by household id'
+  /*
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "streetAddress": "123 Real Street",
+          "city": "Salem",
+          "state": "UT",
+          "zip": "84653",
+          "country": "United States",
+          headOfHousehold: [
+            "individual1",
+            "individual2"
+          ],
+          residents: [
+            "individual1",
+            "individual2",
+            "individual3",
+            "individial4"
+          ]
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[404] = { description: 'Household not found' }
+  #swagger.responses[422] = { description: 'Id is invalid' }
+  #swagger.responses[500] = { description: 'Internal server error' }
+  */
   const id = req.params.id;
   res.setHeader('Content-Type', 'application/json');
 
@@ -50,8 +111,39 @@ exports.getHouseholdById = async (req, res) => {
 
 exports.getHouseholdsByHoh = async (req, res) => {
   // #swagger.tags = ['Households']
-  // #swagger.summary = 'Get a single household by its head of household'
-  // #swagger.description = 'Returns a single household by the head of the household'
+  // #swagger.summary = 'Get a single household by head of household'
+  // #swagger.description = 'This will return a single household belonging to the specified head of household'
+  /*
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "streetAddress": "123 Real Street",
+          "city": "Salem",
+          "state": "UT",
+          "zip": "84653",
+          "country": "United States",
+          headOfHousehold: [
+            "individual1",
+            "individual2"
+          ],
+          residents: [
+            "individual1",
+            "individual2",
+            "individual3",
+            "individial4"
+          ]
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[404] = { description: 'Household not found' }
+  #swagger.responses[422] = { description: 'Head of household id is invalid' }
+  #swagger.responses[500] = { description: 'Internal server error' }
+  */
   const hoh = req.params.hoh;
   res.setHeader('Content-Type', 'application/json');
 
@@ -74,8 +166,39 @@ exports.getHouseholdsByHoh = async (req, res) => {
 
 exports.getHouseholdsByAddress = async (req, res) => {
   // #swagger.tags = ['Households']
-  // #swagger.summary = 'Get a single household by its address'
-  // #swagger.description = 'Returns a single household by its address'
+  // #swagger.summary = 'Get a single household by address'
+  // #swagger.description = 'This will return a single household located at the specified address.'
+  /*
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "streetAddress": "123 Real Street",
+          "city": "Salem",
+          "state": "UT",
+          "zip": "84653",
+          "country": "United States",
+          headOfHousehold: [
+            "individual1",
+            "individual2"
+          ],
+          residents: [
+            "individual1",
+            "individual2",
+            "individual3",
+            "individial4"
+          ]
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[404] = { description: 'Household not found' }
+  #swagger.responses[422] = { description: 'Address is invalid' }
+  #swagger.responses[500] = { description: 'Internal server error' }
+  */
   const address = {
     street: req.params.street,
     city: req.params.city,
@@ -130,6 +253,34 @@ exports.createHousehold = async (req, res) => {
       }
     }
   }
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "streetAddress": "123 Real Street",
+          "city": "Salem",
+          "state": "UT",
+          "zip": "84653",
+          "country": "United States",
+          headOfHousehold: [
+            "individual1",
+            "individual2"
+          ],
+          residents: [
+            "individual1",
+            "individual2",
+            "individual3",
+            "individial4"
+          ]
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[412] = { description: 'Validation failed' }
+  #swagger.responses[500] = { description: 'Internal server error' }
   */
   const household = {
     streetAddress: req.body.streetAddress,
@@ -163,7 +314,7 @@ exports.createHousehold = async (req, res) => {
 exports.updateHousehold = async (req, res) => {
   // #swagger.tags = ['Households']
   // #swagger.summary = 'Update a Household by its ID'
-  // #swagger.description = 'Update an existing household by providing all required information.'
+  // #swagger.description = 'Update an existing household by providing the householdId and the updated information. All fields required.'
   /*
   #swagger.requestBody = {
     required: true,
@@ -181,6 +332,35 @@ exports.updateHousehold = async (req, res) => {
       }
     }
   }
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "streetAddress": "123 Real Street",
+          "city": "Salem",
+          "state": "UT",
+          "zip": "84653",
+          "country": "United States",
+          headOfHousehold: [
+            "individual1",
+            "individual2"
+          ],
+          residents: [
+            "individual1",
+            "individual2",
+            "individual3",
+            "individial4"
+          ]
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[404] = { description: 'Household not found' }
+  #swagger.responses[412] = { description: 'Validation failed' }
+  #swagger.responses[500] = { description: 'Internal server error' }
   */
   const id = req.params.id;
   const household = {
@@ -201,12 +381,8 @@ exports.updateHousehold = async (req, res) => {
     res.status(422).json({ error: 'Household id is invalid' });
   } else {
     try {
-      // const result = await Household.findOneAndUpdate(
-      //   { _id: id },
-      //   { $set: { streetAddress, city, state, zip, country, headOfHousehold, residents } },
-      //   { returnDocument: 'after' }
-      // );
-      const result = await Household.findByIdAndUpdate(id, req.body, { new: true });
+      const result = await Household.findByIdAndUpdate(id, req.body, {new: true})
+
       if (!result) {
         res.status(404).json({ error: 'Household was not found' });
       } else {
@@ -222,7 +398,11 @@ exports.updateHousehold = async (req, res) => {
 exports.deleteHousehold = async (req, res) => {
   // #swagger.tags = ['Households']
   // #swagger.summary = 'Delete a household by its ID'
-  // #swagger.description = 'Permanently delete a household by its ID'
+  // #swagger.description = 'This will delete a single household from the database by Id. This action is permanent.'
+  // #swagger.responses[200] = { description: 'Successful operation' }
+  // #swagger.responses[403] = { description: 'Access denied' }
+  // #swagger.responses[404] = { description: 'Household not found' }
+  // #swagger.responses[500] = { description: 'Internal server error' }
   const id = req.params.id;
   res.setHeader('Content-Type', 'application/json');
 

@@ -7,8 +7,36 @@ const { handleServerError } = require('../helpers/helpers');
 // Get a list of all Individuals
 exports.getAllIndividuals = async (req, res) => {
   // #swagger.tags = ['Individuals']
-  // #swagger.summary = 'Get all individuals'
-  // #swagger.description = 'This will return all the individuals in the database'
+  // #swagger.summary = 'Get all Individuals'
+  // #swagger.description = 'This will list all individuals in the database'
+  /*
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "firstName": "Alexander",
+          "middleName": "Danger",
+          "lastName": "Olsen",
+          "birthDate": "2011-07-16T00:00:00.000+00:00",
+          "parents": [
+            "individual1",
+            "individual2"
+          ],
+          "phone": "123-456-7890",
+          "email": "fake@gamil.com",
+          "household": "uniqueId",
+          "headOfHousehold": "false",
+          "picture": "https://fakeimg.pl/600x400?text=Alexander"
+        }
+      }
+    }
+  }
+  #swagger.responses[500] = { description: 'Internal server error' }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[404] = { description: 'Individuals not found' }
+  */
   try {
     const result = await Individual.find();
     res.status(200).json(result);
@@ -22,8 +50,36 @@ exports.getAllIndividuals = async (req, res) => {
 // Get a single Individual by Id
 exports.getIndividualById = async (req, res) => {
   // #swagger.tags = ['Individuals']
-  // #swagger.summary = 'Get an individual by Id'
-  // #swagger.description = 'This will return an individual by Id'
+  // #swagger.summary = 'Get a single individual by individual Id'
+  // #swagger.description = 'This will return a single individual in the database by individual Id'
+  /*
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "firstName": "Alexander",
+          "middleName": "Danger",
+          "lastName": "Olsen",
+          "birthDate": "2011-07-16T00:00:00.000+00:00",
+          "parents": [
+            "individual1",
+            "individual2"
+          ],
+          "phone": "123-456-7890",
+          "email": "fake@gamil.com",
+          "household": "uniqueId",
+          "headOfHousehold": "false",
+          "picture": "https://fakeimg.pl/600x400?text=Alexander"
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[404] = { description: 'Individual not found' }
+  #swagger.responses[500] = { description: 'Internal server error' }
+  */
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid individual id to find an individual.');
   }
@@ -61,8 +117,59 @@ exports.getUserByEmail = async (userEmail) => {
 // Create an Individual
 exports.createIndividual = async (req, res) => {
   // #swagger.tags = ['Individuals']
-  // #swagger.summary = 'Create a new Individual to the collection'
+  // #swagger.summary = 'Create an Individual'
   // #swagger.description = 'Create an Individual by providing all required information.'
+  /*
+  #swagger.requestBody = {
+    required: true,
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "firstName": "Alexander",
+          "middleName": "Danger",
+          "lastName": "Olsen",
+          "birthDate": "2011-07-16T00:00:00.000+00:00",
+          "parents": [
+            "individual1",
+            "individual2"
+          ],
+          "phone": "123-456-7890",
+          "email": "fake@gamil.com",
+          "household": "uniqueId",
+          "headOfHousehold": "false",
+          "picture": "https://fakeimg.pl/600x400?text=Alexander"
+        }
+      }
+    }
+  }
+  #swagger.responses[201] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "firstName": "Alexander",
+          "middleName": "Danger",
+          "lastName": "Olsen",
+          "birthDate": "2011-07-16T00:00:00.000+00:00",
+          "parents": [
+            "individual1",
+            "individual2"
+          ],
+          "phone": "123-456-7890",
+          "email": "fake@gamil.com",
+          "household": "uniqueId",
+          "headOfHousehold": "false",
+          "picture": "https://fakeimg.pl/600x400?text=Alexander"
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[404] = { description: 'Individual not found' }
+  #swagger.responses[500] = { description: 'Internal server error' }
+  */
   try {
     const individual = new Individual({
       firstName: req.body.firstName,
@@ -87,47 +194,73 @@ exports.createIndividual = async (req, res) => {
 // Update a single individual by id
 exports.updateIndividual = async (req, res) => {
   // #swagger.tags = ['Individuals']
-  // #swagger.summary = 'Update an existing Individual by Id'
-  // #swagger.description = 'Update an existing individual by providing all required information.'
+  // #swagger.summary = 'Update an Individual by Id'
+  // #swagger.description = 'Update an existing Individual by providing the individualId and updated fields. All fields are required.'
+  /*
+  #swagger.requestBody = {
+    required: true,
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "firstName": "Alexander",
+          "middleName": "Danger",
+          "lastName": "Olsen",
+          "birthDate": "2011-07-16T00:00:00.000+00:00",
+          "parents": [
+            "individual1",
+            "individual2"
+          ],
+          "phone": "123-456-7890",
+          "email": "fake@gamil.com",
+          "household": "uniqueId",
+          "headOfHousehold": "false",
+          "picture": "https://fakeimg.pl/600x400?text=Alexander"
+        }
+      }
+    }
+  }
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "_id": "uniqueId",
+          "firstName": "Alexander",
+          "middleName": "Danger",
+          "lastName": "Olsen",
+          "birthDate": "2011-07-16T00:00:00.000+00:00",
+          "parents": [
+            "individual1",
+            "individual2"
+          ],
+          "phone": "123-456-7890",
+          "email": "fake@gamil.com",
+          "household": "uniqueId",
+          "headOfHousehold": "false",
+          "picture": "https://fakeimg.pl/600x400?text=Alexander"
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[404] = { description: 'Individual not found' }
+  #swagger.responses[500] = { description: 'Internal server error' }
+  */
+  const id = req.params.id;
   try {
-    const individualId = new mongoose.Types.ObjectId(req.params.id);
-    const {
-      firstName,
-      middleName,
-      lastName,
-      birthDate,
-      parents,
-      phone,
-      email,
-      household,
-      headOfHousehold,
-      picture
-    } = (req.body, { new: true });
-    const updatedIndividual = await Individual.findByIdAndUpdate(
-      individualId,
-      {
-        firstName,
-        middleName,
-        lastName,
-        birthDate,
-        parents,
-        phone,
-        email,
-        household,
-        headOfHousehold,
-        picture
-      },
-      { new: true } // Return the updated document
-    );
-    if (updatedIndividual) {
-      res.status(200).json(updatedIndividual);
-    } else {
+    const result = await Individual.findByIdAndUpdate(id, req.body, { new: true });
+    if (!result) {
       res.status(404).json({ error: 'Individual not found' });
+    } else {
+      const updatedIndividual = result.toObject(); // Renamed variable to avoid declaration again.
+      res.status(200).json(updatedIndividual);
     }
   } catch (error) {
-    handleServerError(res, error);
+    res.status(500).json({ error: 'Server error' });
   }
 };
+
 
 /* DELETE REQUESTS */
 // Delete an individual by id
@@ -135,14 +268,18 @@ exports.deleteIndividual = async (req, res) => {
   // #swagger.tags = ['Individuals']
   // #swagger.summary = 'Delete an Individual by Id'
   // #swagger.description = 'This will delete a single individual from the database by Id. This action is permanent.'
+  // #swagger.responses[200] = { description: 'Successful operation' }
+  // #swagger.responses[403] = { description: 'Access denied' }
+  // #swagger.responses[404] = { description: 'Individual not found' }
+  // #swagger.responses[500] = { description: 'Internal server error' }
   const individualId = mongoose.Types.ObjectId(req.params.id);
+  const id = req.params.id;
   try {
-    const response = await Individual.deleteOne({ _id: individualId });
-    if (response.deletedCount > 0) {
-      res.status(200).send();
-    } else {
-      res.status(404).json({ error: 'Individual not found' });
+    const result = await Individual.findByIdAndDelete(id);
+    if (!result) {
+      return res.status(404).json({ error: 'Individual not found' });
     }
+    res.status(200).json(result);
   } catch (error) {
     handleServerError(res, error);
   }

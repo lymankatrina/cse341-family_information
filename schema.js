@@ -129,6 +129,18 @@ const RootQuery = new GraphQLObjectType({
       }
     },
 
+
+       // Query to get anniversary by Id
+       anniversaryById: {
+        type: AnniversaryType,
+        args: {
+          id: { type: GraphQLID }
+        },
+        resolve(parent, args) {
+          return Anniversary.findById(args.id);
+        }
+      },
+
     // Query to get all News
     news: {
       type: new GraphQLList(NewsType),

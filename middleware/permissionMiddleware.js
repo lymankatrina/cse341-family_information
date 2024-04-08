@@ -12,39 +12,28 @@ const getEmails = async () => {
   return emails;
 };
 
-const validEmail = async (req, res, next) => {
+const validUserEmail = async (req, res, next) => {
   const email = req.oidc.user.email;
   const validEmails = await getEmails();
   return validEmails.includes(email);
 };
-
-const validUserEmail = async (req, res, next) => {
-  const isValidUser = await validEmail(req, res, next);
-  if(!isValidUser) {
-    res.status(403).send('Access denied.');
-    return;
-  }
-  next();
-};
+    if (!email in validEmails) {
+        res.status(403).send("Access denied");
+        return;
+    }
+    next();
+}
 
 const validHeadOfHousehold = async (req, res, next) => {
-  // Production email
   let email = req.oidc.user.email;
 
-  // Dev valid test email
-  // const email = "jbdoe@gmail.com";
-
-  // Dev invalid test email
-  // const email = "jmjingle@gmail.com";
-
-  const user = await getUserByEmail(email);
-  console.log(user.headOfHousehold);
-  if (!user.headOfHousehold) {
-    res.status(403).send('Access denied.');
-    return;
-  }
-  next();
-};
+    const user = await getUserByEmail(email)
+    if (!user.headOfHousehold) {
+        res.status(403).send("Access denied");
+        return;
+    }
+    next();
+}
 
 const newsAccessMiddleware = async (req, res, next) => {
   try {

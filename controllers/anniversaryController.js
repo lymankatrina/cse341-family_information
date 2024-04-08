@@ -23,6 +23,7 @@ exports.getAllAnniversaries = async (req, res) => {
       }
     }
   }
+  #swagger.responses[403] = { description: 'Access denied' }
   #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {
@@ -53,6 +54,8 @@ exports.getFormattedAnniversaries = async (req, res) => {
       }
     }
   }
+  #swagger.responses[403] = { description: 'Access denied' }
+
   #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {
@@ -84,6 +87,7 @@ exports.getAnniversaryById = async (req, res) => {
       }
     }
   }
+  #swagger.responses[403] = { description: 'Access denied' }
   #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {
@@ -119,6 +123,7 @@ exports.getAnniversariesByMonth = async (req, res) => {
       }
     }
   }
+  #swagger.responses[403] = { description: 'Access denied' }
   #swagger.responses[500] = { description: 'Internal server error' }
   */
   const month = parseInt(req.params.month);
@@ -184,6 +189,23 @@ exports.createAnniversary = async (req, res) => {
       }
     }
   }
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "anniversaryId": "65f67b2343deac10f85b3df6",
+          "couple": [
+            "John Doe",
+            "Jane Doe"
+          ],
+          "formattedDate": "2020-06-30"
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[412] = { description: 'Validation failed' }
   #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {
@@ -217,6 +239,23 @@ exports.updateAnniversary = async (req, res) => {
       }
     }
   }
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "anniversaryId": "65f67b2343deac10f85b3df6",
+          "couple": [
+            "John Doe",
+            "Jane Doe"
+          ],
+          "formattedDate": "2020-06-30"
+        }
+      }
+    }
+  }
+  #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[412] = { description: 'Validation failed' }
   #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {
@@ -238,8 +277,12 @@ exports.deleteAnniversary = async (req, res) => {
   // #swagger.tags = ['Anniversaries']
   // #swagger.summary = 'Delete an Anniversary by Id'
   // #swagger.description = 'This will delete a single anniversary from the database by Id. This action is permanent.'
+  // #swagger.responses[200] = { description: 'Successful operation' }
+  // #swagger.responses[403] = { description: 'Access denied' }
+  // #swagger.responses[404] = { description: 'Anniversary not found' }
   // #swagger.responses[500] = { description: 'Internal server error' }
-  const anniversaryId = new ObjectId(req.params.id);
+  const anniversaryId = mongoose.Types.ObjectId(req.params.id);
+
   try {
     const response = await Anniversary.deleteOne({ _id: anniversaryId });
     if (response.deletedCount > 0) {
