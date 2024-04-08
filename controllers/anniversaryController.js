@@ -280,7 +280,7 @@ exports.deleteAnniversary = async (req, res) => {
   // #swagger.responses[403] = { description: 'Access denied' }
   // #swagger.responses[404] = { description: 'Anniversary not found' }
   // #swagger.responses[500] = { description: 'Internal server error' }
-  const anniversaryId = mongoose.Types.ObjectId(req.params.id);
+  const anniversaryId = new mongoose.Types.ObjectId(req.params.id);
 
   try {
     const response = await Anniversary.deleteOne({ _id: anniversaryId });
