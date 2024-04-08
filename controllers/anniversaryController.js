@@ -29,8 +29,8 @@ exports.getAllAnniversaries = async (req, res) => {
       }
     }
   }
-  #swagger.responses[500] = { description: 'Internal server error' }
   #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {
     const result = await Anniversary.find();
@@ -60,8 +60,8 @@ exports.getFormattedAnniversaries = async (req, res) => {
       }
     }
   }
-  #swagger.responses[500] = { description: 'Internal server error' }
   #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {
     const anniversaries = await Anniversary.find();
@@ -92,8 +92,8 @@ exports.getAnniversaryById = async (req, res) => {
       }
     }
   }
-  #swagger.responses[500] = { description: 'Internal server error' }
   #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {
     const anniversaryId = req.params.id;
@@ -128,8 +128,8 @@ exports.getAnniversariesByMonth = async (req, res) => {
       }
     }
   }
-  #swagger.responses[500] = { description: 'Internal server error' }
   #swagger.responses[403] = { description: 'Access denied' }
+  #swagger.responses[500] = { description: 'Internal server error' }
   */
   const month = parseInt(req.params.month);
   try {
@@ -194,9 +194,24 @@ exports.createAnniversary = async (req, res) => {
       }
     }
   }
-  #swagger.responses[500] = { description: 'Internal server error' }
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "anniversaryId": "65f67b2343deac10f85b3df6",
+          "couple": [
+            "John Doe",
+            "Jane Doe"
+          ],
+          "formattedDate": "2020-06-30"
+        }
+      }
+    }
+  }
   #swagger.responses[403] = { description: 'Access denied' }
   #swagger.responses[412] = { description: 'Validation failed' }
+  #swagger.responses[500] = { description: 'Internal server error' }
   */
   const { couple, anniversaryDate } = req.body;
   const coupleIds = couple.map((id) => mongoose.Types.ObjectId(id));
@@ -236,9 +251,24 @@ exports.updateAnniversary = async (req, res) => {
       }
     }
   }
-  #swagger.responses[500] = { description: 'Internal server error' }
+  #swagger.responses[200] = {
+    description: 'Successful operation',
+    content: {
+      "application/json": {
+        example: {
+          "anniversaryId": "65f67b2343deac10f85b3df6",
+          "couple": [
+            "John Doe",
+            "Jane Doe"
+          ],
+          "formattedDate": "2020-06-30"
+        }
+      }
+    }
+  }
   #swagger.responses[403] = { description: 'Access denied' }
   #swagger.responses[412] = { description: 'Validation failed' }
+  #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {
     const anniversaryId = new ObjectId(req.params.id);
@@ -263,8 +293,10 @@ exports.deleteAnniversary = async (req, res) => {
   // #swagger.tags = ['Anniversaries']
   // #swagger.summary = 'Delete an Anniversary by Id'
   // #swagger.description = 'This will delete a single anniversary from the database by Id. This action is permanent.'
-  // #swagger.responses[500] = { description: 'Internal server error' }
+  // #swagger.responses[200] = { description: 'Successful operation' }
   // #swagger.responses[403] = { description: 'Access denied' }
+  // #swagger.responses[404] = { description: 'Anniversary not found' }
+  // #swagger.responses[500] = { description: 'Internal server error' }
   const anniversaryId = mongoose.Types.ObjectId(req.params.id);
   try {
     const response = await Anniversary.deleteOne({ _id: anniversaryId });

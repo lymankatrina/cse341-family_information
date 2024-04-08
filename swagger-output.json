@@ -39,17 +39,40 @@
         "tags": [
           "Individuals"
         ],
-        "summary": "Get all individuals",
-        "description": "This will return all the individuals in the database",
+        "summary": "Get all Individuals",
+        "description": "This will list all individuals in the database",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "firstName": "Alexander",
+                  "middleName": "Danger",
+                  "lastName": "Olsen",
+                  "birthDate": "2011-07-16T00:00:00.000+00:00",
+                  "parents": [
+                    "individual1",
+                    "individual2"
+                  ],
+                  "phone": "123-456-7890",
+                  "email": "fake@gamil.com",
+                  "household": "uniqueId",
+                  "headOfHousehold": "false",
+                  "picture": "https://fakeimg.pl/600x400?text=Alexander"
+                }
+              }
+            }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Individuals not found"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         }
       }
@@ -59,8 +82,8 @@
         "tags": [
           "Individuals"
         ],
-        "summary": "Get an individual by Id",
-        "description": "This will return an individual by Id",
+        "summary": "Get a single individual by individual Id",
+        "description": "This will return a single individual in the database by individual Id",
         "parameters": [
           {
             "name": "id",
@@ -73,16 +96,39 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "firstName": "Alexander",
+                  "middleName": "Danger",
+                  "lastName": "Olsen",
+                  "birthDate": "2011-07-16T00:00:00.000+00:00",
+                  "parents": [
+                    "individual1",
+                    "individual2"
+                  ],
+                  "phone": "123-456-7890",
+                  "email": "fake@gamil.com",
+                  "household": "uniqueId",
+                  "headOfHousehold": "false",
+                  "picture": "https://fakeimg.pl/600x400?text=Alexander"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad Request"
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Individual not found"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         }
       }
@@ -92,56 +138,61 @@
         "tags": [
           "Individuals"
         ],
-        "summary": "Create a new Individual to the collection",
+        "summary": "Create an Individual",
         "description": "Create an Individual by providing all required information.",
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "firstName": "Alexander",
+                  "middleName": "Danger",
+                  "lastName": "Olsen",
+                  "birthDate": "2011-07-16T00:00:00.000+00:00",
+                  "parents": [
+                    "individual1",
+                    "individual2"
+                  ],
+                  "phone": "123-456-7890",
+                  "email": "fake@gamil.com",
+                  "household": "uniqueId",
+                  "headOfHousehold": "false",
+                  "picture": "https://fakeimg.pl/600x400?text=Alexander"
+                }
+              }
+            }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "Individual not found"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "firstName": {
-                    "example": "any"
-                  },
-                  "middleName": {
-                    "example": "any"
-                  },
-                  "lastName": {
-                    "example": "any"
-                  },
-                  "birthDate": {
-                    "example": "any"
-                  },
-                  "parents": {
-                    "example": "any"
-                  },
-                  "phone": {
-                    "example": "any"
-                  },
-                  "email": {
-                    "example": "any"
-                  },
-                  "household": {
-                    "example": "any"
-                  },
-                  "headOfHousehold": {
-                    "example": "any"
-                  },
-                  "picture": {
-                    "example": "any"
-                  }
-                }
+              "example": {
+                "_id": "uniqueId",
+                "firstName": "Alexander",
+                "middleName": "Danger",
+                "lastName": "Olsen",
+                "birthDate": "2011-07-16T00:00:00.000+00:00",
+                "parents": [
+                  "individual1",
+                  "individual2"
+                ],
+                "phone": "123-456-7890",
+                "email": "fake@gamil.com",
+                "household": "uniqueId",
+                "headOfHousehold": "false",
+                "picture": "https://fakeimg.pl/600x400?text=Alexander"
               }
             }
           }
@@ -153,8 +204,8 @@
         "tags": [
           "Individuals"
         ],
-        "summary": "Update an existing Individual by Id",
-        "description": "Update an existing individual by providing all required information.",
+        "summary": "Update an Individual by Id",
+        "description": "Update an existing Individual by providing the individualId and updated fields. All fields are required.",
         "parameters": [
           {
             "name": "id",
@@ -167,52 +218,57 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "firstName": "Alexander",
+                  "middleName": "Danger",
+                  "lastName": "Olsen",
+                  "birthDate": "2011-07-16T00:00:00.000+00:00",
+                  "parents": [
+                    "individual1",
+                    "individual2"
+                  ],
+                  "phone": "123-456-7890",
+                  "email": "fake@gamil.com",
+                  "household": "uniqueId",
+                  "headOfHousehold": "false",
+                  "picture": "https://fakeimg.pl/600x400?text=Alexander"
+                }
+              }
+            }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Individual not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "firstName": {
-                    "example": "any"
-                  },
-                  "middleName": {
-                    "example": "any"
-                  },
-                  "lastName": {
-                    "example": "any"
-                  },
-                  "birthDate": {
-                    "example": "any"
-                  },
-                  "parents": {
-                    "example": "any"
-                  },
-                  "phone": {
-                    "example": "any"
-                  },
-                  "email": {
-                    "example": "any"
-                  },
-                  "household": {
-                    "example": "any"
-                  },
-                  "headOfHousehold": {
-                    "example": "any"
-                  },
-                  "picture": {
-                    "example": "any"
-                  }
-                }
+              "example": {
+                "_id": "uniqueId",
+                "firstName": "Alexander",
+                "middleName": "Danger",
+                "lastName": "Olsen",
+                "birthDate": "2011-07-16T00:00:00.000+00:00",
+                "parents": [
+                  "individual1",
+                  "individual2"
+                ],
+                "phone": "123-456-7890",
+                "email": "fake@gamil.com",
+                "household": "uniqueId",
+                "headOfHousehold": "false",
+                "picture": "https://fakeimg.pl/600x400?text=Alexander"
               }
             }
           }
@@ -236,13 +292,16 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation"
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Individual not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -256,16 +315,38 @@
         "description": "This will list all households in the database",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "streetAddress": "123 Real Street",
+                  "city": "Salem",
+                  "state": "UT",
+                  "zip": "84653",
+                  "country": "United States",
+                  "headOfHousehold": [
+                    "individual1",
+                    "individual2"
+                  ],
+                  "residents": [
+                    "individual1",
+                    "individual2",
+                    "individual3",
+                    "individial4"
+                  ]
+                }
+              }
+            }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Households not found"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         }
       }
@@ -275,8 +356,8 @@
         "tags": [
           "Households"
         ],
-        "summary": "Get a single household by its ID",
-        "description": "Returns a single household by its id",
+        "summary": "Get a single household by household id",
+        "description": "This will return a single household in the database by household id",
         "parameters": [
           {
             "name": "id",
@@ -289,19 +370,41 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "streetAddress": "123 Real Street",
+                  "city": "Salem",
+                  "state": "UT",
+                  "zip": "84653",
+                  "country": "United States",
+                  "headOfHousehold": [
+                    "individual1",
+                    "individual2"
+                  ],
+                  "residents": [
+                    "individual1",
+                    "individual2",
+                    "individual3",
+                    "individial4"
+                  ]
+                }
+              }
+            }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Household not found"
           },
           "422": {
-            "description": "Unprocessable Entity"
+            "description": "Id is invalid"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         }
       }
@@ -311,8 +414,8 @@
         "tags": [
           "Households"
         ],
-        "summary": "Get a single household by its head of household",
-        "description": "Returns a single household by the head of the household",
+        "summary": "Get a single household by head of household",
+        "description": "This will return a single household belonging to the specified head of household",
         "parameters": [
           {
             "name": "hoh",
@@ -325,19 +428,41 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "streetAddress": "123 Real Street",
+                  "city": "Salem",
+                  "state": "UT",
+                  "zip": "84653",
+                  "country": "United States",
+                  "headOfHousehold": [
+                    "individual1",
+                    "individual2"
+                  ],
+                  "residents": [
+                    "individual1",
+                    "individual2",
+                    "individual3",
+                    "individial4"
+                  ]
+                }
+              }
+            }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Household not found"
           },
           "422": {
-            "description": "Unprocessable Entity"
+            "description": "Head of household id is invalid"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         }
       }
@@ -347,8 +472,8 @@
         "tags": [
           "Households"
         ],
-        "summary": "Get a single household by its address",
-        "description": "Returns a single household by its address",
+        "summary": "Get a single household by address",
+        "description": "This will return a single household located at the specified address.",
         "parameters": [
           {
             "name": "street",
@@ -385,19 +510,41 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "streetAddress": "123 Real Street",
+                  "city": "Salem",
+                  "state": "UT",
+                  "zip": "84653",
+                  "country": "United States",
+                  "headOfHousehold": [
+                    "individual1",
+                    "individual2"
+                  ],
+                  "residents": [
+                    "individual1",
+                    "individual2",
+                    "individual3",
+                    "individial4"
+                  ]
+                }
+              }
+            }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Household not found"
           },
           "422": {
-            "description": "Unprocessable Entity"
+            "description": "Address is invalid"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         }
       }
@@ -414,16 +561,19 @@
             "description": "OK"
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "404": {
             "description": "Not Found"
+          },
+          "412": {
+            "description": "Validation failed"
           },
           "422": {
             "description": "Unprocessable Entity"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         },
         "requestBody": {
@@ -457,7 +607,7 @@
           "Households"
         ],
         "summary": "Update a Household by its ID",
-        "description": "Update an existing household by providing all required information.",
+        "description": "Update an existing household by providing the householdId and the updated information. All fields required.",
         "parameters": [
           {
             "name": "id",
@@ -473,16 +623,19 @@
             "description": "OK"
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Household not found"
+          },
+          "412": {
+            "description": "Validation failed"
           },
           "422": {
             "description": "Unprocessable Entity"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         },
         "requestBody": {
@@ -516,7 +669,7 @@
           "Households"
         ],
         "summary": "Delete a household by its ID",
-        "description": "Permanently delete a household by its ID",
+        "description": "This will delete a single household from the database by Id. This action is permanent.",
         "parameters": [
           {
             "name": "id",
@@ -529,19 +682,19 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation"
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Household not found"
           },
           "422": {
             "description": "Unprocessable Entity"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         }
       }
@@ -555,13 +708,25 @@
         "description": "This will list all anniversaries in the database",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "couple": [
+                    "IndividualId1",
+                    "IndividualId2"
+                  ],
+                  "anniversaryDate": "1996-01-14T00:00:00.000Z"
+                }
+              }
+            }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         }
       }
@@ -575,7 +740,25 @@
         "description": "This will list all anniversaries in the database with names and formatted dates",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "anniversaryId": "uniqueId",
+                  "couple": [
+                    "John Doe",
+                    "Jane Doe"
+                  ],
+                  "formattedDate": "1996-01-14"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -586,7 +769,7 @@
           "Anniversaries"
         ],
         "summary": "Get a single anniversary by anniversary Id",
-        "description": "This will return a single anniversary in the database by anniversary Id",
+        "description": "This will return a single anniversary in the database by anniversary Id with individual names and formatted anniversary date",
         "parameters": [
           {
             "name": "id",
@@ -599,13 +782,28 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "anniversaryId": "uniqueId",
+                  "couple": [
+                    "John Doe",
+                    "Jane Doe"
+                  ],
+                  "anniversaryDate": "1996-01-14"
+                }
+              }
+            }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -616,7 +814,7 @@
           "Anniversaries"
         ],
         "summary": "Get anniversaries by month",
-        "description": "This will return a list of anniversaries that occur in the specified month",
+        "description": "This will return a list of anniversaries that occur in the specified month.Month should be entered as an integer.",
         "parameters": [
           {
             "name": "month",
@@ -629,13 +827,28 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "anniversaryId": "65f67b2343deac10f85b3df6",
+                  "couple": [
+                    "John Doe",
+                    "Jane Doe"
+                  ],
+                  "formattedDate": "2020-06-30"
+                }
+              }
+            }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -646,19 +859,37 @@
           "Anniversaries"
         ],
         "summary": "Create an Anniversary",
-        "description": "Create an Anniversary by providing all required information.",
+        "description": "Create an Anniversary by providing all required information. Individual Ids must be valid and actually exist in the individuals collection. The anniversary date must be formatted as YYYY-MM-DD. All fields are required.",
         "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "anniversaryId": "65f67b2343deac10f85b3df6",
+                  "couple": [
+                    "John Doe",
+                    "Jane Doe"
+                  ],
+                  "formattedDate": "2020-06-30"
+                }
+              }
+            }
+          },
           "201": {
             "description": "Created"
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "412": {
-            "description": "Precondition Failed"
+            "description": "Validation failed"
           },
           "422": {
             "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         },
         "requestBody": {
@@ -683,7 +914,7 @@
           "Anniversaries"
         ],
         "summary": "Update an Anniversary by Id",
-        "description": "Update an existing anniversary by providing the anniversaryId and the updated information.",
+        "description": "Update an existing anniversary by providing the anniversaryId and the updated information. Individual Ids must be valid and actually exist in the individuals collection. The anniversary date must be formatted as YYYY-MM-DD. All fields are required.",
         "parameters": [
           {
             "name": "id",
@@ -696,16 +927,31 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "anniversaryId": "65f67b2343deac10f85b3df6",
+                  "couple": [
+                    "John Doe",
+                    "Jane Doe"
+                  ],
+                  "formattedDate": "2020-06-30"
+                }
+              }
+            }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "404": {
             "description": "Not Found"
           },
           "412": {
-            "description": "Precondition Failed"
+            "description": "Validation failed"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         },
         "requestBody": {
@@ -743,13 +989,16 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation"
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Anniversary not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -760,13 +1009,32 @@
           "News"
         ],
         "summary": "Get all News Stories",
-        "description": "This will return all the news stories in the database unformatted",
+        "description": "This will list all news stories in the database",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "newsTitle": "Important Announcement",
+                  "newsBody": "I am bringing jello salad to the family reunion!",
+                  "status": "public",
+                  "postedBy": "individual1",
+                  "dateCreated": "2024-03-14T00:00:00.000+00:00",
+                  "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "News not found"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error"
           }
         }
       }
@@ -780,7 +1048,29 @@
         "description": "This will return all the news stories in the database",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "newsTitle": "Important Announcement",
+                  "newsBody": "I am bringing jello salad to the family reunion!",
+                  "status": "public",
+                  "postedBy": "individual1",
+                  "dateCreated": "2024-03-14T00:00:00.000+00:00",
+                  "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "News not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -804,10 +1094,29 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "newsTitle": "Important Announcement",
+                  "newsBody": "I am bringing jello salad to the family reunion!",
+                  "status": "public",
+                  "postedBy": "individual1",
+                  "dateCreated": "2024-03-14T00:00:00.000+00:00",
+                  "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied"
           },
           "404": {
-            "description": "Not Found"
+            "description": "News not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -831,10 +1140,29 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "newsTitle": "Important Announcement",
+                  "newsBody": "I am bringing jello salad to the family reunion!",
+                  "status": "public",
+                  "postedBy": "individual1",
+                  "dateCreated": "2024-03-14T00:00:00.000+00:00",
+                  "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied"
           },
           "404": {
-            "description": "Not Found"
+            "description": "News not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -858,10 +1186,29 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "newsTitle": "Important Announcement",
+                  "newsBody": "I am bringing jello salad to the family reunion!",
+                  "status": "public",
+                  "postedBy": "individual1",
+                  "dateCreated": "2024-03-14T00:00:00.000+00:00",
+                  "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied"
           },
           "404": {
-            "description": "Not Found"
+            "description": "News not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -874,17 +1221,36 @@
         "summary": "Create a News Story",
         "description": "Create a news story by providing all required information.",
         "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "newsTitle": "Important Announcement",
+                  "newsBody": "I am bringing jello salad to the family reunion!",
+                  "status": "public",
+                  "postedBy": "individual1",
+                  "dateCreated": "2024-03-14T00:00:00.000+00:00",
+                  "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+                }
+              }
+            }
+          },
           "201": {
             "description": "Created"
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "404": {
             "description": "Not Found"
           },
           "412": {
-            "description": "Precondition Failed"
+            "description": "Validation failed"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         },
         "requestBody": {
@@ -923,13 +1289,29 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "_id": "uniqueId",
+                  "newsTitle": "Important Announcement",
+                  "newsBody": "I am bringing jello salad to the family reunion!",
+                  "status": "public",
+                  "postedBy": "individual1",
+                  "dateCreated": "2024-03-14T00:00:00.000+00:00",
+                  "picture": "https://fakeimg.pl/600x400?text=jello+salad"
+                }
+              }
+            }
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
           },
           "412": {
-            "description": "Precondition Failed"
+            "description": "Validation failed"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         },
         "requestBody": {
@@ -968,10 +1350,16 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful operation"
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Access denied"
+          },
+          "404": {
+            "description": "News not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
