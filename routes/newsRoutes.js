@@ -3,13 +3,12 @@ const router = express.Router();
 const newsController = require('../controllers/newsController');
 const {
   validUserEmail,
-  validHeadOfHousehold,
   newsAccessMiddleware
 } = require('../middleware/permissionMiddleware');
 const { newsValidator } = require('../middleware/newsValidator');
 
 // get all news
-router.get('/getall', newsController.getAllNews);
+router.get('/getall', validUserEmail, newsAccessMiddleware, newsController.getAllNews);
 
 // Get formatted news
 router.get('/getformatted', validUserEmail, newsAccessMiddleware, newsController.getFormattedNews);
@@ -35,9 +34,7 @@ router.post('/createnews', validUserEmail, newsValidator, newsController.createN
 router.put(
   '/updatenews/:id',
   validUserEmail,
-  validHeadOfHousehold,
   newsValidator,
-  newsAccessMiddleware,
   newsController.updateNewsById
 );
 
@@ -45,8 +42,6 @@ router.put(
 router.delete(
   '/deletenews/:id',
   validUserEmail,
-  validHeadOfHousehold,
-  newsAccessMiddleware,
   newsController.deleteNewsById
 );
 

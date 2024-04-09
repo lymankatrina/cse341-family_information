@@ -11,7 +11,6 @@ const mockResponse = () => {
   return res;
 };
 
-// Mock the getAllEmails function
 jest.mock('../../controllers/individualController', () => ({
   getAllEmails: jest
     .fn()

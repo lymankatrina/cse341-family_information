@@ -19,10 +19,10 @@ describe('anniversaryValidator', () => {
 
     await anniversaryValidator(req, res, next);
 
-    expect(findByIdMock).toHaveBeenCalledTimes(2); // Check that findById was called for each ID
+    expect(findByIdMock).toHaveBeenCalledTimes(2);
     expect(next).toHaveBeenCalled();
 
-    require('../../models/individualModel').findById = originalFindById; // Restore original findById
+    require('../../models/individualModel').findById = originalFindById;
   });
 
   test('should send a validation error response if validation fails', async () => {
@@ -32,7 +32,7 @@ describe('anniversaryValidator', () => {
 
     await anniversaryValidator(req, res, next);
 
-    expect(findByIdMock).toHaveBeenCalledTimes(2); // Check that findById was called for each ID
+    expect(findByIdMock).toHaveBeenCalledTimes(2);
     expect(res.status).toHaveBeenCalledWith(412);
     expect(res.send).toHaveBeenCalledWith({
       success: false,
@@ -40,6 +40,6 @@ describe('anniversaryValidator', () => {
       data: { 'couple.*': ['validId1 does not exist', 'validId2 does not exist'] }
     });
 
-    require('../../models/individualModel').findById = originalFindById; // Restore original findById
+    require('../../models/individualModel').findById = originalFindById;
   });
 });
