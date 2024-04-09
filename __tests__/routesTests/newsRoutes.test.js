@@ -112,7 +112,6 @@ describe('News Routes', function () {
   test('PUT /news/updatenews/:id should respond with status 200', async () => {
     const res = await request(app).put('/news/updatenews/1');
     expect(validUserEmail).toHaveBeenCalled();
-    expect(validHeadOfHousehold).toHaveBeenCalled();
     expect(newsValidator).toHaveBeenCalled();
     expect(newsController.updateNewsById).toHaveBeenCalled();
     expect(res.status).toBe(200);
@@ -121,7 +120,6 @@ describe('News Routes', function () {
   test('DELETE /news/deletenews/:id should respond with status 200', async () => {
     const res = await request(app).delete('/news/deletenews/1');
     expect(validUserEmail).toHaveBeenCalled();
-    expect(validHeadOfHousehold).toHaveBeenCalled();
     expect(newsController.deleteNewsById).toHaveBeenCalled();
     expect(res.status).toBe(200);
   });

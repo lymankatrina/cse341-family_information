@@ -29,7 +29,7 @@ exports.getAllNews = async (req, res) => {
   #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {
-    const result = await News.find();
+    const result = req.filteredNews;
     res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
@@ -62,8 +62,7 @@ exports.getFormattedNews = async (req, res) => {
   #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {
-    const news = await News.find().populate('postedBy');
-    const result = await Promise.all(news.map(formatNews));
+    const result = await Promise.all(req.filteredNews.map(formatNews));
     res.status(200).json(result);
   } catch (error) {
     handleServerError(res, error);
@@ -97,9 +96,9 @@ exports.getNewsById = async (req, res) => {
   */
   const newsId = req.params.id;
   try {
-    const news = await News.findById(newsId);
+    const news = req.filteredNews.find(newsItem => newsItem._id.toString() === newsId);
     if (!news) {
-      return res.status(404).json({ error: 'No news story found by that News Id' });
+      return res.status(404).json({ error: 'Cannot access news story by that News Id' });
     }
     const result = await formatNews(news);
     res.status(200).json(result);
@@ -135,9 +134,9 @@ exports.getNewsByAuthor = async (req, res) => {
   */
   const postedBy = req.params.postedBy;
   try {
-    const news = await News.find({ postedBy: postedBy });
+    const news = req.filteredNews.filter(newsItem => newsItem.postedBy.toString() === postedBy);
     if (!news || news.length === 0) {
-      return res.status(404).json({ error: 'No news stories found by that author Id' });
+      return res.status(404).json({ error: 'Cannot access any news stories by that author Id' });
     }
     const result = await Promise.all(
       news.map(async (newsItem) => {
@@ -178,10 +177,10 @@ exports.getNewsByStatus = async (req, res) => {
   */
   const status = req.params.status;
   try {
-    const news = await News.find({ status: status });
+    const news = req.filteredNews.filter(newsItem => newsItem.status === status);
     if (!news || news.length === 0) {
       return res.status(404).json({
-        error: `No news stories found by that status. Status must be 'public' or 'private'.`
+        error: `Cannot access any news stories by that status. Status must be 'public' or 'private'.`
       });
     }
     const result = await Promise.all(news.map(formatNews));

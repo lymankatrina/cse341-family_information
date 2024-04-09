@@ -1,4 +1,3 @@
-// __tests__/helpersTests/individualController.test.js
 const { getIndividualByLastName } = require('../../helpers/helpers');
 const Individual = require('../../models/individualModel');
 

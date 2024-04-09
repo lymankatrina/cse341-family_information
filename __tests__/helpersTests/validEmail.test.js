@@ -4,7 +4,6 @@ const mockRequest = (email) => ({
   oidc: { user: { email } }
 });
 
-// Mock the getAllEmails function
 jest.mock('../../controllers/individualController', () => ({
   getAllEmails: jest
     .fn()

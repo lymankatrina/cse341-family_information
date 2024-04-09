@@ -1,12 +1,10 @@
 const { validHeadOfHousehold } = require('../../middleware/permissionMiddleware');
 
-// Mock the getUserByEmail function
 jest.mock('../../controllers/individualController', () => ({
   getUserByEmail: jest.fn()
 }));
 
 describe('validHeadOfHousehold middleware', () => {
-  // test for valid user who is head of household
   test('allows access for valid head of household', async () => {
     const req = {
       oidc: {
@@ -26,7 +24,7 @@ describe('validHeadOfHousehold middleware', () => {
     expect(res.status).not.toHaveBeenCalled();
     expect(res.send).not.toHaveBeenCalled();
   });
-  // test for valid user who is not head of household
+
   test('should respond with 403 if user is not head of household', async () => {
     const req = {
       oidc: {
