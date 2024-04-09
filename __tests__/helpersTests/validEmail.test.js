@@ -18,7 +18,6 @@ describe('validEmail middleware', () => {
   test('returns true for valid user email', async () => {
     const req = mockRequest('test1@example.com');
     const result = await validEmail(req);
-    console.log('Result:', result);
     expect(result).toBe(true);
   });
 });

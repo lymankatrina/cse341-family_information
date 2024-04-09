@@ -11,14 +11,10 @@ GET http://localhost:3000/anniversaries/<month>
 ### create an anniversary
 POST http://localhost:3000/anniversaries/createanniversary HTTP/1.1 Content-Type: application/json
 
-{{ anniversaryExample }}
-
 ### update an anniversary by Id
 PUT http://localhost:3000/anniversaries/updateanniversary/<anniversaryId> HTTP/1.1 Content-Type: application/json
-
-{{ anniversaryExample }}
 
 ### delete an anniversary by Id
 DELETE http://localhost:3000/anniversaries/deleteanniversary/<anniversaryId>
 
-// RENDER REQUESTS
+//Render Requests

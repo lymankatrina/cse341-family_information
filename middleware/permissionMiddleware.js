@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const { getAllEmails, getUserByEmail } = require('../controllers/individualController');
 const { News } = require('../models/newsModel');
-const Individual = require('../models/individualModel');
 
 const getEmails = async () => {
   let individuals = await getAllEmails();
@@ -36,23 +35,12 @@ const validHeadOfHousehold = async (req, res, next) => {
 
 const newsAccessMiddleware = async (req, res, next) => {
   try {
-    // Get the current users email address.
     const userEmail = req.oidc.user.email;
-    console.log(userEmail);
-    // Find the individual id that matches the current users email address.
     const user = await getUserByEmail(userEmail);
     const userId = new mongoose.Types.ObjectId(user._id);
-    console.log(userId);
-    
-    // Get all the public news
     const publicNews = await News.find({ status: 'public' });
-
-    // Get private news authored by current user
     const privateNews = await News.find({ postedBy: userId, status: 'private' });
-
-    // Combine public and private news items.
     const filteredNews = publicNews.concat(privateNews);
-
     req.filteredNews = filteredNews;
     next();
   } catch (err) {

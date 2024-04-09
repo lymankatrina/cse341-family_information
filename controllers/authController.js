@@ -1,5 +1,3 @@
-// this file becomes more useful when authentication is necessary to gain access...
-
 const checkAuth = (req, res) => {
   res.send(
     req.oidc.isAuthenticated()

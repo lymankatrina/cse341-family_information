@@ -9,7 +9,7 @@ const individualValidator = (req, res, next) => {
     parents: 'array|max:2',
     'parents.*': ['string'],
     email: 'required|string',
-    household: 'string', // Removed space before Number
+    household: 'string',
     headOfHousehold: 'required|boolean'
   };
   validator(req.body, validationRule, {}, (err, status) => {

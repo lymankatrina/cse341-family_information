@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { validUserEmail, validHeadOfHousehold } = require('../middleware/permissionMiddleware');
-//const security = require('../middleware/authorize.js');
 
 const individualController = require('../controllers/individualController');
 const { individualValidator } = require('../middleware/individualValidator');
@@ -10,7 +9,6 @@ const { individualValidator } = require('../middleware/individualValidator');
 router.get('/getAllIndividuals', validUserEmail, individualController.getAllIndividuals);
 
 // Get a single Individual by id
-
 router.get('/getIndividualById/:id', validUserEmail, individualController.getIndividualById);
 
 router.post(

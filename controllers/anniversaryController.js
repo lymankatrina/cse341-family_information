@@ -54,7 +54,6 @@ exports.getFormattedAnniversaries = async (req, res) => {
     }
   }
   #swagger.responses[403] = { description: 'Access denied' }
-
   #swagger.responses[500] = { description: 'Internal server error' }
   */
   try {

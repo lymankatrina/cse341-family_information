@@ -3,7 +3,6 @@ const express = require('express');
 const router = require('../../routes/newsRoutes');
 const {
   validUserEmail,
-  validHeadOfHousehold,
   newsAccessMiddleware
 } = require('../../middleware/permissionMiddleware');
 const newsController = require('../../controllers/newsController');
